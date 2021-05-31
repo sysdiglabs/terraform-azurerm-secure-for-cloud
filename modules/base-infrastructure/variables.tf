@@ -22,7 +22,7 @@ variable "sku" {
 
 variable "location" {
   type        = string
-  default     = "us-central1"
+  default     = "centralus"
   description = "Zone where the stack will be deployed"
 }
 
