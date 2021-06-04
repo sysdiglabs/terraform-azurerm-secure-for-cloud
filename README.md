@@ -25,7 +25,7 @@ module "cloud_vision_azure" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 2.60.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.62.0 |
 
 ## Modules
 
@@ -35,11 +35,19 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_lb.dummy](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/lb) | data source |
+| [azurerm_eventhub.aev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/eventhub) | resource |
+| [azurerm_eventhub_authorization_rule.example](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/eventhub_authorization_rule) | resource |
+| [azurerm_eventhub_namespace.evn](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/eventhub_namespace) | resource |
+| [azurerm_eventhub_namespace_authorization_rule.ns_auth_rule](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/eventhub_namespace_authorization_rule) | resource |
+| [azurerm_monitor_diagnostic_setting.diag](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting) | resource |
+| [azurerm_resource_group.rg](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
 
 ## Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_logs"></a> [logs](#input\_logs) | List of log categories to log. | `list(string)` | <pre>[<br>  "Administrative",<br>  "Security",<br>  "ServiceHealth",<br>  "Alert",<br>  "Recommendation",<br>  "Policy",<br>  "Autoscale",<br>  "ResourceHealth"<br>]</pre> | no |
+| <a name="input_targets_map"></a> [targets\_map](#input\_targets\_map) | Azure subscription | `map(string)` | <pre>{<br>  "/subscriptions/c3ea21a5-e474-4ed3-bf6c-b35fe3f9bea1": true<br>}</pre> | no |
 
 ## Outputs
 

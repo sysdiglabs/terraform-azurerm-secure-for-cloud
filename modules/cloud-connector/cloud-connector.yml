@@ -1,0 +1,8 @@
+logging: info
+rules:
+  - directory:
+      path: ./rules
+
+ingestors:
+  - azure-event-hub: {}
+notifiers: []

@@ -15,12 +15,6 @@ variable "naming_prefix" {
   }
 }
 
-variable "config_path" {
-  type        = string
-  description = "Configuration contents for the file stored in the bucket"
-  default     = "default-cloud-bench.yaml"
-}
-
 variable "image" {
   type        = string
   default     = "sysdiglabs/cloud-scanning:latest"

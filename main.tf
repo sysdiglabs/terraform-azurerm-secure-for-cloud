@@ -1,18 +1,4 @@
 # Configure the Azure provider
-terraform {
-  required_providers {
-    azurerm = {
-      source = "hashicorp/azurerm"
-      version = ">= 2.26"
-    }
-  }
-
-  required_version = ">= 0.14.9"
-}
-
-provider "azurerm" {
-  features {}
-}
 
 resource "azurerm_resource_group" "rg" {
   name     = "resourceterraform"
@@ -35,7 +21,7 @@ resource "azurerm_eventhub_namespace" "evn" {
   }
 }
 
-resource "azurerm_eventhub_namespace_authorization_rule" "ns-auth-rule" {
+resource "azurerm_eventhub_namespace_authorization_rule" "ns_auth_rule" {
   name                = "egiSharedAccessKey"
   namespace_name      = azurerm_eventhub_namespace.evn.name
   resource_group_name = azurerm_resource_group.rg.name
@@ -68,7 +54,7 @@ resource "azurerm_monitor_diagnostic_setting" "diag" {
 
   name                           = "tf-egi-diag"
   target_resource_id             = each.key
-  eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.ns-auth-rule.id
+  eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.ns_auth_rule.id
   eventhub_name                  = "terraformeventhub"
 
   dynamic "log" {
@@ -82,4 +68,3 @@ resource "azurerm_monitor_diagnostic_setting" "diag" {
     }
   }
 }
-

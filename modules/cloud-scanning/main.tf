@@ -2,10 +2,6 @@ locals {
 
 }
 
-provider "azurerm" {
-  features {}
-}
-
 data "azurerm_resource_group" "azure_rg" {
   name = var.resource_group
 }

@@ -1,17 +1,14 @@
 variable "tags" {
-  type = map(string)
-
+  type        = map(string)
+  description = "Tags to be added to the resources"
   default = {
     Team = "Sysdig"
   }
 }
 
-variable "subscription_targets_map" {
-  type = map(string)
-
-  default = {
-    "/subscriptions/00000000-0000-0000-0000-000000000000" = true
-  }
+variable "subscription_id" {
+  type        = string
+  description = "Subscription ID where apply the infrastructure"
 }
 
 variable "sku" {
@@ -59,16 +56,4 @@ variable "logs" {
   description = "List of log categories to log."
   type        = list(string)
   default     = ["Administrative", "Security", "ServiceHealth", "Alert", "Recommendation", "Policy", "Autoscale", "ResourceHealth"]
-}
-
-variable "config_content" {
-  default     = null
-  type        = string
-  description = "Contents of the configuration file to be saved in the bucket"
-}
-
-variable "config_source" {
-  default     = null
-  type        = string
-  description = "Path to a file that contains the contents of the configuration file to be saved in the bucket"
 }

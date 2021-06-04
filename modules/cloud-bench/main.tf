@@ -1,17 +1,10 @@
-locals {
-
-}
-
-provider "azurerm" {
-  features {}
-}
 
 data "azurerm_resource_group" "azure_rg" {
   name = var.resource_group
 }
 
 resource "azurerm_virtual_network" "vn" {
-  name                 = "${var.naming_prefix}-vnet"
+  name                = "${var.naming_prefix}-vnet"
   address_space       = ["10.0.0.0/16"]
   location            = data.azurerm_resource_group.azure_rg.location
   resource_group_name = data.azurerm_resource_group.azure_rg.name
@@ -26,7 +19,7 @@ resource "azurerm_subnet" "aci" {
 
   service_endpoints = ["Microsoft.Storage", "Microsoft.ContainerRegistry"]
   delegation {
-    name   = "${var.naming_prefix}-delegation"
+    name = "${var.naming_prefix}-delegation"
 
     service_delegation {
       name    = "Microsoft.ContainerInstance/containerGroups"
@@ -44,7 +37,7 @@ resource "azurerm_network_profile" "aci_profile" {
     name = "${var.naming_prefix}-net-interface"
 
     ip_configuration {
-      name = "${var.naming_prefix}-ip-conf"
+      name      = "${var.naming_prefix}-ip-conf"
       subnet_id = azurerm_subnet.aci.id
     }
   }
@@ -73,7 +66,7 @@ resource "azurerm_storage_share" "ss" {
 resource "azurerm_storage_share_file" "example" {
   name             = "cloud-bench.yaml"
   storage_share_id = azurerm_storage_share.ss.id
-  source  = var.config_path
+  source           = var.config_path
 }
 
 resource "azurerm_container_group" "aci" {
