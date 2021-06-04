@@ -38,6 +38,7 @@
 | <a name="input_config_path"></a> [config\_path](#input\_config\_path) | Configuration contents for the file stored in the bucket | `string` | `"/etc/cloudconnector/"` | no |
 | <a name="input_event_hub_connection_string"></a> [event\_hub\_connection\_string](#input\_event\_hub\_connection\_string) | Azure event hub connection string | `string` | n/a | yes |
 | <a name="input_image"></a> [image](#input\_image) | Image of the cloud-scanning to deploy | `string` | `"sysdiglabs/cloud-connector:latest"` | no |
+| <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"centralus"` | no |
 | <a name="input_naming_prefix"></a> [naming\_prefix](#input\_naming\_prefix) | Prefix for cloud scanning resource names. Use the default unless you need to install multiple instances, and modify the deployment at the main account accordingly | `string` | `"cloudconnector"` | no |
 | <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | Subscription ID where apply the infrastructure | `string` | n/a | yes |
 | <a name="input_sysdig_secure_api_token"></a> [sysdig\_secure\_api\_token](#input\_sysdig\_secure\_api\_token) | Sysdig's Secure API Token | `string` | n/a | yes |

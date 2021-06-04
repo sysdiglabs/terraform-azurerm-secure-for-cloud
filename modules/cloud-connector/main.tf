@@ -12,6 +12,7 @@ module "base_infrastructure" {
   source = "../base-infrastructure"
 
   subscription_id = var.subscription_id
+  location        = var.location
   naming_prefix   = "cloudconnector"
 }
 

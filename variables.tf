@@ -1,14 +1,44 @@
-variable "targets_map" {
-  description = "Azure subscription"
-  type        = map(string)
+variable "naming_prefix" {
+  type        = string
+  description = "Prefix for resource names. Use the default unless you need to install multiple instances, and modify the deployment at the main account accordingly"
 
-  default = {
-    "/subscriptions/c3ea21a5-e474-4ed3-bf6c-b35fe3f9bea1" = true
+  validation {
+    condition     = can(regex("^[a-zA-Z0-9\\-]+$", var.naming_prefix)) && length(var.naming_prefix) > 1 && length(var.naming_prefix) <= 64
+    error_message = "Must enter a naming prefix up to 64 alphanumeric characters."
   }
 }
 
-variable "logs" {
-  description = "List of log categories to log."
-  type        = list(string)
-  default     = ["Administrative", "Security", "ServiceHealth", "Alert", "Recommendation", "Policy", "Autoscale", "ResourceHealth"]
+variable "cloudconnector_deploy" {
+  type        = bool
+  default     = true
+  description = "Whether to deploy or not CloudConnector"
+}
+
+variable "sysdig_secure_endpoint" {
+  type        = string
+  default     = "https://secure.sysdig.com"
+  description = "Sysdig Secure API endpoint"
+}
+
+variable "location" {
+  type        = string
+  default     = "us-central1"
+  description = "Zone where the stack will be deployed"
+}
+
+variable "sysdig_secure_api_token" {
+  type        = string
+  description = "Sysdig's Secure API Token"
+  sensitive   = true
+}
+
+variable "event_hub_connection_string" {
+  type        = string
+  description = "Azure event hub connection string"
+  sensitive   = true
+}
+
+variable "subscription_id" {
+  type        = string
+  description = "Subscription ID where apply the infrastructure"
 }

@@ -55,3 +55,9 @@ variable "image" {
   default     = "sysdiglabs/cloud-connector:latest"
   description = "Image of the cloud-scanning to deploy"
 }
+
+variable "location" {
+  type        = string
+  default     = "centralus"
+  description = "Zone where the stack will be deployed"
+}
