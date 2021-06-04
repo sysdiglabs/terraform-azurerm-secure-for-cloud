@@ -1,6 +1,5 @@
 variable "resource_group" {
   type        = string
-  default     = "egiNewGroup"
   description = "Pricing tier plan [Basic, Standard, Premium]"
 }
 

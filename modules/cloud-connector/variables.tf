@@ -1,7 +1,6 @@
-variable "resource_group" {
+variable "subscription_id" {
   type        = string
-  default     = "sysdigcloud-resourcegroup"
-  description = "Pricing tier plan [Basic, Standard, Premium]"
+  description = "Subscription ID where apply the infrastructure"
 }
 
 variable "sysdig_secure_api_token" {
@@ -30,7 +29,7 @@ variable "verify_ssl" {
 
 variable "naming_prefix" {
   type        = string
-  default     = "sysdigcloudconnector"
+  default     = "cloudconnector"
   description = "Prefix for cloud scanning resource names. Use the default unless you need to install multiple instances, and modify the deployment at the main account accordingly"
 
   validation {

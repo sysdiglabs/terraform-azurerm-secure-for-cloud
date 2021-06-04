@@ -43,7 +43,6 @@ variable "eventhub_retention_days" {
 
 variable "naming_prefix" {
   type        = string
-  default     = "SysdigCloud"
   description = "Prefix for resource names. Use the default unless you need to install multiple instances, and modify the deployment at the main account accordingly"
 
   validation {

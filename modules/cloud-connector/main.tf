@@ -8,20 +8,23 @@ locals {
   }
 }
 
-data "azurerm_resource_group" "azure_rg" {
-  name = var.resource_group
+module "base_infrastructure" {
+  source = "../base-infrastructure"
+
+  subscription_id = var.subscription_id
+  naming_prefix   = "cloudconnector"
 }
 
 resource "azurerm_virtual_network" "vn" {
   name                = "${var.naming_prefix}-vn"
   address_space       = ["10.0.0.0/16"]
-  location            = data.azurerm_resource_group.azure_rg.location
-  resource_group_name = data.azurerm_resource_group.azure_rg.name
+  location            = module.base_infrastructure.resource_group_location
+  resource_group_name = module.base_infrastructure.resource_group_name
 }
 
 resource "azurerm_subnet" "sn" {
   name                                           = "${var.naming_prefix}-vn"
-  resource_group_name                            = data.azurerm_resource_group.azure_rg.name
+  resource_group_name                            = module.base_infrastructure.resource_group_name
   virtual_network_name                           = azurerm_virtual_network.vn.name
   address_prefixes                               = ["10.0.2.0/24"]
   service_endpoints                              = ["Microsoft.ContainerRegistry", "Microsoft.Storage"]
@@ -39,9 +42,9 @@ resource "azurerm_subnet" "sn" {
 
 resource "azurerm_storage_account" "sa" {
   name                = "${var.naming_prefix}sa"
-  resource_group_name = data.azurerm_resource_group.azure_rg.name
+  resource_group_name = module.base_infrastructure.resource_group_name
 
-  location                 = data.azurerm_resource_group.azure_rg.location
+  location                 = module.base_infrastructure.resource_group_location
   account_tier             = "Standard"
   account_replication_type = "LRS"
 
@@ -64,8 +67,8 @@ resource "azurerm_storage_share_file" "sf" {
 
 resource "azurerm_network_profile" "np" {
   name                = "${var.naming_prefix}-script"
-  location            = data.azurerm_resource_group.azure_rg.location
-  resource_group_name = data.azurerm_resource_group.azure_rg.name
+  location            = module.base_infrastructure.resource_group_location
+  resource_group_name = module.base_infrastructure.resource_group_name
 
   container_network_interface {
     name = "${var.naming_prefix}-ni"
@@ -77,10 +80,10 @@ resource "azurerm_network_profile" "np" {
   }
 }
 
-resource "azurerm_container_group" "aci" {
+resource "azurerm_container_group" "cg" {
   name                = "${var.naming_prefix}-group"
-  location            = data.azurerm_resource_group.azure_rg.location
-  resource_group_name = data.azurerm_resource_group.azure_rg.name
+  location            = module.base_infrastructure.resource_group_location
+  resource_group_name = module.base_infrastructure.resource_group_name
   ip_address_type     = "private"
   os_type             = "Linux"
   network_profile_id  = azurerm_network_profile.np.id
