@@ -33,12 +33,9 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_config_content"></a> [config\_content](#input\_config\_content) | Contents of the configuration file to be saved in the bucket | `string` | `null` | no |
 | <a name="input_config_file"></a> [config\_file](#input\_config\_file) | Configuration contents for the file stored in the bucket | `string` | `"cloud-connector.yml"` | no |
 | <a name="input_config_path"></a> [config\_path](#input\_config\_path) | Configuration contents for the file stored in the bucket | `string` | `"/etc/cloudconnector/"` | no |
-| <a name="input_config_source"></a> [config\_source](#input\_config\_source) | Path to a file that contains the contents of the configuration file to be saved in the bucket | `string` | `null` | no |
 | <a name="input_event_hub_connection_string"></a> [event\_hub\_connection\_string](#input\_event\_hub\_connection\_string) | Azure event hub connection string | `string` | n/a | yes |
-| <a name="input_extra_envs"></a> [extra\_envs](#input\_extra\_envs) | Extra environment variables for the Cloud Connector instance | `map(string)` | `{}` | no |
 | <a name="input_image"></a> [image](#input\_image) | Image of the cloud-scanning to deploy | `string` | `"sysdiglabs/cloud-connector:latest"` | no |
 | <a name="input_naming_prefix"></a> [naming\_prefix](#input\_naming\_prefix) | Prefix for cloud scanning resource names. Use the default unless you need to install multiple instances, and modify the deployment at the main account accordingly | `string` | `"sysdigcloudconnector"` | no |
 | <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | Pricing tier plan [Basic, Standard, Premium] | `string` | `"sysdigcloud-resourcegroup"` | no |
