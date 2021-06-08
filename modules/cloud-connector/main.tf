@@ -3,8 +3,8 @@ locals {
     SECURE_URL                  = var.sysdig_secure_endpoint,
     SECURE_API_TOKEN            = var.sysdig_secure_api_token,
     VERIFY_SSL                  = tostring(var.verify_ssl)
-    CONFIG_PATH                 = "${var.config_path}${var.config_file}"
-    EVENT_HUB_CONNECTION_STRING = var.event_hub_connection_string
+    CONFIG_PATH                 = "/etc/cloudconnector/cloud-connector.yml"
+    EVENT_HUB_CONNECTION_STRING = module.base_infrastructure.eventhub_connection_string
   }
 }
 
@@ -14,6 +14,7 @@ module "base_infrastructure" {
   subscription_id = var.subscription_id
   location        = var.location
   naming_prefix   = "cloudconnector"
+  tags            = var.tags
 }
 
 resource "azurerm_virtual_network" "vn" {
@@ -49,9 +50,7 @@ resource "azurerm_storage_account" "sa" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
 
-  tags = {
-    Team = "Sysdig"
-  }
+  tags = var.tags
 }
 
 resource "azurerm_storage_share" "container_share" {
@@ -98,7 +97,7 @@ resource "azurerm_container_group" "cg" {
     volume {
       name                 = "${var.naming_prefix}-vol"
       read_only            = true
-      mount_path           = var.config_path
+      mount_path           = "/etc/cloudconnector/"
       share_name           = azurerm_storage_share.container_share.name
       storage_account_name = azurerm_storage_account.sa.name
       storage_account_key  = azurerm_storage_account.sa.primary_access_key
@@ -111,7 +110,5 @@ resource "azurerm_container_group" "cg" {
     }
   }
 
-  tags = {
-    Team = "Sysdig"
-  }
+  tags = var.tags
 }

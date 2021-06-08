@@ -22,7 +22,7 @@ variable "sysdig_secure_endpoint" {
 
 variable "location" {
   type        = string
-  default     = "us-central1"
+  default     = "centralus"
   description = "Zone where the stack will be deployed"
 }
 
@@ -32,13 +32,21 @@ variable "sysdig_secure_api_token" {
   sensitive   = true
 }
 
-variable "event_hub_connection_string" {
-  type        = string
-  description = "Azure event hub connection string"
-  sensitive   = true
-}
-
 variable "subscription_id" {
   type        = string
   description = "Subscription ID where apply the infrastructure"
+}
+
+variable "cloudconnector_config_file" {
+  type        = string
+  default     = "modules/cloud-connector/cloud-connector.yml"
+  description = "Cloud connector config file absolute path"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to be added to the resources"
+  default = {
+    Team = "Sysdig"
+  }
 }

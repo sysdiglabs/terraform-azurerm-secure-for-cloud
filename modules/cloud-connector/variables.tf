@@ -9,12 +9,6 @@ variable "sysdig_secure_api_token" {
   sensitive   = true
 }
 
-variable "event_hub_connection_string" {
-  type        = string
-  description = "Azure event hub connection string"
-  sensitive   = true
-}
-
 variable "sysdig_secure_endpoint" {
   type        = string
   default     = "https://secure-staging.sysdig.com/"
@@ -38,12 +32,6 @@ variable "naming_prefix" {
   }
 }
 
-variable "config_path" {
-  type        = string
-  description = "Configuration contents for the file stored in the bucket"
-  default     = "/etc/cloudconnector/"
-}
-
 variable "config_file" {
   type        = string
   description = "Configuration contents for the file stored in the bucket"
@@ -60,4 +48,12 @@ variable "location" {
   type        = string
   default     = "centralus"
   description = "Zone where the stack will be deployed"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to be added to the resources"
+  default = {
+    Team = "Sysdig"
+  }
 }
