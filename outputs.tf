@@ -1,4 +1,4 @@
 output "removeme" {
-  value       = data.azurerm_lb.dummy.name
+  value       = "foo"
   description = "Added only to create initial pipeline"
 }
