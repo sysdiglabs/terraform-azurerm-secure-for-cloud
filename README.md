@@ -19,7 +19,7 @@ module "cloud_vision_azure" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#provider_azurerm\_azurerm) | 2.60.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.60.0 |
 
 ## Providers
 
