@@ -32,10 +32,16 @@ variable "naming_prefix" {
   }
 }
 
-variable "config_file" {
+variable "config_source" {
+  type        = string
+  default     = "cloud-connector.yml"
+  description = "Path to a file that contains the contents of the configuration file to be saved in the bucket"
+}
+
+variable "config_content" {
+  default     = null
   type        = string
   description = "Configuration contents for the file stored in the bucket"
-  default     = "cloud-connector.yml"
 }
 
 variable "image" {

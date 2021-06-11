@@ -6,6 +6,17 @@ locals {
     CONFIG_PATH                 = "/etc/cloudconnector/cloud-connector.yml"
     EVENT_HUB_CONNECTION_STRING = module.base_infrastructure.eventhub_connection_string
   }
+  default_config = <<EOF
+logging: info
+rules:
+  - directory:
+      path: ./rules
+
+ingestors:
+  - azure-event-hub: {}
+notifiers: []
+EOF
+  config_content = var.config_content == null && var.config_source == null ? local.default_config : var.config_content
 }
 
 module "base_infrastructure" {
@@ -59,10 +70,19 @@ resource "azurerm_storage_share" "container_share" {
   quota                = 1
 }
 
-resource "azurerm_storage_share_file" "sf" {
-  name             = "cloud-connector.yml"
-  storage_share_id = azurerm_storage_share.container_share.id
-  source           = var.config_file
+resource "azurerm_storage_container" "sc" {
+  name                  = "${var.naming_prefix}-sc"
+  storage_account_name  = azurerm_storage_account.sa.name
+  container_access_type = "private"
+}
+
+resource "azurerm_storage_blob" "sb" {
+  name                   = "cloud-connector.yml"
+  storage_account_name   = azurerm_storage_account.sa.name
+  storage_container_name = azurerm_storage_container.sc.name
+  type                   = "Block"
+  source                 = var.config_source
+  source_content         = local.config_content
 }
 
 resource "azurerm_network_profile" "np" {
