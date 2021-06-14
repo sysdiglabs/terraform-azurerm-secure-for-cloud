@@ -10,13 +10,13 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.63.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 2.26 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_base_infrastructure"></a> [base\_infrastructure](#module\_base\_infrastructure) | ../base-infrastructure | n/a |
+| <a name="module_base_infrastructure"></a> [base\_infrastructure](#module\_base\_infrastructure) | ../base-infrastructure |  |
 
 ## Resources
 
