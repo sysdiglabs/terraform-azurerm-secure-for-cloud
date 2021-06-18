@@ -65,3 +65,22 @@ resource "azurerm_monitor_diagnostic_setting" "diagnostic_setting" {
     }
   }
 }
+
+resource "azurerm_monitor_aad_diagnostic_setting" "example" {
+  name                           = "${lower(var.naming_prefix)}-aad-diagnostic-setting"
+  eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.ns_auth_rule.id
+  eventhub_name                  = azurerm_eventhub.aev.name
+
+  dynamic "log" {
+    for_each = var.active_directory_logs
+    content {
+      category = log.value
+      enabled  = true
+
+      retention_policy {
+        enabled = false
+        days    = 1
+      }
+    }
+  }
+}
