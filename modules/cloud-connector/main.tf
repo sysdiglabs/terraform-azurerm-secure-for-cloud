@@ -3,15 +3,14 @@ locals {
     SECURE_URL                  = var.sysdig_secure_endpoint,
     SECURE_API_TOKEN            = var.sysdig_secure_api_token,
     VERIFY_SSL                  = tostring(var.verify_ssl)
-    CONFIG_PATH                 = "/etc/cloudconnector/cloud-connector.yml"
+    CONFIG_PATH                 = "az://${azurerm_storage_account.sa.name}.blob.core.windows.net/${azurerm_storage_container.sc.name}/${azurerm_storage_blob.sb.name}"
     EVENT_HUB_CONNECTION_STRING = module.base_infrastructure.eventhub_connection_string
+    AZURE_STORAGE_ACCOUNT = azurerm_storage_account.sa.name
+    AZURE_STORAGE_ACCESS_KEY = azurerm_storage_account.sa.primary_access_key
   }
   default_config = <<EOF
-logging: info
-rules:
-  - directory:
-      path: ./rules
-
+logging: debug
+rules:[]
 ingestors:
   - azure-event-hub: {}
 notifiers: []
@@ -114,14 +113,6 @@ resource "azurerm_container_group" "cg" {
     cpu    = "1"
     memory = "2"
 
-    volume {
-      name                 = "${var.naming_prefix}-vol"
-      read_only            = true
-      mount_path           = "/etc/cloudconnector/"
-      share_name           = azurerm_storage_share.container_share.name
-      storage_account_name = azurerm_storage_account.sa.name
-      storage_account_key  = azurerm_storage_account.sa.primary_access_key
-    }
     environment_variables = local.env_vars
 
     ports {
