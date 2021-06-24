@@ -24,7 +24,7 @@ variable "verify_ssl" {
 variable "naming_prefix" {
   type        = string
   default     = "cloudconnector"
-  description = "Prefix for cloud scanning resource names. Use the default unless you need to install multiple instances, and modify the deployment at the main account accordingly"
+  description = "Prefix for cloud connector resource names. Use the default unless you need to install multiple instances, and modify the deployment at the main account accordingly"
 
   validation {
     condition     = can(regex("^[a-zA-Z0-9\\-]+$", var.naming_prefix)) && length(var.naming_prefix) > 1 && length(var.naming_prefix) <= 64
@@ -46,8 +46,8 @@ variable "config_content" {
 
 variable "image" {
   type        = string
-  default     = "sysdiglabs/cloud-connector:latest"
-  description = "Image of the cloud-scanning to deploy"
+  default     = "sysdiglabs/cloud-connector:master"
+  description = "Image of the cloud-connector to deploy"
 }
 
 variable "location" {

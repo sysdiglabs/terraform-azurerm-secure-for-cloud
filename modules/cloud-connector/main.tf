@@ -5,11 +5,11 @@ locals {
     VERIFY_SSL                  = tostring(var.verify_ssl)
     CONFIG_PATH                 = "az://${azurerm_storage_account.sa.name}.blob.core.windows.net/${azurerm_storage_container.sc.name}/${azurerm_storage_blob.sb.name}"
     EVENT_HUB_CONNECTION_STRING = module.base_infrastructure.eventhub_connection_string
-    AZURE_STORAGE_ACCOUNT = azurerm_storage_account.sa.name
-    AZURE_STORAGE_ACCESS_KEY = azurerm_storage_account.sa.primary_access_key
+    AZURE_STORAGE_ACCOUNT       = azurerm_storage_account.sa.name
+    AZURE_STORAGE_ACCESS_KEY    = azurerm_storage_account.sa.primary_access_key
   }
   default_config = <<EOF
-logging: debug
+logging: info
 rules:[]
 ingestors:
   - azure-event-hub: {}
@@ -52,6 +52,10 @@ resource "azurerm_subnet" "sn" {
   }
 }
 
+data "http" "myip" {
+  url = "http://icanhazip.com"
+}
+
 resource "azurerm_storage_account" "sa" {
   name                = "${var.naming_prefix}sa"
   resource_group_name = module.base_infrastructure.resource_group_name
@@ -60,19 +64,18 @@ resource "azurerm_storage_account" "sa" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
 
+  network_rules {
+    default_action             = "Deny"
+    ip_rules                   = ["100.0.0.1", chomp(data.http.myip.body)]
+    virtual_network_subnet_ids = ["${azurerm_subnet.sn.id}"]
+  }
+
   tags = var.tags
 }
 
-resource "azurerm_storage_share" "container_share" {
-  name                 = "${var.naming_prefix}-share"
-  storage_account_name = azurerm_storage_account.sa.name
-  quota                = 1
-}
-
 resource "azurerm_storage_container" "sc" {
-  name                  = "${var.naming_prefix}-sc"
-  storage_account_name  = azurerm_storage_account.sa.name
-  container_access_type = "private"
+  name                 = "${var.naming_prefix}-sc"
+  storage_account_name = azurerm_storage_account.sa.name
 }
 
 resource "azurerm_storage_blob" "sb" {
