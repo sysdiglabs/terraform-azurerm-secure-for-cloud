@@ -5,14 +5,12 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.26 |
-| <a name="requirement_http"></a> [http](#requirement\_http) | 2.1.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.61.0 |
-| <a name="provider_http"></a> [http](#provider\_http) | 2.1.0 |
 
 ## Modules
 
@@ -31,7 +29,6 @@
 | [azurerm_storage_container.sc](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container) | resource |
 | [azurerm_subnet.sn](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet) | resource |
 | [azurerm_virtual_network.vn](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_network) | resource |
-| [http_http.myip](https://registry.terraform.io/providers/hashicorp/http/2.1.0/docs/data-sources/http) | data source |
 
 ## Inputs
 
@@ -39,7 +36,7 @@
 |------|-------------|------|---------|:--------:|
 | <a name="input_config_content"></a> [config\_content](#input\_config\_content) | Configuration contents for the file stored in the bucket | `string` | `null` | no |
 | <a name="input_config_source"></a> [config\_source](#input\_config\_source) | Path to a file that contains the contents of the configuration file to be saved in the bucket | `string` | `"cloud-connector.yml"` | no |
-| <a name="input_image"></a> [image](#input\_image) | Image of the cloud-connector to deploy | `string` | `"sysdiglabs/cloud-connector:master"` | no |
+| <a name="input_image"></a> [image](#input\_image) | Image of the cloud-connector to deploy | `string` | `"sysdiglabs/cloud-connector:latest"` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"centralus"` | no |
 | <a name="input_naming_prefix"></a> [naming\_prefix](#input\_naming\_prefix) | Prefix for cloud connector resource names. Use the default unless you need to install multiple instances, and modify the deployment at the main account accordingly | `string` | `"cloudconnector"` | no |
 | <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | Subscription ID where apply the infrastructure | `string` | n/a | yes |
