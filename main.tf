@@ -13,6 +13,6 @@ module "cloud_connector" {
   sysdig_secure_endpoint  = var.sysdig_secure_endpoint
   verify_ssl              = local.verify_ssl
   subscription_id         = var.subscription_id
-  config_file             = var.cloudconnector_config_file
+  config_source           = var.cloudconnector_config_file
   tags                    = var.tags
 }

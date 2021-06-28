@@ -3,9 +3,19 @@ locals {
     SECURE_URL                  = var.sysdig_secure_endpoint,
     SECURE_API_TOKEN            = var.sysdig_secure_api_token,
     VERIFY_SSL                  = tostring(var.verify_ssl)
-    CONFIG_PATH                 = "/etc/cloudconnector/cloud-connector.yml"
+    CONFIG_PATH                 = "az://${azurerm_storage_account.sa.name}.blob.core.windows.net/${azurerm_storage_container.sc.name}/${azurerm_storage_blob.sb.name}"
     EVENT_HUB_CONNECTION_STRING = module.base_infrastructure.eventhub_connection_string
+    AZURE_STORAGE_ACCOUNT       = azurerm_storage_account.sa.name
+    AZURE_STORAGE_ACCESS_KEY    = azurerm_storage_account.sa.primary_access_key
   }
+  default_config = <<EOF
+logging: info
+rules:[]
+ingestors:
+  - azure-event-hub: {}
+notifiers: []
+EOF
+  config_content = var.config_content == null && var.config_source == null ? local.default_config : var.config_content
 }
 
 module "base_infrastructure" {
@@ -29,7 +39,7 @@ resource "azurerm_subnet" "sn" {
   resource_group_name                            = module.base_infrastructure.resource_group_name
   virtual_network_name                           = azurerm_virtual_network.vn.name
   address_prefixes                               = ["10.0.2.0/24"]
-  service_endpoints                              = ["Microsoft.ContainerRegistry", "Microsoft.Storage"]
+  service_endpoints                              = ["Microsoft.ContainerRegistry"]
   enforce_private_link_endpoint_network_policies = true
 
   delegation {
@@ -53,16 +63,18 @@ resource "azurerm_storage_account" "sa" {
   tags = var.tags
 }
 
-resource "azurerm_storage_share" "container_share" {
-  name                 = "${var.naming_prefix}-share"
+resource "azurerm_storage_container" "sc" {
+  name                 = "${var.naming_prefix}-sc"
   storage_account_name = azurerm_storage_account.sa.name
-  quota                = 1
 }
 
-resource "azurerm_storage_share_file" "sf" {
-  name             = "cloud-connector.yml"
-  storage_share_id = azurerm_storage_share.container_share.id
-  source           = var.config_file
+resource "azurerm_storage_blob" "sb" {
+  name                   = "cloud-connector.yml"
+  storage_account_name   = azurerm_storage_account.sa.name
+  storage_container_name = azurerm_storage_container.sc.name
+  type                   = "Block"
+  source                 = var.config_source
+  source_content         = local.config_content
 }
 
 resource "azurerm_network_profile" "np" {
@@ -94,14 +106,6 @@ resource "azurerm_container_group" "cg" {
     cpu    = "1"
     memory = "2"
 
-    volume {
-      name                 = "${var.naming_prefix}-vol"
-      read_only            = true
-      mount_path           = "/etc/cloudconnector/"
-      share_name           = azurerm_storage_share.container_share.name
-      storage_account_name = azurerm_storage_account.sa.name
-      storage_account_key  = azurerm_storage_account.sa.primary_access_key
-    }
     environment_variables = local.env_vars
 
     ports {
