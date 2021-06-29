@@ -37,12 +37,6 @@ variable "subscription_id" {
   description = "Subscription ID where apply the infrastructure"
 }
 
-variable "cloudconnector_config_file" {
-  type        = string
-  default     = "modules/cloud-connector/cloud-connector.yml"
-  description = "Cloud connector config file absolute path"
-}
-
 variable "tags" {
   type        = map(string)
   description = "Tags to be added to the resources"
