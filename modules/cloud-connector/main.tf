@@ -4,7 +4,7 @@ locals {
     SECURE_API_TOKEN            = var.sysdig_secure_api_token,
     VERIFY_SSL                  = tostring(var.verify_ssl)
     CONFIG_PATH                 = "az://${azurerm_storage_account.sa.name}.blob.core.windows.net/${azurerm_storage_container.sc.name}/${azurerm_storage_blob.sb.name}"
-    EVENT_HUB_CONNECTION_STRING = module.base_infrastructure.eventhub_connection_string
+    EVENT_HUB_CONNECTION_STRING = module.eventhub_setup_infrastructure.eventhub_connection_string
     AZURE_STORAGE_ACCOUNT       = azurerm_storage_account.sa.name
     AZURE_STORAGE_ACCESS_KEY    = azurerm_storage_account.sa.primary_access_key
   }
@@ -18,8 +18,8 @@ EOF
   config_content = var.config_content == null && var.config_source == null ? local.default_config : var.config_content
 }
 
-module "base_infrastructure" {
-  source = "../base-infrastructure"
+module "eventhub_setup_infrastructure" {
+  source = "../eventhub-setup-infrastructure"
 
   subscription_id = var.subscription_id
   location        = var.location
@@ -30,13 +30,13 @@ module "base_infrastructure" {
 resource "azurerm_virtual_network" "vn" {
   name                = "${var.naming_prefix}-vn"
   address_space       = ["10.0.0.0/16"]
-  location            = module.base_infrastructure.resource_group_location
-  resource_group_name = module.base_infrastructure.resource_group_name
+  location            = module.eventhub_setup_infrastructure.resource_group_location
+  resource_group_name = module.eventhub_setup_infrastructure.resource_group_name
 }
 
 resource "azurerm_subnet" "sn" {
   name                                           = "${var.naming_prefix}-vn"
-  resource_group_name                            = module.base_infrastructure.resource_group_name
+  resource_group_name                            = module.eventhub_setup_infrastructure.resource_group_name
   virtual_network_name                           = azurerm_virtual_network.vn.name
   address_prefixes                               = ["10.0.2.0/24"]
   service_endpoints                              = ["Microsoft.ContainerRegistry"]
@@ -54,9 +54,9 @@ resource "azurerm_subnet" "sn" {
 
 resource "azurerm_storage_account" "sa" {
   name                = "${var.naming_prefix}sa"
-  resource_group_name = module.base_infrastructure.resource_group_name
+  resource_group_name = module.eventhub_setup_infrastructure.resource_group_name
 
-  location                 = module.base_infrastructure.resource_group_location
+  location                 = module.eventhub_setup_infrastructure.resource_group_location
   account_tier             = "Standard"
   account_replication_type = "LRS"
 
@@ -79,8 +79,8 @@ resource "azurerm_storage_blob" "sb" {
 
 resource "azurerm_network_profile" "np" {
   name                = "${var.naming_prefix}-script"
-  location            = module.base_infrastructure.resource_group_location
-  resource_group_name = module.base_infrastructure.resource_group_name
+  location            = module.eventhub_setup_infrastructure.resource_group_location
+  resource_group_name = module.eventhub_setup_infrastructure.resource_group_name
 
   container_network_interface {
     name = "${var.naming_prefix}-ni"
@@ -94,8 +94,8 @@ resource "azurerm_network_profile" "np" {
 
 resource "azurerm_container_group" "cg" {
   name                = "${var.naming_prefix}-group"
-  location            = module.base_infrastructure.resource_group_location
-  resource_group_name = module.base_infrastructure.resource_group_name
+  location            = module.eventhub_setup_infrastructure.resource_group_location
+  resource_group_name = module.eventhub_setup_infrastructure.resource_group_name
   ip_address_type     = "private"
   os_type             = "Linux"
   network_profile_id  = azurerm_network_profile.np.id

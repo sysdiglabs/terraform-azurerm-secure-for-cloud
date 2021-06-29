@@ -10,13 +10,13 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.65.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.61.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_base_infrastructure"></a> [base\_infrastructure](#module\_base\_infrastructure) | ../base-infrastructure | n/a |
+| <a name="module_eventhub_setup_infrastructure"></a> [eventhub\_setup\_infrastructure](#module\_eventhub\_setup\_infrastructure) | ../eventhub-setup-infrastructure | n/a |
 
 ## Resources
 
