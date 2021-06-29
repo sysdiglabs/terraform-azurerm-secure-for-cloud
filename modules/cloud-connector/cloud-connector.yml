@@ -1,8 +1,0 @@
-logging: debug
-rules:
-  - directory:
-      path: ./rules
-
-ingestors:
-  - azure-event-hub: {}
-notifiers: []

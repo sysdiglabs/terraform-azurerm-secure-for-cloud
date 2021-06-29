@@ -34,7 +34,7 @@ variable "naming_prefix" {
 
 variable "config_source" {
   type        = string
-  default     = "cloud-connector.yml"
+  default     = null
   description = "Path to a file that contains the contents of the configuration file to be saved in the bucket"
 }
 
