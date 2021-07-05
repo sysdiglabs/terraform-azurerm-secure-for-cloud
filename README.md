@@ -1,113 +1,65 @@
-# terraform-docs
+# Cloud Vision deploy in Azure Module
 
-[![Build Status](https://github.com/terraform-docs/terraform-docs/workflows/ci/badge.svg)](https://github.com/terraform-docs/terraform-docs/actions) [![GoDoc](https://pkg.go.dev/badge/github.com/terraform-docs/terraform-docs)](https://pkg.go.dev/github.com/terraform-docs/terraform-docs) [![Go Report Card](https://goreportcard.com/badge/github.com/terraform-docs/terraform-docs)](https://goreportcard.com/report/github.com/terraform-docs/terraform-docs) [![Codecov Report](https://codecov.io/gh/terraform-docs/terraform-docs/branch/master/graph/badge.svg)](https://codecov.io/gh/terraform-docs/terraform-docs) [![License](https://img.shields.io/github/license/terraform-docs/terraform-docs)](https://github.com/terraform-docs/terraform-docs/blob/master/LICENSE) [![Latest release](https://img.shields.io/github/v/release/terraform-docs/terraform-docs)](https://github.com/terraform-docs/terraform-docs/releases)
+This repository contains a Module for how to deploy the Cloud Vision in the Azure Cloud Platform with different components
+deployment that will detect events in your infrastructure.
 
-![terraform-docs-teaser](./images/terraform-docs-teaser.png)
+## Usage
 
-## What is terraform-docs
+```hcl
+module "azurerm" {
+  source = "sysdiglabs/cloudvision/azure"
 
-A utility to generate documentation from Terraform modules in various output formats.
-
-## Documentation
-
-- **Users**
-  - Read the [User Guide] to learn how to use terraform-docs
-  - Read the [Formats Guide] to learn about different output formats of terraform-docs
-  - Refer to [Config File Reference] for all the available configuration options
-- **Developers**
-  - Read [Contributing Guide] before submitting a pull request
-
-Visit [our website] for all documentation.
-
-## Installation
-
-The latest version can be installed using `go get`:
-
-```bash
-GO111MODULE="on" go get github.com/terraform-docs/terraform-docs@v0.14.1
+  location = "us-central1"
+  sysdig_secure_api_token = "00000000-1111-2222-3333-444444444444"
+}
 ```
 
-**NOTE:** to download any version **before** `v0.9.1` (inclusive) you need to use to
-old module namespace (`segmentio`):
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
 
-```bash
-# only for v0.9.1 and before
-GO111MODULE="on" go get github.com/segmentio/terraform-docs@v0.9.1
-```
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 2.64.0 |
 
-**NOTE:** please use the latest Go to do this, minimum `go1.16` or greater.
+## Providers
 
-This will put `terraform-docs` in `$(go env GOPATH)/bin`. If you encounter the error
-`terraform-docs: command not found` after installation then you may need to either add
-that directory to your `$PATH` as shown [here] or do a manual installation by cloning
-the repo and run `make build` from the repository which will put `terraform-docs` in:
+| Name | Version |
+|------|---------|
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.64.0 |
 
-```bash
-$(go env GOPATH)/src/github.com/terraform-docs/terraform-docs/bin/$(uname | tr '[:upper:]' '[:lower:]')-amd64/terraform-docs
-```
+## Modules
 
-Stable binaries are also available on the [releases] page. To install, download the
-binary for your platform from "Assets" and place this into your `$PATH`:
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_cloud_connector"></a> [cloud\_connector](#module\_cloud\_connector) | ./modules/cloud-connector |  |
 
-```bash
-curl -Lo ./terraform-docs.tar.gz https://github.com/terraform-docs/terraform-docs/releases/download/v0.14.1/terraform-docs-v0.14.1-$(uname)-amd64.tar.gz
-tar -xzf terraform-docs.tar.gz
-chmod +x terraform-docs
-mv terraform-docs /some-dir-in-your-PATH/terraform-docs
-```
+## Resources
 
-**NOTE:** Windows releases are in `ZIP` format.
+| Name | Type |
+|------|------|
+| [azurerm_subscription.current](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/data-sources/subscription) | data source |
 
-If you are a Mac OS X user, you can use [Homebrew]:
+## Inputs
 
-```bash
-brew install terraform-docs
-```
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_cloudconnector_deploy"></a> [cloudconnector\_deploy](#input\_cloudconnector\_deploy) | Whether to deploy or not CloudConnector | `bool` | `true` | no |
+| <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"centralus"` | no |
+| <a name="input_naming_prefix"></a> [naming\_prefix](#input\_naming\_prefix) | Prefix for resource names. Use the default unless you need to install multiple instances, and modify the deployment at the main account accordingly | `string` | `"cloudconn"` | no |
+| <a name="input_sysdig_secure_api_token"></a> [sysdig\_secure\_api\_token](#input\_sysdig\_secure\_api\_token) | Sysdig's Secure API Token | `string` | n/a | yes |
+| <a name="input_sysdig_secure_endpoint"></a> [sysdig\_secure\_endpoint](#input\_sysdig\_secure\_endpoint) | Sysdig Secure API endpoint | `string` | `"https://secure.sysdig.com"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to the resources | `map(string)` | <pre>{<br>  "Team": "Cloud Vision"<br>}</pre> | no |
 
-or
+## Outputs
 
-```bash
-brew install terraform-docs/tap/terraform-docs
-```
+No outputs.
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-Windows users can install using [Scoop]:
+## Authors
 
-```bash
-scoop bucket add terraform-docs https://github.com/terraform-docs/scoop-bucket
-scoop install terraform-docs
-```
-
-or [Chocolatey]:
-
-```bash
-choco install terraform-docs
-```
-
-Alternatively you also can run `terraform-docs` as a container:
-
-```bash
-docker run quay.io/terraform-docs/terraform-docs:0.14.1
-```
-
-**NOTE:** Docker tag `latest` refers to _latest_ stable released version and `edge`
-refers to HEAD of `master` at any given point in time.
-
-## Community
-
-- Discuss terraform-docs on [Slack]
+Module is maintained by [Sysdig](https://github.com/sysdiglabs/terraform-azurerm-cloudvision).
 
 ## License
 
-MIT License - Copyright (c) 2021 The terraform-docs Authors.
-
-[User Guide]: ./docs/user-guide/introduction.md
-[Formats Guide]: ./docs/reference/terraform-docs.md
-[Config File Reference]: ./docs/user-guide/configuration.md
-[Contributing Guide]: CONTRIBUTING.md
-[our website]: https://terraform-docs.io/
-[here]: https://golang.org/doc/code.html#GOPATH
-[releases]: https://github.com/terraform-docs/terraform-docs/releases
-[Homebrew]: https://brew.sh
-[Scoop]: https://scoop.sh/
-[Chocolatey]: https://www.chocolatey.org
-[Slack]: https://slack.terraform-docs.io/
+Apache 2 Licensed. See LICENSE for full details.
