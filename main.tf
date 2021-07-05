@@ -3,6 +3,9 @@ locals {
   verify_ssl            = length(regexall("^https://.*?\\.sysdig.com/?", var.sysdig_secure_endpoint)) != 0
 }
 
+data "azurerm_subscription" "current" {
+}
+
 module "cloud_connector" {
   count  = local.deploy_cloudconnector ? 1 : 0
   source = "./modules/cloud-connector"
@@ -12,6 +15,6 @@ module "cloud_connector" {
   sysdig_secure_api_token = var.sysdig_secure_api_token
   sysdig_secure_endpoint  = var.sysdig_secure_endpoint
   verify_ssl              = local.verify_ssl
-  subscription_id         = var.subscription_id
+  subscription_id         = data.azurerm_subscription.current.subscription_id
   tags                    = var.tags
 }
