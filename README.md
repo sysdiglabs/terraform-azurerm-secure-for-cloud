@@ -6,10 +6,10 @@ deployment that will detect events in your infrastructure.
 ## Usage
 
 ```hcl
-module "azurerm" {
+module "cloud_vision_azure" {
   source = "sysdiglabs/cloudvision/azure"
 
-  location = "us-central1"
+  location = "centralus"
   sysdig_secure_api_token = "00000000-1111-2222-3333-444444444444"
 }
 ```
