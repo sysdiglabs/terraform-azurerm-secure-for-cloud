@@ -6,7 +6,7 @@ deployment that will detect events in your infrastructure.
 ## Usage
 
 ```hcl
-module "azurerm" {
+module "cloud_vision_azure" {
   source = "sysdiglabs/cloudvision/azure"
 
   location = "us-central1"
