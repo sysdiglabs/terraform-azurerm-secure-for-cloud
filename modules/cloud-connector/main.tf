@@ -8,13 +8,13 @@ locals {
     AZURE_STORAGE_ACCOUNT       = azurerm_storage_account.sa.name
     AZURE_STORAGE_ACCESS_KEY    = azurerm_storage_account.sa.primary_access_key
   }
+
   default_config = <<EOF
-logging: info
-rules:[]
-ingestors:
-  - azure-event-hub: {}
-notifiers: []
-EOF
+    rules: []
+    ingestors:
+      - azure-event-hub: {}
+    notifiers: []
+    EOF
   config_content = var.config_content == null && var.config_source == null ? local.default_config : var.config_content
 }
 
