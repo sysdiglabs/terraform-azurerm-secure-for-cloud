@@ -1,20 +1,32 @@
 locals {
-  deploy_cloudconnector = var.cloudconnector_deploy
-  verify_ssl            = length(regexall("^https://.*?\\.sysdig.com/?", var.sysdig_secure_endpoint)) != 0
+  deploy_cloudconnector      = var.cloudconnector_deploy
+  resource_group_name        = var.resource_group_name ? var.resource_group_name : module.eventhub_setup_infrastructure.resource_group_name
+  eventhub_connection_string = var.eventhub_connection_string ? var.eventhub_connection_string : module.eventhub_setup_infrastructure.eventhub_connection_string
+  verify_ssl                 = length(regexall("^https://.*?\\.sysdig.com/?", var.sysdig_secure_endpoint)) != 0
 }
 
 data "azurerm_subscription" "current" {
 }
 
+module "eventhub_setup_infrastructure" {
+  source = "./modules/infrastructure/eventhub"
+
+  subscription_id = data.azurerm_subscription.current.subscription_id
+  location        = var.location
+  naming_prefix   = "egicloudconnector"
+  tags            = var.tags
+}
+
 module "cloud_connector" {
   count  = local.deploy_cloudconnector ? 1 : 0
-  source = "./modules/cloud-connector"
+  source = "./modules/services/cloud-connector"
 
-  naming_prefix           = var.naming_prefix
-  location                = var.location
-  sysdig_secure_api_token = var.sysdig_secure_api_token
-  sysdig_secure_endpoint  = var.sysdig_secure_endpoint
-  verify_ssl              = local.verify_ssl
-  subscription_id         = data.azurerm_subscription.current.subscription_id
-  tags                    = var.tags
+  resource_group_name        = local.resource_group_name
+  eventhub_connection_string = local.eventhub_connection_string
+  naming_prefix              = var.naming_prefix
+  location                   = var.location
+  sysdig_secure_api_token    = var.sysdig_secure_api_token
+  sysdig_secure_endpoint     = var.sysdig_secure_endpoint
+  verify_ssl                 = local.verify_ssl
+  tags                       = var.tags
 }

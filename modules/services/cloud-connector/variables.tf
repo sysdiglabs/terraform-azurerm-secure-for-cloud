@@ -1,7 +1,3 @@
-variable "subscription_id" {
-  type        = string
-  description = "Subscription ID where apply the infrastructure"
-}
 
 variable "sysdig_secure_api_token" {
   type        = string
@@ -52,14 +48,23 @@ variable "image" {
 
 variable "location" {
   type        = string
-  default     = "centralus"
   description = "Zone where the stack will be deployed"
+}
+
+variable "eventhub_connection_string" {
+  type        = string
+  description = "The eventhub connection string"
+}
+
+variable "resource_group_name" {
+  type        = string
+  description = "The resource group name to deploy cloud vision stack"
 }
 
 variable "tags" {
   type        = map(string)
   description = "Tags to be added to the resources"
   default = {
-    Team = "Sysdig"
+    Team = "CloudVision"
   }
 }

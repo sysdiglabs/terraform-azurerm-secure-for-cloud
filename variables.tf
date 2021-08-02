@@ -9,9 +9,19 @@ variable "naming_prefix" {
   default = "cloudconn"
 }
 
+variable "subscription_id" {
+  type        = string
+  description = "Azure subscription ID where apply the infrastructure"
+}
+
+variable "eventhub_connection_string" {
+  type        = string
+  description = "The eventhub connection string"
+}
+
 variable "cloudconnector_deploy" {
   type        = bool
-  default     = true
+  default     = false
   description = "Whether to deploy or not CloudConnector"
 }
 
@@ -37,6 +47,11 @@ variable "tags" {
   type        = map(string)
   description = "Tags to be added to the resources"
   default = {
-    Team = "Cloud Vision"
+    Team = "CloudVision"
   }
+}
+
+variable "resource_group_name" {
+  type        = string
+  description = "The resource group name to deploy cloud vision stack"
 }
