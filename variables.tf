@@ -9,19 +9,9 @@ variable "naming_prefix" {
   default = "cloudconn"
 }
 
-variable "subscription_id" {
-  type        = string
-  description = "Azure subscription ID where apply the infrastructure"
-}
-
-variable "eventhub_connection_string" {
-  type        = string
-  description = "The eventhub connection string"
-}
-
 variable "cloudconnector_deploy" {
   type        = bool
-  default     = false
+  default     = true
   description = "Whether to deploy or not CloudConnector"
 }
 
