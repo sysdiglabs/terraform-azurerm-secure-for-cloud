@@ -6,6 +6,11 @@ variable "tags" {
   }
 }
 
+variable "resource_group_name" {
+  type        = string
+  description = "The resource group name to deploy cloud vision stack"
+}
+
 variable "subscription_id" {
   type        = string
   description = "Subscription ID where apply the infrastructure"

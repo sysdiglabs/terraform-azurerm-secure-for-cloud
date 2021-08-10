@@ -37,6 +37,12 @@ variable "tags" {
   type        = map(string)
   description = "Tags to be added to the resources"
   default = {
-    Team = "Cloud Vision"
+    Team = "CloudVision"
   }
+}
+
+variable "resource_group_name" {
+  type        = string
+  default     = ""
+  description = "The resource group name to deploy cloud vision stack"
 }

@@ -14,9 +14,7 @@
 
 ## Modules
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_eventhub_setup_infrastructure"></a> [eventhub\_setup\_infrastructure](#module\_eventhub\_setup\_infrastructure) | ../eventhub-setup-infrastructure |  |
+No modules.
 
 ## Resources
 
@@ -36,13 +34,14 @@
 |------|-------------|------|---------|:--------:|
 | <a name="input_config_content"></a> [config\_content](#input\_config\_content) | Configuration contents for the file stored in the bucket | `string` | `null` | no |
 | <a name="input_config_source"></a> [config\_source](#input\_config\_source) | Path to a file that contains the contents of the configuration file to be saved in the bucket | `string` | `null` | no |
+| <a name="input_eventhub_connection_string"></a> [eventhub\_connection\_string](#input\_eventhub\_connection\_string) | The eventhub connection string | `string` | n/a | yes |
 | <a name="input_image"></a> [image](#input\_image) | Image of the cloud-connector to deploy | `string` | `"sysdiglabs/cloud-connector:latest"` | no |
-| <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"centralus"` | no |
+| <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | n/a | yes |
 | <a name="input_naming_prefix"></a> [naming\_prefix](#input\_naming\_prefix) | Prefix for cloud connector resource names. Use the default unless you need to install multiple instances, and modify the deployment at the main account accordingly | `string` | `"cloudconnector"` | no |
-| <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | Subscription ID where apply the infrastructure | `string` | n/a | yes |
+| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The resource group name to deploy cloud vision stack | `string` | n/a | yes |
 | <a name="input_sysdig_secure_api_token"></a> [sysdig\_secure\_api\_token](#input\_sysdig\_secure\_api\_token) | Sysdig's Secure API Token | `string` | n/a | yes |
 | <a name="input_sysdig_secure_endpoint"></a> [sysdig\_secure\_endpoint](#input\_sysdig\_secure\_endpoint) | Sysdig's Secure API URL | `string` | `"https://secure-staging.sysdig.com/"` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to the resources | `map(string)` | <pre>{<br>  "Team": "Sysdig"<br>}</pre> | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to the resources | `map(string)` | <pre>{<br>  "Team": "CloudVision"<br>}</pre> | no |
 | <a name="input_verify_ssl"></a> [verify\_ssl](#input\_verify\_ssl) | Verify the SSL certificate of the Secure endpoint | `bool` | `true` | no |
 
 ## Outputs

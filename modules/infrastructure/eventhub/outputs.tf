@@ -1,11 +1,6 @@
 output "resource_group_name" {
-  value       = azurerm_resource_group.rg.name
+  value       = length(azurerm_resource_group.rg) > 0 ? azurerm_resource_group.rg[0].name : "n/a"
   description = "Created resources group name"
-}
-
-output "resource_group_location" {
-  value       = azurerm_resource_group.rg.location
-  description = "Created resources group location"
 }
 
 output "eventhub_connection_string" {
