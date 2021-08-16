@@ -42,7 +42,7 @@ variable "config_content" {
 
 variable "image" {
   type        = string
-  default     = "sysdiglabs/cloud-connector:latest"
+  default     = "sysdiglabs/cloud-connector:master"
   description = "Image of the cloud-connector to deploy"
 }
 
@@ -51,9 +51,9 @@ variable "location" {
   description = "Zone where the stack will be deployed"
 }
 
-variable "eventhub_connection_string" {
+variable "azure_eventhub_connection_string" {
   type        = string
-  description = "The eventhub connection string"
+  description = "EventHub SAS policy connection string"
 }
 
 variable "resource_group_name" {
