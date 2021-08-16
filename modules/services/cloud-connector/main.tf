@@ -1,16 +1,18 @@
 locals {
   env_vars = {
-    SECURE_URL                  = var.sysdig_secure_endpoint,
-    SECURE_API_TOKEN            = var.sysdig_secure_api_token,
-    VERIFY_SSL                  = tostring(var.verify_ssl)
-    CONFIG_PATH                 = "az://${azurerm_storage_account.sa.name}.blob.core.windows.net/${azurerm_storage_container.sc.name}/${azurerm_storage_blob.sb.name}"
-    EVENT_HUB_CONNECTION_STRING = var.eventhub_connection_string
-    AZURE_STORAGE_ACCOUNT       = azurerm_storage_account.sa.name
-    AZURE_STORAGE_ACCESS_KEY    = azurerm_storage_account.sa.primary_access_key
+    SECURE_URL                        = var.sysdig_secure_endpoint,
+    SECURE_API_TOKEN                  = var.sysdig_secure_api_token,
+    VERIFY_SSL                        = tostring(var.verify_ssl)
+    CONFIG_PATH                       = "az://${azurerm_storage_account.sa.name}.blob.core.windows.net/${azurerm_storage_container.sc.name}/${azurerm_storage_blob.sb.name}"
+    AZURE_EVENT_HUB_CONNECTION_STRING = var.azure_eventhub_connection_string
+    AZURE_STORAGE_ACCOUNT             = azurerm_storage_account.sa.name
+    AZURE_STORAGE_ACCESS_KEY          = azurerm_storage_account.sa.primary_access_key
   }
 
   default_config = <<EOF
-    rules: []
+    rules:
+      - directory:
+          path: ./rules
     ingestors:
       - azure-event-hub: {}
     notifiers: []
