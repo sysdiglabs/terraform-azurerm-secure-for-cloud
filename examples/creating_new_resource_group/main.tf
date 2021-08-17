@@ -1,13 +1,11 @@
 provider "azurerm" {
   features {}
-  subscription_id = "[SUBSCRIPTION_ID]"
+  subscription_id = "00000000-1111-2222-3333-444444444444"
 }
 
 module "cloudvision" {
-  source = "../../"
+  source = "sysdiglabs/cloudvision/azurerm"
 
-  location                = "[LOCATION]"
-  naming_prefix           = "cloudvision"
-  sysdig_secure_api_token = "[SYSDIG_SECURE_API_TOKEN]"
-  sysdig_secure_endpoint  = "[SYSDIG_SECURE_ENDPOINT]"
+  sysdig_secure_api_token = "11111111-2222-3333-4444-555555555555"
+  sysdig_secure_endpoint  = "https://secure.sysdig.com"
 }
