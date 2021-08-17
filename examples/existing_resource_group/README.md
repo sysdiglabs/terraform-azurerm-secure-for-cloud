@@ -13,8 +13,9 @@ provider "azurerm" {
 }
 
 module "cloudvision_new_resource_group" {
-  source = "sysdiglabs/cloudvision/azure//examples/new_resource_group"
+  source = "sysdiglabs/cloudvision/azure//examples/existing_resource_group"
 
   sysdig_secure_api_token        = "11111111-0000-3333-4444-555555222224"
+  resource_group_name            = "your_resource_group_name"
 }
 ```
