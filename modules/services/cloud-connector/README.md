@@ -1,3 +1,8 @@
+# Cloud Connector
+
+[Cloud Connector](https://github.com/sysdiglabs/cloud-connector)
+Deploys a Cloud Connector in Azure as a container instance deployment that will detect events in your infrastructure.
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
