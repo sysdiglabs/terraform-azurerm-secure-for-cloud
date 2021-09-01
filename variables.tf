@@ -37,7 +37,7 @@ variable "tags" {
   type        = map(string)
   description = "Tags to be added to the resources"
   default = {
-    product = "sysdig-cloudvision"
+    product = "sysdig-secure-for-cloud"
   }
 }
 
