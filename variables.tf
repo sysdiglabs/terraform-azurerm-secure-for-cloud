@@ -6,7 +6,7 @@ variable "naming_prefix" {
     condition     = can(regex("^[a-zA-Z0-9\\-]+$", var.naming_prefix)) && length(var.naming_prefix) > 1 && length(var.naming_prefix) <= 64
     error_message = "Must enter a naming prefix up to 64 alphanumeric characters."
   }
-  default = "cloudvision"
+  default = "secureforcloud"
 }
 
 variable "cloudconnector_deploy" {
@@ -37,7 +37,7 @@ variable "tags" {
   type        = map(string)
   description = "Tags to be added to the resources"
   default = {
-    product = "sysdig-cloudvision"
+    product = "sysdig-secure-for-cloud"
   }
 }
 

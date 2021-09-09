@@ -65,6 +65,11 @@ variable "tags" {
   type        = map(string)
   description = "Tags to be added to the resources"
   default = {
-    Team = "CloudVision"
+    product = "sysdig-secure-for-cloud"
   }
+}
+
+variable "subscription_id" {
+  type        = string
+  description = "Subscription ID where apply the infrastructure"
 }
