@@ -67,7 +67,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_cloudvision"></a> [cloudvision](#module\_cloudvision) | sysdiglabs/cloudvision/azurerm |  |
+| <a name="module_secure_for_cloud"></a> [secure\_for\_cloud](#module\_secure\_for\_cloud) | sysdiglabs/secure-for-cloud/azurerm |  |
 
 ## Resources
 

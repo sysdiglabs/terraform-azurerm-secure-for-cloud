@@ -62,7 +62,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_cloudvision"></a> [cloudvision](#module\_cloudvision) | sysdiglabs/cloudvision/azurerm |  |
+| <a name="module_secure_for_cloud"></a> [secure\_for\_cloud](#module\_secure\_for\_cloud) | sysdiglabs/secure-for-cloud/azurerm |  |
 
 ## Resources
 
@@ -72,7 +72,7 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_sysdig_secure_api_tokenn"></a> [sysdig\_secure\_api\_tokenn](#input\_sysdig\_secure\_api\_tokenn) | Sysdig's Secure API Token | `string` | n/a | yes |
+| <a name="input_sysdig_secure_api_token"></a> [sysdig\_secure\_api\_token](#input\_sysdig\_secure\_api\_token) | Sysdig's Secure API Token | `string` | n/a | yes |
 
 ## Outputs
 
