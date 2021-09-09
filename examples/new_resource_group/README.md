@@ -47,12 +47,34 @@ Notice that:
 * All created resources will be created within the tags `product:sysdig-secure-for-cloud`, within the resource-group `sysdig-secure-for-cloud`
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
 
-## Authors
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 2.64.0 |
 
-Module is maintained and supported by [Sysdig](https://sysdig.com).
+## Providers
 
-## License
+No providers.
 
-Apache 2 Licensed. See LICENSE for full details.
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_cloudvision"></a> [cloudvision](#module\_cloudvision) | sysdiglabs/cloudvision/azurerm |  |
+
+## Resources
+
+No resources.
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_sysdig_secure_api_tokenn"></a> [sysdig\_secure\_api\_tokenn](#input\_sysdig\_secure\_api\_tokenn) | Sysdig's Secure API Token | `string` | n/a | yes |
+
+## Outputs
+
+No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

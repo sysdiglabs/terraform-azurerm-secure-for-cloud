@@ -30,6 +30,7 @@ No modules.
 | [azurerm_eventhub_authorization_rule.eh_auth_rule](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/eventhub_authorization_rule) | resource |
 | [azurerm_eventhub_namespace.evn](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/eventhub_namespace) | resource |
 | [azurerm_eventhub_namespace_authorization_rule.ns_auth_rule](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/eventhub_namespace_authorization_rule) | resource |
+| [azurerm_monitor_aad_diagnostic_setting.ds](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/monitor_aad_diagnostic_setting) | resource |
 | [azurerm_monitor_diagnostic_setting.diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/monitor_diagnostic_setting) | resource |
 | [azurerm_resource_group.rg](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/resource_group) | resource |
 
