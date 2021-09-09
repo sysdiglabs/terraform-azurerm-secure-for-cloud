@@ -21,6 +21,7 @@ module "cloud_connector" {
   count  = local.deploy_cloudconnector ? 1 : 0
   source = "./modules/services/cloud-connector"
 
+  subscription_id                  = data.azurerm_subscription.current.subscription_id
   resource_group_name              = local.resource_group_name
   azure_eventhub_connection_string = module.infrastructure_eventhub.azure_eventhub_connection_string
   naming_prefix                    = var.naming_prefix

@@ -68,3 +68,8 @@ variable "tags" {
     Team = "CloudVision"
   }
 }
+
+variable "subscription_id" {
+  type        = string
+  description = "Subscription ID where apply the infrastructure"
+}

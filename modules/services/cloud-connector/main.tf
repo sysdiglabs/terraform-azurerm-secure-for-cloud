@@ -7,16 +7,18 @@ locals {
     AZURE_EVENT_HUB_CONNECTION_STRING = var.azure_eventhub_connection_string
     AZURE_STORAGE_ACCOUNT             = azurerm_storage_account.sa.name
     AZURE_STORAGE_ACCESS_KEY          = azurerm_storage_account.sa.primary_access_key
+    AZURE_REGION                      = var.location
   }
 
   default_config = <<EOF
-    rules:
-      - directory:
-          path: ./rules
-    ingestors:
-      - azure-event-hub: {}
-    notifiers: []
-    EOF
+  rules:
+    - directory:
+        path: ./rules
+  ingestors:
+    - azure-event-hub:
+        subscriptionID: ${var.subscription_id}
+  notifiers: []
+  EOF
   config_content = var.config_content == null && var.config_source == null ? local.default_config : var.config_content
 }
 
