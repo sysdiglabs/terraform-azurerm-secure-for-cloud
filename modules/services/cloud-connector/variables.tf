@@ -42,7 +42,7 @@ variable "config_content" {
 
 variable "image" {
   type        = string
-  default     = "sysdiglabs/cloud-connector:master"
+  default     = "quay.io/sysdig/cloud-connector:master"
   description = "Image of the cloud-connector to deploy"
 }
 

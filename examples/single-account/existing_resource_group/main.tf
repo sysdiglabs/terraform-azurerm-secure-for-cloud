@@ -1,14 +1,18 @@
 locals {
   deploy_cloudconnector = var.cloudconnector_deploy
   verify_ssl            = length(regexall("^https://.*?\\.sysdig.com/?", var.sysdig_secure_endpoint)) != 0
-  resource_group_name   = var.resource_group_name != "" ? var.resource_group_name : module.infrastructure_eventhub.resource_group_name
+}
+
+provider "azurerm" {
+  features {}
+  subscription_id = var.subscription_id
 }
 
 data "azurerm_subscription" "current" {
 }
 
 module "infrastructure_eventhub" {
-  source = "./modules/infrastructure/eventhub"
+  source = "../../../modules/infrastructure/eventhub"
 
   subscription_id     = data.azurerm_subscription.current.subscription_id
   location            = var.location
@@ -19,10 +23,10 @@ module "infrastructure_eventhub" {
 
 module "cloud_connector" {
   count  = local.deploy_cloudconnector ? 1 : 0
-  source = "./modules/services/cloud-connector"
+  source = "../../../modules/services/cloud-connector"
 
   subscription_id                  = data.azurerm_subscription.current.subscription_id
-  resource_group_name              = local.resource_group_name
+  resource_group_name              = var.resource_group_name
   azure_eventhub_connection_string = module.infrastructure_eventhub.azure_eventhub_connection_string
   naming_prefix                    = var.naming_prefix
   location                         = var.location

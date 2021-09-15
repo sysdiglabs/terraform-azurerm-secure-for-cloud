@@ -23,8 +23,13 @@ variable "sysdig_secure_endpoint" {
 
 variable "location" {
   type        = string
-  default     = "centralus"
+  default     = "westus"
   description = "Zone where the stack will be deployed"
+}
+
+variable "subscription_id" {
+  type        = string
+  description = "The Azure subscription ID to use to deploy the resources"
 }
 
 variable "sysdig_secure_api_token" {
@@ -43,6 +48,5 @@ variable "tags" {
 
 variable "resource_group_name" {
   type        = string
-  default     = ""
   description = "The resource group name to deploy cloud vision stack"
 }
