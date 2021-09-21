@@ -8,7 +8,7 @@ terraform {
     }
     sysdig = {
       source  = "sysdiglabs/sysdig"
-      version = ">= 0.5.21"
+      version = ">= 0.5.20"
     }
   }
 }
