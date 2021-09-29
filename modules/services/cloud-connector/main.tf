@@ -11,9 +11,7 @@ locals {
   }
 
   default_config = <<EOF
-  rules:
-    - directory:
-        path: ./rules
+  rules: []
   ingestors:
     - azure-event-hub:
         subscriptionID: ${var.subscription_id}

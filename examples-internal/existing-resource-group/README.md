@@ -26,7 +26,7 @@ For quick testing, use this snippet on your terraform files
 
 ```terraform
 module "cloudvision_example_new_resource_group" {
-  source = "sysdiglabs/cloudvision/azurerm//examples/single-account/existing_resource_group"
+  source = "sysdiglabs/cloudvision/azurerm//examples/single-account/existing-resource-group"
 
   subscription_id                = "00000000-1111-2222-3333-444444444444"
   sysdig_secure_api_token        = "11111111-0000-3333-4444-555555222224"
@@ -65,8 +65,8 @@ Notice that:
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_cloud_connector"></a> [cloud\_connector](#module\_cloud\_connector) | ../../../modules/services/cloud-connector |  |
-| <a name="module_infrastructure_eventhub"></a> [infrastructure\_eventhub](#module\_infrastructure\_eventhub) | ../../../modules/infrastructure/eventhub |  |
+| <a name="module_cloud_connector"></a> [cloud\_connector](#module\_cloud\_connector) | ../../modules/services/cloud-connector |  |
+| <a name="module_infrastructure_eventhub"></a> [infrastructure\_eventhub](#module\_infrastructure\_eventhub) | ../../modules/infrastructure/eventhub |  |
 
 ## Resources
 
