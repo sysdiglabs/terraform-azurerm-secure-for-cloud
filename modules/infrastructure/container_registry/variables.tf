@@ -1,7 +1,6 @@
 
 variable "eventhub_endpoint_id" {
   type        = string
-  default     = "/subscriptions/bfc31cc5-d3bd-4b36-a40e-d13688d546ec/resourceGroups/egigroup/providers/Microsoft.EventHub/namespaces/cloudconnector-eventhub-namespace/eventhubs/cloudconnector-eventhub"
   description = "Specifies the id where the Event Hub is located"
 }
 

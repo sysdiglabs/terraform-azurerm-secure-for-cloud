@@ -61,6 +61,7 @@ Notice that:
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_cloud_connector"></a> [cloud\_connector](#module\_cloud\_connector) | ../../../modules/services/cloud-connector |  |
+| <a name="module_infrastructure_container_registry"></a> [infrastructure\_container\_registry](#module\_infrastructure\_container\_registry) | ../../../modules/infrastructure/container_registry |  |
 | <a name="module_infrastructure_eventhub"></a> [infrastructure\_eventhub](#module\_infrastructure\_eventhub) | ../../../modules/infrastructure/eventhub |  |
 
 ## Resources

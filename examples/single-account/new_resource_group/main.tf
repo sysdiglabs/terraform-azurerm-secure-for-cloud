@@ -21,6 +21,15 @@ module "infrastructure_eventhub" {
   resource_group_name = var.resource_group_name
 }
 
+module "infrastructure_container_registry" {
+  source = "../../../modules/infrastructure/container_registry"
+
+  location             = var.location
+  naming_prefix        = var.naming_prefix
+  resource_group_name  = module.infrastructure_eventhub.resource_group_name
+  eventhub_endpoint_id = module.infrastructure_eventhub.azure_eventhub_id
+}
+
 module "cloud_connector" {
   count  = local.deploy_cloudconnector ? 1 : 0
   source = "../../../modules/services/cloud-connector"

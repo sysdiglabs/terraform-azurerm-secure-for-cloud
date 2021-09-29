@@ -55,6 +55,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_azure_eventhub_connection_string"></a> [azure\_eventhub\_connection\_string](#output\_azure\_eventhub\_connection\_string) | EventHub SAS policy connection string |
+| <a name="output_azure_eventhub_id"></a> [azure\_eventhub\_id](#output\_azure\_eventhub\_id) | EventHub ID |
 | <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | Created resources group name |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
