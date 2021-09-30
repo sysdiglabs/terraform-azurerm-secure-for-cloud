@@ -9,12 +9,6 @@ variable "naming_prefix" {
   default = "secureforcloud"
 }
 
-variable "cloudconnector_deploy" {
-  type        = bool
-  default     = true
-  description = "Whether to deploy or not CloudConnector"
-}
-
 variable "subscription_id" {
   type        = string
   description = "The Azure subscription ID to use to deploy the resources"
