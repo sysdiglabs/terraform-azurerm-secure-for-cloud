@@ -15,7 +15,7 @@ module "infrastructure_eventhub" {
 
   subscription_id     = data.azurerm_subscription.current.subscription_id
   location            = var.location
-  naming_prefix       = "egicloudconnector"
+  naming_prefix       = var.naming_prefix
   tags                = var.tags
   resource_group_name = var.resource_group_name
 }
