@@ -30,7 +30,6 @@ No modules.
 | [azurerm_eventhub_authorization_rule.eh_auth_rule](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/eventhub_authorization_rule) | resource |
 | [azurerm_eventhub_namespace.evn](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/eventhub_namespace) | resource |
 | [azurerm_eventhub_namespace_authorization_rule.ns_auth_rule](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/eventhub_namespace_authorization_rule) | resource |
-| [azurerm_monitor_aad_diagnostic_setting.ds](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/monitor_aad_diagnostic_setting) | resource |
 | [azurerm_monitor_diagnostic_setting.diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/monitor_diagnostic_setting) | resource |
 | [azurerm_resource_group.rg](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/resource_group) | resource |
 
@@ -38,7 +37,6 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_active_directory_logs"></a> [active\_directory\_logs](#input\_active\_directory\_logs) | List of active director log categories. | `list(string)` | <pre>[<br>  "SignInLogs",<br>  "AuditLogs",<br>  "NonInteractiveUserSignInLogs",<br>  "ServicePrincipalSignInLogs",<br>  "ManagedIdentitySignInLogs",<br>  "ProvisioningLogs",<br>  "ADFSSignInLogs"<br>]</pre> | no |
 | <a name="input_eventhub_partition_count"></a> [eventhub\_partition\_count](#input\_eventhub\_partition\_count) | The partition count setting allows you to parallelize consumption across many consumers | `number` | `1` | no |
 | <a name="input_eventhub_retention_days"></a> [eventhub\_retention\_days](#input\_eventhub\_retention\_days) | The message retention setting specifies how long the Event Hubs service keeps data | `number` | `1` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"centralus"` | no |
