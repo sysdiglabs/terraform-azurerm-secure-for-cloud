@@ -61,9 +61,3 @@ variable "logs" {
   type        = list(string)
   default     = ["Administrative", "Security", "ServiceHealth", "Alert", "Recommendation", "Policy", "Autoscale", "ResourceHealth"]
 }
-
-variable "active_directory_logs" {
-  description = "List of active director log categories."
-  type        = list(string)
-  default     = ["SignInLogs", "AuditLogs", "NonInteractiveUserSignInLogs", "ServicePrincipalSignInLogs", "ManagedIdentitySignInLogs", "ProvisioningLogs", "ADFSSignInLogs"]
-}
