@@ -19,4 +19,5 @@ provider "azurerm" {
 module "cloud_bench" {
   source          = "../../modules/services/cloud-bench"
   subscription_id = var.subscription_id
+  region          = var.region
 }

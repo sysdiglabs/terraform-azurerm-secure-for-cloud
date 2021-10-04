@@ -21,3 +21,9 @@ variable "sysdig_secure_endpoint" {
   default     = "https://secure.sysdig.com"
   description = "Sysdig Secure API endpoint"
 }
+
+variable "region" {
+  type        = string
+  description = "Region in which to run the benchmark. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]."
+  default     = "AzureCloud"
+}

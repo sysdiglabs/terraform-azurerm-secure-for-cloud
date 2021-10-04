@@ -22,6 +22,12 @@ variable "sysdig_secure_endpoint" {
   description = "Sysdig Secure API endpoint"
 }
 
+variable "region" {
+  type        = string
+  description = "Region in which to run the benchmark. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]."
+  default     = "AzureCloud"
+}
+
 variable "benchmark_subscription_ids" {
   default     = []
   type        = list(string)

@@ -11,9 +11,8 @@ data "azurerm_subscriptions" "available" {
 #######################
 
 locals {
-  available_subscriptions = [for s in data.azurerm_subscriptions.available.subscriptions : s]
+  available_subscriptions    = data.azurerm_subscriptions.available.subscriptions
   benchmark_subscription_ids = length(var.benchmark_subscription_ids) == 0 ? [for s in local.available_subscriptions : s.subscription_id if s.tenant_id == var.tenant_id] : var.benchmark_subscription_ids
-
 }
 
 provider "sysdig" {
@@ -27,8 +26,9 @@ provider "azurerm" {
 }
 
 module "cloud_bench" {
-  for_each = toset(local.benchmark_subscription_ids)
-  source   = "../../modules/services/cloud-bench"
+  source = "../../modules/services/cloud-bench"
 
-  subscription_id = each.key
+  subscription_ids = local.benchmark_subscription_ids
+  region           = var.region
+  is_tenant        = true
 }
