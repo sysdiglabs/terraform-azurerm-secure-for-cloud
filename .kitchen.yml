@@ -13,4 +13,4 @@ platforms:
 suites:
   - name: single-account
     driver:
-      root_module_directory: test/fixtures/single-project
+      root_module_directory: test/fixtures/single-account
