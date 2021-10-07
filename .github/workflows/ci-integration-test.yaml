@@ -31,11 +31,6 @@ jobs:
           ruby-version: 2.7
           bundler-cache: true
 
-      - name: Log in with Azure
-        uses: azure/login@v1
-        with:
-          creds: '${{ secrets.AZURE_CREDENTIALS }}'
-
       - name: Run test
         run: bundle exec kitchen test
 
