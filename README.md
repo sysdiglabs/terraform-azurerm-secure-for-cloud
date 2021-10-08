@@ -1,13 +1,20 @@
 # Sysdig Secure for Cloud in Azure
 
-Terraform module that deploys the **Sysdig Secure for Cloud** stack in **Azure**. It provides unified threat detection, compliance, forensics and analysis.
+Terraform module that deploys the **Sysdig Secure for Cloud** stack in **Azure**.   
+It provides unified threat detection, compliance, forensics and analysis.
 
 There are three major component:
 
-* Cloud Threat Detection: Tracks abnormal and suspicious activities in your cloud environment based on Falco language.Managed through [cloud-connector module](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/modules/services/cloud-connector).
-* CSPM/Compliance: It evaluates periodically your cloud configuration, using Cloud Custodian, against some benchmarks and returns the results and remediations you need to fix.
-* Cloud Scanning: Automatically scans all container images pushed to the registry or as soon a new task which involves a container is spawned in your account.
+* **Cloud Threat Detection**: Tracks abnormal and suspicious activities in your cloud environment based on Falco language. Managed through [cloud-connector module](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/modules/services/cloud-connector).
+<br/><br/>
 
+[comment]: <> (* **CSPM/Compliance**: It evaluates periodically your cloud configuration, using Cloud Custodian, against some benchmarks and returns the results and remediation you need to fix. Managed through [cloud-bench module]&#40;https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/modules/services/cloud-bench&#41;.)
+
+[comment]: <> (  <br/><br/>)
+
+[comment]: <> (* **Cloud Scanning**: Automatically scans all container images pushed to the registry or as soon a new task which involves a container is spawned in your account.Managed through [cloud-scanning module]&#40;https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/modules/services/cloud-scanning&#41;.)
+
+[comment]: <> (  <br/><br/>)
 For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud), [GCP](https://github.com/sysdiglabs/terraform-google-secure-for-cloud)
 
 ## Usage
@@ -56,3 +63,12 @@ $ terraform apply
 Notice that:
 - These examples will create resources that cost money. Run `terraform destroy` when you don't need them anymore
 - All created resources will be created within the tags `product:sysdig-secure-for-cloud`
+
+
+## Authors
+
+Module is maintained and supported by [Sysdig](https://sysdig.com).
+
+## License
+
+Apache 2 Licensed. See LICENSE for full details.

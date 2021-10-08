@@ -21,7 +21,7 @@ Minimum requirements:
 For quick testing, use this snippet on your terraform files
 
 ```terraform
-module "cloudvision_example_existing_resource_group" {
+module "secure-for-cloud_example_single-account" {
   source = "sysdiglabs/secure-for-cloud/azurerm//examples/single-account"
 
   subscription_id                = "00000000-1111-2222-3333-444444444444"
