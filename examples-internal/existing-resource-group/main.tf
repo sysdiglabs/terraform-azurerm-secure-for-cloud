@@ -16,7 +16,7 @@ module "infrastructure_eventhub" {
 
   subscription_id     = data.azurerm_subscription.current.subscription_id
   location            = var.location
-  naming_prefix       = "cloudconnector"
+  name                = "cloudconnector"
   tags                = var.tags
   resource_group_name = var.resource_group_name
 }
@@ -28,7 +28,7 @@ module "cloud_connector" {
   subscription_id                  = data.azurerm_subscription.current.subscription_id
   resource_group_name              = var.resource_group_name
   azure_eventhub_connection_string = module.infrastructure_eventhub.azure_eventhub_connection_string
-  naming_prefix                    = var.naming_prefix
+  name                             = var.name
   location                         = var.location
   sysdig_secure_api_token          = var.sysdig_secure_api_token
   sysdig_secure_endpoint           = var.sysdig_secure_endpoint

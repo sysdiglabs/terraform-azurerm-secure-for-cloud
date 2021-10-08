@@ -17,15 +17,15 @@ variable "verify_ssl" {
   description = "Verify the SSL certificate of the Secure endpoint"
 }
 
-variable "naming_prefix" {
+variable "name" {
   type        = string
-  default     = "cloudconnector"
-  description = "Prefix for cloud connector resource names. Use the default unless you need to install multiple instances, and modify the deployment at the main account accordingly"
+  description = "Name to be assigned to all child resources. A suffix may be added internally when required. . Use default value unless you need to install multiple instances"
 
   validation {
-    condition     = can(regex("^[a-zA-Z0-9\\-]+$", var.naming_prefix)) && length(var.naming_prefix) > 1 && length(var.naming_prefix) <= 64
-    error_message = "Must enter a naming prefix up to 64 alphanumeric characters."
+    condition     = can(regex("^[a-zA-Z0-9\\-]+$", var.name)) && length(var.name) > 1 && length(var.name) <= 64
+    error_message = "Must enter a naming up to 64 alphanumeric characters."
   }
+  default = "sfc-cloudconnector"
 }
 
 variable "config_source" {
