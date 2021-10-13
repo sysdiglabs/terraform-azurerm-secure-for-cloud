@@ -46,7 +46,7 @@ resource "azurerm_subnet" "sn" {
 }
 
 resource "azurerm_storage_account" "sa" {
-  name                = "${var.name}sa"
+  name                = replace("${var.name}-sa", "-", "_")
   resource_group_name = var.resource_group_name
 
   location                 = var.location
