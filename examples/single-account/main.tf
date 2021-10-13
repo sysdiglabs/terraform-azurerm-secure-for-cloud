@@ -22,7 +22,7 @@ module "infrastructure_eventhub" {
 
 module "cloud_connector" {
   source = "../../modules/services/cloud-connector"
-  name                             = "${var.name}-cloudconnector"
+  name   = "${var.name}-cloudconnector"
 
   subscription_id                  = data.azurerm_subscription.current.subscription_id
   resource_group_name              = module.infrastructure_eventhub.resource_group_name
