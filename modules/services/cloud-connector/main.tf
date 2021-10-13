@@ -21,14 +21,14 @@ locals {
 }
 
 resource "azurerm_virtual_network" "vn" {
-  name                = "${var.naming_prefix}-vn"
+  name                = "${var.name}-vn"
   address_space       = ["10.0.0.0/16"]
   location            = var.location
   resource_group_name = var.resource_group_name
 }
 
 resource "azurerm_subnet" "sn" {
-  name                                           = "${var.naming_prefix}-vn"
+  name                                           = "${var.name}-vn"
   resource_group_name                            = var.resource_group_name
   virtual_network_name                           = azurerm_virtual_network.vn.name
   address_prefixes                               = ["10.0.2.0/24"]
@@ -36,7 +36,7 @@ resource "azurerm_subnet" "sn" {
   enforce_private_link_endpoint_network_policies = true
 
   delegation {
-    name = "${var.naming_prefix}-delegation"
+    name = "${var.name}-delegation"
 
     service_delegation {
       name    = "Microsoft.ContainerInstance/containerGroups"
@@ -46,7 +46,7 @@ resource "azurerm_subnet" "sn" {
 }
 
 resource "azurerm_storage_account" "sa" {
-  name                = "${var.naming_prefix}sa"
+  name                = replace("${var.name}-sa", "/[-_]/", "")
   resource_group_name = var.resource_group_name
 
   location                 = var.location
@@ -57,7 +57,7 @@ resource "azurerm_storage_account" "sa" {
 }
 
 resource "azurerm_storage_container" "sc" {
-  name                 = "${var.naming_prefix}-sc"
+  name                 = "${var.name}-sc"
   storage_account_name = azurerm_storage_account.sa.name
 }
 
@@ -71,12 +71,12 @@ resource "azurerm_storage_blob" "sb" {
 }
 
 resource "azurerm_network_profile" "np" {
-  name                = "${var.naming_prefix}-script"
+  name                = "${var.name}-script"
   location            = var.location
   resource_group_name = var.resource_group_name
 
   container_network_interface {
-    name = "${var.naming_prefix}-ni"
+    name = "${var.name}-ni"
 
     ip_configuration {
       name      = "acrfrontal"
@@ -86,7 +86,7 @@ resource "azurerm_network_profile" "np" {
 }
 
 resource "azurerm_container_group" "cg" {
-  name                = "${var.naming_prefix}-group"
+  name                = "${var.name}-group"
   location            = var.location
   resource_group_name = var.resource_group_name
   ip_address_type     = "private"
@@ -94,7 +94,7 @@ resource "azurerm_container_group" "cg" {
   network_profile_id  = azurerm_network_profile.np.id
 
   container {
-    name   = "${var.naming_prefix}-container"
+    name   = "${var.name}-container"
     image  = var.image
     cpu    = "1"
     memory = "2"
