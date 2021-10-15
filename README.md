@@ -1,76 +1,73 @@
 # Sysdig Secure for Cloud in Azure
 
-Terraform module that deploys the **Sysdig Secure for Cloud** stack in **Azure**. It provides unified threat detection, compliance, forensics and analysis.
+Terraform module that deploys the **Sysdig Secure for Cloud** stack in **Azure**.   
+It provides unified threat detection, compliance, forensics and analysis.
 
 There are three major component:
 
-* Cloud Threat Detection: Tracks abnormal and suspicious activities in your cloud environment based on Falco language.Managed through [cloud-connector module](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/modules/services/cloud-connector).
-* CSPM/Compliance: It evaluates periodically your cloud configuration, using Cloud Custodian, against some benchmarks and returns the results and remediations you need to fix.
-* Cloud Scanning: Automatically scans all container images pushed to the registry or as soon a new task which involves a container is spawned in your account.
+* **Cloud Threat Detection**: Tracks abnormal and suspicious activities in your cloud environment based on Falco language. Managed through [cloud-connector module](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/modules/services/cloud-connector).
+<br/><br/>
 
+[comment]: <> (* **CSPM/Compliance**: It evaluates periodically your cloud configuration, using Cloud Custodian, against some benchmarks and returns the results and remediation you need to fix. Managed through [cloud-bench module]&#40;https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/modules/services/cloud-bench&#41;.)
+
+[comment]: <> (  <br/><br/>)
+
+[comment]: <> (* **Cloud Scanning**: Automatically scans all container images pushed to the registry or as soon a new task which involves a container is spawned in your account.Managed through [cloud-scanning module]&#40;https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/modules/services/cloud-scanning&#41;.)
+
+[comment]: <> (  <br/><br/>)
 For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud), [GCP](https://github.com/sysdiglabs/terraform-google-secure-for-cloud)
 
 ## Usage
 
-There are two ways to deploy this in you Azure infrastructure:
+### Single-Account
 
-* Using an existing resource group name (more info in the [`./examples/existing_resource_group/README.md`](examples/existing_resource_group/README.md))
-* Creating a new resource group name (more info in the [`./examples/creating_resource_group/README.md`](examples/creating_resource_group/README.md))
+Sysdig workload will be deployed in the same account where user's resources will be watched.<br/>
+More info in [`./examples/single-account`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-account)
+
+### Self-Baked
+
+If no [examples](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples) fit your use-case, be free to call desired modules directly.
+
+In this use-case we will ONLY deploy cloud-bench, into the target account, calling modules directly
+
+```terraform
+provider "azurerm" {
+  features {}
+  subscription_id = "SUBSCRIPTION-ID"
+}
+
+data "azurerm_subscription" "current" {
+}
+
+module "cloud_connector" {
+  source      = "sysdiglabs/secure-for-cloud/azurerm//modules/cloud-connector"
+
+  subscription_id                  = data.azurerm_subscription.current.subscription_id
+  resource_group_name              = "RESOURCE_GROUP_NAME"
+  azure_eventhub_connection_string = "EXISTING_EVENTHUB_CONNECTION_STRING"
+  sysdig_secure_api_token          = var.sysdig_secure_api_token
+}
+
+```
+See [inputs summary](#inputs) or main [module `variables.tf`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/variables.tf) file for more optional configuration.
+
+To run this example you need have an Azure account and to execute:
+
+```terraform
+$ terraform init
+$ terraform plan
+$ terraform apply
+```
 
 
 Notice that:
 - These examples will create resources that cost money. Run `terraform destroy` when you don't need them anymore
 - All created resources will be created within the tags `product:sysdig-secure-for-cloud`
 
----
-
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Requirements
-
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 2.64.0 |
-
-## Providers
-
-| Name | Version |
-|------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.64.0 |
-
-## Modules
-
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_cloud_connector"></a> [cloud\_connector](#module\_cloud\_connector) | ./modules/services/cloud-connector |  |
-| <a name="module_infrastructure_eventhub"></a> [infrastructure\_eventhub](#module\_infrastructure\_eventhub) | ./modules/infrastructure/eventhub |  |
-
-## Resources
-
-| Name | Type |
-|------|------|
-| [azurerm_subscription.current](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/data-sources/subscription) | data source |
-
-## Inputs
-
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_cloudconnector_deploy"></a> [cloudconnector\_deploy](#input\_cloudconnector\_deploy) | Whether to deploy or not CloudConnector | `bool` | `true` | no |
-| <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"centralus"` | no |
-| <a name="input_naming_prefix"></a> [naming\_prefix](#input\_naming\_prefix) | Prefix for resource names. Use the default unless you need to install multiple instances, and modify the deployment at the main account accordingly | `string` | `"secureforcloud"` | no |
-| <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The resource group name to deploy cloud vision stack | `string` | `""` | no |
-| <a name="input_sysdig_secure_api_token"></a> [sysdig\_secure\_api\_token](#input\_sysdig\_secure\_api\_token) | Sysdig's Secure API Token | `string` | n/a | yes |
-| <a name="input_sysdig_secure_endpoint"></a> [sysdig\_secure\_endpoint](#input\_sysdig\_secure\_endpoint) | Sysdig Secure API endpoint | `string` | `"https://secure.sysdig.com"` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to the resources | `map(string)` | <pre>{<br>  "product": "sysdig-secure-for-cloud"<br>}</pre> | no |
-
-## Outputs
-
-No outputs.
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Authors
 
-Module is maintained by [Sysdig](https://sysdig.com).
+Module is maintained and supported by [Sysdig](https://sysdig.com).
 
 ## License
 

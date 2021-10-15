@@ -1,6 +1,0 @@
-secureURL: "value overriden by SECURE_URL env var"
-logLevel: "debug"
-schedule: "24h"
-benchmarkType: "azure"
-outputDir: "/tmp/cloud-custodian"
-policyFile: "/home/custodian/azure-benchmarks.yml"
