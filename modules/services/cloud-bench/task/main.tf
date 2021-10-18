@@ -15,7 +15,7 @@ data "azurerm_subscriptions" "available" {
 }
 
 locals {
-  benchmark_task_name   = var.is_tenant ? "Organization: ${data.azurerm_subscriptions.available.subscriptions[0].tenant_id}" : data.azurerm_subscription.subscription.display_name
+  benchmark_task_name   = var.is_tenant ? "Tenant: ${data.azurerm_subscriptions.available.subscriptions[0].tenant_id}" : data.azurerm_subscription.subscription.display_name
   accounts_scope_clause = var.is_tenant ? "azure.subscriptionId in (\"${join("\", \"", var.subscription_ids)}\")" : "azure.subscriptionId = \"${var.subscription_id}\""
   regions_scope_clause  = length(var.region) == 0 ? "" : " and azure.region = \"${var.region}\""
 }
