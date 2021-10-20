@@ -7,6 +7,12 @@ provider "azurerm" {
   subscription_id = var.subscription_id
 }
 
+provider "sysdig" {
+  sysdig_secure_url          = var.sysdig_secure_endpoint
+  sysdig_secure_api_token    = var.sysdig_secure_api_token
+  sysdig_secure_insecure_tls = !local.verify_ssl
+}
+
 data "azurerm_subscription" "current" {
 }
 
@@ -33,3 +39,10 @@ module "cloud_connector" {
   verify_ssl                       = local.verify_ssl
   tags                             = var.tags
 }
+
+module "cloud_bench" {
+  source          = "../../modules/services/cloud-bench"
+  subscription_id = var.subscription_id
+  region          = var.region
+}
+

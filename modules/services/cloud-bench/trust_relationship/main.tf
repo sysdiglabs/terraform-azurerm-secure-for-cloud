@@ -2,9 +2,9 @@
 # Fetch & compute required data
 ###################################################
 
-data "sysdig_secure_trusted_cloud_identity" "trusted_identity" {
-  cloud_provider = "azure"
-}
+//data "sysdig_secure_trusted_cloud_identity" "trusted_identity" {
+//  cloud_provider = "azure"
+//}
 
 data "azurerm_subscription" "subscription" {
   subscription_id = var.subscription_id
@@ -28,11 +28,11 @@ data "azurerm_role_definition" "reader" {
 resource "azurerm_lighthouse_definition" "lighthouse_definition" {
   name               = "Sysdig CloudBench Lighthouse Definition"
   description        = "Lighthouse definition representing Sysdig CloudBench offer"
-  managing_tenant_id = var.sysdig_tenant_id
+  managing_tenant_id = data.sysdig_secure_trusted_cloud_identity.trusted_identity.azure_tenant_id
   scope              = "/subscriptions/${var.subscription_id}"
 
   authorization {
-    principal_id           = var.sysdig_service_principal_id
+    principal_id           = data.sysdig_secure_trusted_cloud_identity.trusted_identity.azure_client_id
     role_definition_id     = data.azurerm_role_definition.reader.role_definition_id
     principal_display_name = "Sysdig CloudBench Service Principal"
   }

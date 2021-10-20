@@ -8,12 +8,11 @@ module "trust_relationship" {
 
   subscription_id             = each.key
   region                      = var.region
-  sysdig_tenant_id            = var.sysdig_tenant_id
-  sysdig_service_principal_id = var.sysdig_service_principal_id
 }
 
 module "task" {
   source           = "./task"
+
   subscription_id  = var.subscription_id
   subscription_ids = var.subscription_ids
   is_tenant        = var.is_tenant

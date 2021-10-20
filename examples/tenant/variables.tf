@@ -24,7 +24,7 @@ variable "sysdig_secure_endpoint" {
 
 variable "region" {
   type        = string
-  description = "Region in which to run the benchmark. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]."
+  description = "Region in which to run benchmarks. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]."
   default     = "AzureCloud"
 }
 
