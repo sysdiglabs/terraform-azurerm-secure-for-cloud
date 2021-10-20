@@ -6,12 +6,12 @@ module "trust_relationship" {
   for_each = toset(local.subscription_ids)
   source   = "./trust_relationship"
 
-  subscription_id             = each.key
-  region                      = var.region
+  subscription_id = each.key
+  region          = var.region
 }
 
 module "task" {
-  source           = "./task"
+  source = "./task"
 
   subscription_id  = var.subscription_id
   subscription_ids = var.subscription_ids

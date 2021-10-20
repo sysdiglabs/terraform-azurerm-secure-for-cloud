@@ -2,9 +2,9 @@
 # Fetch & compute required data
 ###################################################
 
-//data "sysdig_secure_trusted_cloud_identity" "trusted_identity" {
-//  cloud_provider = "azure"
-//}
+data "sysdig_secure_trusted_cloud_identity" "trusted_identity" {
+  cloud_provider = "azure"
+}
 
 data "azurerm_subscription" "subscription" {
   subscription_id = var.subscription_id
