@@ -25,4 +25,3 @@ resource "sysdig_secure_benchmark_task" "benchmark_task" {
   schema   = "azure_foundations_bench-1.3.0"
   scope    = "${local.accounts_scope_clause}${local.regions_scope_clause}"
 }
-

@@ -1,6 +1,6 @@
 # Sysdig Secure for Cloud in Azure
 
-Terraform module that deploys the **Sysdig Secure for Cloud** stack in **Azure**.   
+Terraform module that deploys the **Sysdig Secure for Cloud** stack in **Azure**.
 It provides unified threat detection, compliance, forensics and analysis.
 
 There are three major component:

@@ -45,4 +45,3 @@ module "cloud_bench" {
   subscription_id = var.subscription_id
   region          = var.region
 }
-
