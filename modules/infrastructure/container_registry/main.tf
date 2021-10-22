@@ -10,7 +10,7 @@ locals {
 }
 
 resource "azurerm_container_registry" "acr" {
-  name                = "${lower(var.naming_prefix)}containerregistry"
+  name                = "${lower(var.name)}containerregistry"
   resource_group_name = var.resource_group_name
   location            = var.location
   sku                 = var.sku
@@ -19,7 +19,7 @@ resource "azurerm_container_registry" "acr" {
 }
 
 resource "azurerm_eventgrid_event_subscription" "default" {
-  name  = "${lower(var.naming_prefix)}eventsubscription"
+  name  = "${lower(var.name)}eventsubscription"
   scope = azurerm_container_registry.acr.id
 
   eventhub_endpoint_id = var.eventhub_endpoint_id

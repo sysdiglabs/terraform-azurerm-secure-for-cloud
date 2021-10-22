@@ -8,6 +8,9 @@ locals {
     AZURE_STORAGE_ACCOUNT             = azurerm_storage_account.sa.name
     AZURE_STORAGE_ACCESS_KEY          = azurerm_storage_account.sa.primary_access_key
     AZURE_REGION                      = var.location
+    AZURE_TENANT_ID                   = var.tenant_id
+    AZURE_CLIENT_ID                   = var.client_id
+    AZURE_CLIENT_SECRET               = var.client_secret
   }
 
   default_config = <<EOF

@@ -21,12 +21,20 @@ module "infrastructure_eventhub" {
 }
 
 module "infrastructure_container_registry" {
-  source = "../../../modules/infrastructure/container_registry"
+  source = "../../modules/infrastructure/container_registry"
 
   location             = var.location
-  naming_prefix        = var.naming_prefix
+  name                 = var.name
   resource_group_name  = module.infrastructure_eventhub.resource_group_name
   eventhub_endpoint_id = module.infrastructure_eventhub.azure_eventhub_id
+}
+
+module "infrastructure_enterprise_app" {
+  source = "../../modules/infrastructure/enterprise_app"
+
+  name                = var.name
+  resource_group_name = module.infrastructure_eventhub.resource_group_name
+  subscription_id     = data.azurerm_subscription.current.subscription_id
 }
 
 module "cloud_connector" {
@@ -36,6 +44,9 @@ module "cloud_connector" {
   subscription_id                  = data.azurerm_subscription.current.subscription_id
   resource_group_name              = module.infrastructure_eventhub.resource_group_name
   azure_eventhub_connection_string = module.infrastructure_eventhub.azure_eventhub_connection_string
+  tenant_id                        = module.infrastructure_enterprise_app.tenant_id
+  client_id                        = module.infrastructure_enterprise_app.client_id
+  client_secret                    = module.infrastructure_enterprise_app.client_secret
   location                         = var.location
   sysdig_secure_api_token          = var.sysdig_secure_api_token
   sysdig_secure_endpoint           = var.sysdig_secure_endpoint

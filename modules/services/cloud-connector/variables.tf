@@ -73,3 +73,18 @@ variable "subscription_id" {
   type        = string
   description = "Subscription ID where apply the infrastructure"
 }
+
+variable "tenant_id" {
+  type        = string
+  description = "Azure tenant ID"
+}
+
+variable "client_id" {
+  type        = string
+  description = "Enterprise application ID"
+}
+
+variable "client_secret" {
+  type        = string
+  description = "Enterprise application service principal secret"
+}
