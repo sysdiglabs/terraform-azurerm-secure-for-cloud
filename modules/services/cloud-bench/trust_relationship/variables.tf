@@ -7,8 +7,8 @@ variable "subscription_id" {
 # optionals - with default
 #---------------------------------
 
-variable "region" {
-  type        = string
-  description = "Region in which to run the benchmark. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]."
-  default     = "AzureCloud"
-}
+#variable "region" {
+#  type        = string
+#  description = "Region in which to run the benchmark. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]."
+#  default     = "AzureCloud"
+#}

@@ -7,7 +7,6 @@ module "trust_relationship" {
   source   = "./trust_relationship"
 
   subscription_id = each.key
-  region          = var.region
 }
 
 module "task" {

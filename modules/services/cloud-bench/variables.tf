@@ -1,11 +1,11 @@
-// For single project
+# For single project
 variable "subscription_id" {
   type        = string
   description = "ID of subscription containing resources to run benchmarks on"
   default     = ""
 }
 
-// For tenant
+# For tenant
 variable "subscription_ids" {
   type        = list(string)
   description = "IDs of subscriptions containing resources to run benchmarks on"

@@ -9,12 +9,12 @@ variable "tenant_id" {
   description = "Azure Tenant ID"
 }
 
-# Vars with defaults
-variable "location" {
-  type        = string
-  default     = "us-central1"
-  description = "Zone where the stack will be deployed"
-}
+## Vars with defaults
+#variable "location" {
+#  type        = string
+#  default     = "us-central1"
+#  description = "Zone where the stack will be deployed"
+#}
 
 variable "sysdig_secure_endpoint" {
   type        = string
