@@ -32,7 +32,7 @@ resource "azurerm_lighthouse_definition" "lighthouse_definition" {
   scope              = "/subscriptions/${var.subscription_id}"
 
   authorization {
-    principal_id           = data.sysdig_secure_trusted_cloud_identity.trusted_identity.azure_client_id
+    principal_id           = data.sysdig_secure_trusted_cloud_identity.trusted_identity.azure_service_principal_id
     role_definition_id     = data.azurerm_role_definition.reader.role_definition_id
     principal_display_name = "Sysdig CloudBench Service Principal"
   }
