@@ -21,8 +21,8 @@ resource "sysdig_secure_cloud_account" "cloud_account" {
   role_enabled   = "true"
 }
 
-data "azurerm_role_definition" "reader" {
-  role_definition_id = "acdd72a7-3385-48ef-bd42-f606fba81ae7"
+data "azurerm_role_definition" "contributor" {
+  role_definition_id = "b24988ac-6180-42a0-ab88-20f7382dd24c"
 }
 
 resource "azurerm_lighthouse_definition" "lighthouse_definition" {
