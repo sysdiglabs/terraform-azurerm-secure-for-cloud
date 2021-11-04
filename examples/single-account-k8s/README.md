@@ -1,3 +1,46 @@
+# Sysdig Secure for Cloud in GCP :: Single-Account on Kubernetes Cluster
+
+Deploy Sysdig Secure for Cloud in a provided existing Kubernetes Cluster.
+
+- Sysdig **Helm** charts will be used to deploy the secure-for-cloud stack:
+    - [Cloud-Connector Chart](https://charts.sysdig.com/charts/cloud-connector/)
+- Used architecture is similar to [single-project](../single-project) but changing Container Group Instance <---> with
+  an existing K8s
+
+All the required resources and workloads will be run under the same GCP project.
+
+## Prerequisites
+
+Minimum requirements:
+
+1. Azure cli `az` credentials configuration
+2. A Kubernetes cluster configured within your `~/.kube/config`
+3. Secure requirements, as input variable value
+    ```
+    sysdig_secure_api_token=<SECURE_API_TOKEN>
+    subscription_id=<AZURE_SUBSCRIPTION_ID>
+    ```
+
+## Usage
+
+For quick testing, use this snippet on your terraform files
+
+```terraform
+module "secure_for_cloud_azurerm_single_project_k8s" {
+  source = "sysdiglabs/secure-for-cloud/google//examples/single-project-k8s"
+
+  subscription_id         = "00000000-1111-2222-3333-444444444444"
+  sysdig_secure_api_token = "11111111-0000-3333-4444-555555222224"
+}
+```
+
+See [inputs summary](#inputs) or module module [`variables.tf`](./variables.tf) file for more optional configuration.
+
+Notice that:
+
+* This example will create resources that **cost money**. Run `terraform destroy` when you don't need them anymore.
+* All created resources will be created within the tags `product:sysdig-secure-for-cloud`.
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -44,3 +87,11 @@
 
 No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## Authors
+
+Module is maintained and supported by [Sysdig](https://sysdig.com).
+
+## License
+
+Apache 2 Licensed. See LICENSE for full details.
