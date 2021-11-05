@@ -11,9 +11,9 @@ variable "resource_group_name" {
   description = "The resource group name to deploy cloud vision stack"
 }
 
-variable "subscription_id" {
-  type        = string
-  description = "Subscription ID where apply the infrastructure"
+variable "subscription_ids" {
+  type        = list(string)
+  description = "Subscription IDs where apply the infrastructure"
 }
 
 variable "sku" {
