@@ -45,3 +45,9 @@ variable "resource_group_name" {
   default     = ""
   description = "The resource group name to deploy cloud vision stack"
 }
+
+variable "region" {
+  type        = string
+  description = "Region in which to run benchmarks. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]."
+  default     = "AzureCloud"
+}
