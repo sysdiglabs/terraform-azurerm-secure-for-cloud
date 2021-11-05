@@ -17,7 +17,7 @@ module "infrastructure_eventhub" {
 
 module "cloud_connector" {
   source = "../../modules/services/cloud-connector"
-  name   = "${var.name}-cloudconnector"
+  name   = "${var.name}-connector"
 
   subscription_ids                 = local.threat_detection_subscription_ids
   resource_group_name              = module.infrastructure_eventhub.resource_group_name
