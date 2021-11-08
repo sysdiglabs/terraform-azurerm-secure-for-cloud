@@ -49,6 +49,15 @@ jobs:
       - name: Run single-account-k8s test
         run: bundle exec kitchen test "single-account-k8s-aws"
 
+      - name: Inspect k8s failure
+        if: ${{ failure() }}
+        run: |
+          kubectl get namespaces
+          kubectl get deployments -n kitchen
+          kubectl describe deployment cloud-connector -n kitchen
+          kubectl logs deployment.apps/cloud-connector -n kitchen
+          kubectl logs deployment.apps/cloud-scanning -n kitchen
+
       - name: Destroy single-account-k8s test
         if: ${{ failure() }}
         run: bundle exec kitchen destroy "single-account-k8s-aws"
