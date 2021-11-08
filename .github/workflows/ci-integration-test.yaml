@@ -35,11 +35,11 @@ jobs:
           bundler-cache: true
 
       - name: Run single-account test
-        run: bundle exec kitchen test "single-account-aws"
+        run: bundle exec kitchen test "single-account-azure"
 
       - name: Destroy single-account resources
         if: ${{ failure() }}
-        run: bundle exec kitchen destroy "single-account-aws"
+        run: bundle exec kitchen destroy "single-account-azure"
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.2.0
@@ -47,7 +47,7 @@ jobs:
           wait: 120s
 
       - name: Run single-account-k8s test
-        run: bundle exec kitchen test "single-account-k8s-aws"
+        run: bundle exec kitchen test "single-account-k8s-azure"
 
       - name: Inspect k8s failure
         if: ${{ failure() }}
@@ -60,5 +60,5 @@ jobs:
 
       - name: Destroy single-account-k8s test
         if: ${{ failure() }}
-        run: bundle exec kitchen destroy "single-account-k8s-aws"
+        run: bundle exec kitchen destroy "single-account-k8s-azure"
 
