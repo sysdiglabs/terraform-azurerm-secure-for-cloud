@@ -42,7 +42,7 @@ jobs:
         run: bundle exec kitchen destroy "single-account-aws"
 
       - name: Create kind cluster
-        uses: helm/kind-actions@v1.2.0
+        uses: helm/kind-action@v1.2.0
         with:
           wait: 120s
 
