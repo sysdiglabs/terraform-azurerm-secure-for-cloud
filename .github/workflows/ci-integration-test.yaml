@@ -34,9 +34,22 @@ jobs:
           ruby-version: 2.7
           bundler-cache: true
 
-      - name: Run test
-        run: bundle exec kitchen test
+      - name: Run single-account test
+        run: bundle exec kitchen test "single-account-aws"
 
-      - name: Destroy resources
+      - name: Destroy single-account resources
         if: ${{ failure() }}
-        run: bundle exec kitchen destroy
+        run: bundle exec kitchen destroy "single-account-aws"
+
+      - name: Create kind cluster
+        uses: helm/kind-actions@v1.2.0
+        with:
+          wait: 120s
+
+      - name: Run single-account-k8s test
+        run: bundle exec kitchen test "single-account-k8s-aws"
+
+      - name: Destroy single-account-k8s test
+        if: ${{ failure() }}
+        run: bundle exec kitchen destroy "single-account-k8s-aws"
+
