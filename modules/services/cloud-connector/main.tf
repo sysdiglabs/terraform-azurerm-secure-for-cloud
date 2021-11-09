@@ -8,15 +8,24 @@ locals {
     AZURE_STORAGE_ACCOUNT             = azurerm_storage_account.sa.name
     AZURE_STORAGE_ACCESS_KEY          = azurerm_storage_account.sa.primary_access_key
     AZURE_REGION                      = var.location
+    CONFIG_MD5                        = local.config_source_md5
   }
 
-  default_config = <<EOF
-  rules: []
-  ingestors:
-    - azure-event-hub:
-        subscriptionID: ${var.subscription_id}
-  notifiers: []
-  EOF
+  config_source_md5 = var.config_content == null && var.config_source == null ? md5(local.default_config) : (var.config_source == null ? md5(var.config_content) : filemd5(var.config_source))
+
+  default_config = yamlencode({
+    logging = "info"
+    rules   = []
+    ingestors = [
+      for subscription in var.subscription_ids : {
+        azure-event-hub = {
+          subscriptionID = subscription
+        }
+      }
+    ]
+    notifiers = []
+  })
+
   config_content = var.config_content == null && var.config_source == null ? local.default_config : var.config_content
 }
 
@@ -45,8 +54,16 @@ resource "azurerm_subnet" "sn" {
   }
 }
 
+resource "random_string" "random" {
+  length  = 5
+  lower   = true
+  upper   = false
+  special = false
+  number  = false
+}
+
 resource "azurerm_storage_account" "sa" {
-  name                = replace("${var.name}-sa", "/[-_]/", "")
+  name                = replace("${var.name}-sa-${random_string.random.result}", "/[-_]/", "")
   resource_group_name = var.resource_group_name
 
   location                 = var.location

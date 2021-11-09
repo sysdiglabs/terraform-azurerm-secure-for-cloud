@@ -25,7 +25,7 @@ variable "name" {
     condition     = can(regex("^[a-zA-Z0-9\\-]+$", var.name)) && length(var.name) > 1 && length(var.name) <= 64
     error_message = "Must enter a naming up to 64 alphanumeric characters."
   }
-  default = "sfc-cloudconnector"
+  default = "sfc-connector"
 }
 
 variable "config_source" {
@@ -69,7 +69,7 @@ variable "tags" {
   }
 }
 
-variable "subscription_id" {
-  type        = string
-  description = "Subscription ID where apply the infrastructure"
+variable "subscription_ids" {
+  type        = list(string)
+  description = "Subscription IDs where apply the infrastructure"
 }
