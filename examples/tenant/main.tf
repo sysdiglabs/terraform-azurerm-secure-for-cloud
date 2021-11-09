@@ -50,6 +50,7 @@ provider "azurerm" {
 }
 
 module "cloud_bench" {
+  count  = var.deploy_bench ? 1 : 0
   source = "../../modules/services/cloud-bench"
 
   subscription_ids = local.benchmark_subscription_ids

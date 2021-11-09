@@ -65,3 +65,9 @@ variable "threat_detection_subscription_ids" {
   type        = list(string)
   description = "Azure subscription IDs to run threat detection on. If no subscriptions are specified, all of the tenant will be used."
 }
+
+variable "deploy_bench" {
+  type        = bool
+  description = "whether benchmark module is to be deployed"
+  default     = true
+}

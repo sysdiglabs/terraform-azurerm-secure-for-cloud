@@ -41,6 +41,7 @@ module "cloud_connector" {
 }
 
 module "cloud_bench" {
+  count           = var.deploy_bench ? 1 : 0
   source          = "../../modules/services/cloud-bench"
   subscription_id = var.subscription_id
   region          = var.region
