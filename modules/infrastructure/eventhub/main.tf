@@ -9,11 +9,19 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 
   tags = var.tags
+}
 
+
+resource "random_string" "random" {
+  length  = 5
+  lower   = true
+  upper   = false
+  special = false
+  number  = false
 }
 
 resource "azurerm_eventhub_namespace" "evn" {
-  name                = "${lower(var.name)}-eventhub-namespace"
+  name                = "${lower(var.name)}-eventhub-namespace-${random_string.random.result}"
   location            = var.location
   resource_group_name = local.resource_group_name
   sku                 = var.sku
@@ -52,10 +60,15 @@ resource "azurerm_eventhub_authorization_rule" "eh_auth_rule" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diagnostic_setting" {
+  for_each                       = toset(var.subscription_ids)
   name                           = "${lower(var.name)}-diagnostic_setting"
-  target_resource_id             = "/subscriptions/${var.subscription_id}"
+  target_resource_id             = "/subscriptions/${each.key}"
   eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.ns_auth_rule.id
   eventhub_name                  = azurerm_eventhub.aev.name
+
+  lifecycle {
+    ignore_changes = [log, metric]
+  }
 
   dynamic "log" {
     for_each = var.logs
