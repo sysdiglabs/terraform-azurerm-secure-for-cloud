@@ -1,4 +1,5 @@
-# Sysdig Secure for Cloud in Azure:  New resource group
+# Sysdig Secure for Cloud in Azure<br/>[ Example: Single-Subscription ]
+
 
 This module example creates a new resource group where deploy all module resources.
 

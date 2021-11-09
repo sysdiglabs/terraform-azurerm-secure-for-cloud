@@ -1,4 +1,4 @@
-# Sysdig Secure for Cloud in GCP :: Single-Account on Kubernetes Cluster
+# Sysdig Secure for Cloud in Azure<br/>[ Example: Single-Subscription on Kubernetes Cluster ]
 
 Deploy Sysdig Secure for Cloud in a provided existing Kubernetes Cluster.
 
@@ -13,12 +13,12 @@ All the required resources and workloads will be run under the same GCP project.
 
 Minimum requirements:
 
-1. Azure cli `az` credentials configuration
-2. A Kubernetes cluster configured within your `~/.kube/config`
-3. Secure requirements, as input variable value
+
+1. **Azure** profile credentials configuration
+2. **Kubernetes** cluster configured within your helm provider
+3. **Sysdig** Secure requirements, as input variable value
     ```
     sysdig_secure_api_token=<SECURE_API_TOKEN>
-    subscription_id=<AZURE_SUBSCRIPTION_ID>
     ```
 
 ## Usage
