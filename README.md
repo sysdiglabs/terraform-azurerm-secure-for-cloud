@@ -23,11 +23,15 @@ Sysdig workload will be deployed in the same account where user's resources will
 More info in [`./examples/single-account`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-account)
 
 
-### - Single-Subscription-Kubernetes
+### - Single-Subscription with a pre-existing Kubernetes Cluster
+
+If you already own a Kubernetes Cluster on GCP, you can use it to deploy Sysdig Secure for Cloud, instead of default Container Group Instances.<br/>
+More info in [`./examples/single-account-k8s`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-account-k8s)
+
 
 ### - Tenant
 
-Sysdig workload will be deployed in the same account where user's resources will be watched.<br/>
+Deploy all workload on Tenant Subscriptions (all or specified)<br/>
 More info in [`./examples/tenant`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/tenant)
 
 
