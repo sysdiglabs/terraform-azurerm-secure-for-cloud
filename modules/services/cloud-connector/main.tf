@@ -9,25 +9,37 @@ locals {
     AZURE_STORAGE_ACCOUNT                       = azurerm_storage_account.sa.name
     AZURE_STORAGE_ACCESS_KEY                    = azurerm_storage_account.sa.primary_access_key
     AZURE_REGION                                = var.location
+    CONFIG_MD5                                  = local.config_source_md5
     AZURE_TENANT_ID                             = var.tenant_id
     AZURE_CLIENT_ID                             = var.client_id
     AZURE_CLIENT_SECRET                         = var.client_secret
   }
 
-  default_config = <<EOF
-  rules: []
-  ingestors:
-    - azure-event-hub:
-        subscriptionID: ${var.subscription_id}
-    - azure-event-grid:
-        subscriptionID: ${var.subscription_id}
-  scanners:
-  - azure-acr: {}
-  - azure-aci:
-      subscriptionID: ${var.subscription_id}
-      resourceGroup: ${var.resource_group_name}
-      containerRegistry: ${var.container_registry}
-  EOF
+  config_source_md5 = var.config_content == null && var.config_source == null ? md5(local.default_config) : (var.config_source == null ? md5(var.config_content) : filemd5(var.config_source))
+
+  default_config = yamlencode({
+    logging = "info"
+    rules   = []
+    ingestors = [
+      for subscription in var.subscription_ids : {
+        azure-event-hub = {
+          subscriptionID = subscription
+        }
+        azure-event-grid = {
+          subscriptionID = subscription
+        }
+      }
+    ]
+    scanners = {
+       azure-acr = {}
+       azure-aci = {
+          subscriptionID = var.subscription_id
+          resourceGroup  = var.resource_group_name
+          containerRegistry = var.container_registry
+       }
+    }
+  })
+
   config_content = var.config_content == null && var.config_source == null ? local.default_config : var.config_content
 }
 
@@ -56,8 +68,16 @@ resource "azurerm_subnet" "sn" {
   }
 }
 
+resource "random_string" "random" {
+  length  = 5
+  lower   = true
+  upper   = false
+  special = false
+  number  = false
+}
+
 resource "azurerm_storage_account" "sa" {
-  name                = replace("${var.name}-sa", "/[-_]/", "")
+  name                = replace("${var.name}-sa-${random_string.random.result}", "/[-_]/", "")
   resource_group_name = var.resource_group_name
 
   location                 = var.location

@@ -7,13 +7,19 @@ provider "azurerm" {
   subscription_id = var.subscription_id
 }
 
+provider "sysdig" {
+  sysdig_secure_url          = var.sysdig_secure_endpoint
+  sysdig_secure_api_token    = var.sysdig_secure_api_token
+  sysdig_secure_insecure_tls = !local.verify_ssl
+}
+
 data "azurerm_subscription" "current" {
 }
 
 module "infrastructure_eventhub" {
   source = "../../modules/infrastructure/eventhub"
 
-  subscription_id     = data.azurerm_subscription.current.subscription_id
+  subscription_ids    = [data.azurerm_subscription.current.subscription_id]
   location            = var.location
   name                = var.name
   tags                = var.tags
@@ -48,9 +54,8 @@ module "infrastructure_enterprise_app" {
 
 module "cloud_connector" {
   source = "../../modules/services/cloud-connector"
-  name   = "${var.name}-cloudconnector"
+  name   = "${var.name}-connector"
 
-  subscription_id                            = data.azurerm_subscription.current.subscription_id
   resource_group_name                        = module.infrastructure_eventhub.resource_group_name
   container_registry                         = module.infrastructure_container_registry.container_registry
   azure_eventhub_connection_string           = module.infrastructure_eventhub.azure_eventhub_connection_string
@@ -63,4 +68,24 @@ module "cloud_connector" {
   sysdig_secure_endpoint                     = var.sysdig_secure_endpoint
   verify_ssl                                 = local.verify_ssl
   tags                                       = var.tags
+  subscription_ids                           = [data.azurerm_subscription.current.subscription_id]
+  resource_group_name                        = module.infrastructure_eventhub.resource_group_name
+  container_registry                         = module.infrastructure_container_registry.container_registry
+  azure_eventhub_connection_string           = module.infrastructure_eventhub.azure_eventhub_connection_string
+  azure_eventgrid_eventhub_connection_string = module.infrastructure_eventgrid_eventhub.azure_eventhub_connection_string
+  tenant_id                                  = module.infrastructure_enterprise_app.tenant_id
+  client_id                                  = module.infrastructure_enterprise_app.client_id
+  client_secret                              = module.infrastructure_enterprise_app.client_secret
+  location                                   = var.location
+  sysdig_secure_api_token                    = var.sysdig_secure_api_token
+  sysdig_secure_endpoint                     = var.sysdig_secure_endpoint
+  verify_ssl                                 = local.verify_ssl
+  tags                                       = var.tags
+}
+
+module "cloud_bench" {
+  count           = var.deploy_bench ? 1 : 0
+  source          = "../../modules/services/cloud-bench"
+  subscription_id = var.subscription_id
+  region          = var.region
 }

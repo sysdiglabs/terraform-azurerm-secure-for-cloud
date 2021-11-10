@@ -14,6 +14,7 @@ jobs:
   integration_test:
     name: Test-Kitchen
     runs-on: ubuntu-latest
+    continue-on-error: true
     env:
       ARM_CLIENT_ID: ${{secrets.AZURE_ARM_CLIENT_ID}}
       ARM_CLIENT_SECRET: ${{secrets.AZURE_ARM_CLIENT_SECRET}}
@@ -34,9 +35,29 @@ jobs:
           ruby-version: 2.7
           bundler-cache: true
 
-      - name: Run test
-        run: bundle exec kitchen test
+      - name: Run single-account test
+        run: bundle exec kitchen test "single-account-azure"
 
-      - name: Destroy resources
+      - name: Destroy single-account resources
         if: ${{ failure() }}
-        run: bundle exec kitchen destroy
+        run: bundle exec kitchen destroy "single-account-azure"
+
+      - name: Create kind cluster
+        uses: helm/kind-action@v1.2.0
+        with:
+          wait: 120s
+
+      - name: Run single-account-k8s test
+        run: bundle exec kitchen test "single-account-k8s-azure"
+
+      - name: Inspect k8s failure
+        if: ${{ failure() }}
+        run: |
+          kubectl get namespaces
+          kubectl get deployments -n kitchen
+          kubectl describe deployment cloud-connector -n kitchen
+          kubectl logs deployment.apps/cloud-connector -n kitchen
+          kubectl logs deployment.apps/cloud-scanning -n kitchen
+
+      - name: Destroy single-account-k8s test
+        run: bundle exec kitchen destroy "single-account-k8s-azure"

@@ -17,9 +17,9 @@ variable "deploy_diagnostic_setting" {
   default     = true
 }
 
-variable "subscription_id" {
-  type        = string
-  description = "Subscription ID where apply the infrastructure"
+variable "subscription_ids" {
+  type        = list(string)
+  description = "Subscription IDs where apply the infrastructure"
 }
 
 variable "sku" {

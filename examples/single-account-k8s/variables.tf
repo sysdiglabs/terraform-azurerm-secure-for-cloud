@@ -1,3 +1,15 @@
+variable "sysdig_secure_api_token" {
+  type        = string
+  description = "Sysdig's Secure API Token"
+  sensitive   = true
+}
+
+variable "subscription_id" {
+  type        = string
+  description = "The Azure subscription ID to use to deploy the resources"
+}
+
+
 variable "name" {
   type        = string
   description = "Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances"
@@ -7,11 +19,6 @@ variable "name" {
     error_message = "Must enter a naming up to 64 alphanumeric characters."
   }
   default = "sfc"
-}
-
-variable "subscription_id" {
-  type        = string
-  description = "The Azure subscription ID to use to deploy the resources"
 }
 
 variable "sysdig_secure_endpoint" {
@@ -26,12 +33,6 @@ variable "location" {
   description = "Zone where the stack will be deployed"
 }
 
-variable "sysdig_secure_api_token" {
-  type        = string
-  description = "Sysdig's Secure API Token"
-  sensitive   = true
-}
-
 variable "tags" {
   type        = map(string)
   description = "Tags to be added to the resources"
@@ -43,17 +44,11 @@ variable "tags" {
 variable "resource_group_name" {
   type        = string
   default     = ""
-  description = "The resource group name to deploy cloud vision stack"
+  description = "The resource group name to deploy Secure for Cloud stack"
 }
 
-variable "region" {
+variable "cloud_connector_image" {
   type        = string
-  description = "Region in which to run benchmarks. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]."
-  default     = "AzureCloud"
-}
-
-variable "deploy_bench" {
-  type        = bool
-  description = "whether benchmark module is to be deployed"
-  default     = true
+  description = "Cloud-connector image to deploy"
+  default     = "quay.io/sysdig/cloud-connector"
 }
