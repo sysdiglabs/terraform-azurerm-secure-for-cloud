@@ -11,6 +11,12 @@ variable "resource_group_name" {
   description = "The resource group name to deploy cloud vision stack"
 }
 
+variable "deploy_diagnostic_setting" {
+  type        = bool
+  description = "The resource group name to deploy cloud vision stack"
+  default     = true
+}
+
 variable "subscription_id" {
   type        = string
   description = "Subscription ID where apply the infrastructure"

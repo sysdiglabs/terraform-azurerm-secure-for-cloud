@@ -52,6 +52,7 @@ resource "azurerm_eventhub_authorization_rule" "eh_auth_rule" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diagnostic_setting" {
+  count                          = var.deploy_diagnostic_setting ? 1 : 0
   name                           = "${lower(var.name)}-diagnostic_setting"
   target_resource_id             = "/subscriptions/${var.subscription_id}"
   eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.ns_auth_rule.id
