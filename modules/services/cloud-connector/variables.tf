@@ -56,6 +56,11 @@ variable "azure_eventhub_connection_string" {
   description = "EventHub SAS policy connection string"
 }
 
+variable "azure_eventgrid_eventhub_connection_string" {
+  type        = string
+  description = "EventHub SAS policy connection string for event grid"
+}
+
 variable "resource_group_name" {
   type        = string
   description = "The resource group name to deploy cloud vision stack"
@@ -87,4 +92,9 @@ variable "client_id" {
 variable "client_secret" {
   type        = string
   description = "Enterprise application service principal secret"
+}
+
+variable "container_registry" {
+  type        = string
+  description = "Azure container registry name to run acr quick task for inline scanning"
 }

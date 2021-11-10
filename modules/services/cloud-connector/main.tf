@@ -1,16 +1,17 @@
 locals {
   env_vars = {
-    SECURE_URL                        = var.sysdig_secure_endpoint,
-    SECURE_API_TOKEN                  = var.sysdig_secure_api_token,
-    VERIFY_SSL                        = tostring(var.verify_ssl)
-    CONFIG_PATH                       = "az://${azurerm_storage_account.sa.name}.blob.core.windows.net/${azurerm_storage_container.sc.name}/${azurerm_storage_blob.sb.name}"
-    AZURE_EVENT_HUB_CONNECTION_STRING = var.azure_eventhub_connection_string
-    AZURE_STORAGE_ACCOUNT             = azurerm_storage_account.sa.name
-    AZURE_STORAGE_ACCESS_KEY          = azurerm_storage_account.sa.primary_access_key
-    AZURE_REGION                      = var.location
-    AZURE_TENANT_ID                   = var.tenant_id
-    AZURE_CLIENT_ID                   = var.client_id
-    AZURE_CLIENT_SECRET               = var.client_secret
+    SECURE_URL                                  = var.sysdig_secure_endpoint,
+    SECURE_API_TOKEN                            = var.sysdig_secure_api_token,
+    VERIFY_SSL                                  = tostring(var.verify_ssl)
+    CONFIG_PATH                                 = "az://${azurerm_storage_account.sa.name}.blob.core.windows.net/${azurerm_storage_container.sc.name}/${azurerm_storage_blob.sb.name}"
+    AZURE_EVENT_HUB_CONNECTION_STRING           = var.azure_eventhub_connection_string
+    AZURE_EVENTGRID_EVENT_HUB_CONNECTION_STRING = var.azure_eventgrid_eventhub_connection_string
+    AZURE_STORAGE_ACCOUNT                       = azurerm_storage_account.sa.name
+    AZURE_STORAGE_ACCESS_KEY                    = azurerm_storage_account.sa.primary_access_key
+    AZURE_REGION                                = var.location
+    AZURE_TENANT_ID                             = var.tenant_id
+    AZURE_CLIENT_ID                             = var.client_id
+    AZURE_CLIENT_SECRET                         = var.client_secret
   }
 
   default_config = <<EOF
@@ -18,7 +19,14 @@ locals {
   ingestors:
     - azure-event-hub:
         subscriptionID: ${var.subscription_id}
-  notifiers: []
+    - azure-event-grid:
+        subscriptionID: ${var.subscription_id}
+  scanners:
+  - azure-acr: {}
+  - azure-aci:
+      subscriptionID: ${var.subscription_id}
+      resourceGroup: ${var.resource_group_name}
+      containerRegistry: ${var.container_registry}
   EOF
   config_content = var.config_content == null && var.config_source == null ? local.default_config : var.config_content
 }

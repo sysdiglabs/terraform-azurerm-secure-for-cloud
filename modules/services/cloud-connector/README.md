@@ -37,11 +37,13 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_azure_eventgrid_eventhub_connection_string"></a> [azure\_eventgrid\_eventhub\_connection\_string](#input\_azure\_eventgrid\_eventhub\_connection\_string) | EventHub SAS policy connection string for event grid | `string` | n/a | yes |
 | <a name="input_azure_eventhub_connection_string"></a> [azure\_eventhub\_connection\_string](#input\_azure\_eventhub\_connection\_string) | EventHub SAS policy connection string | `string` | n/a | yes |
 | <a name="input_client_id"></a> [client\_id](#input\_client\_id) | Enterprise application ID | `string` | n/a | yes |
 | <a name="input_client_secret"></a> [client\_secret](#input\_client\_secret) | Enterprise application service principal secret | `string` | n/a | yes |
 | <a name="input_config_content"></a> [config\_content](#input\_config\_content) | Configuration contents for the file stored in the bucket | `string` | `null` | no |
 | <a name="input_config_source"></a> [config\_source](#input\_config\_source) | Path to a file that contains the contents of the configuration file to be saved in the bucket | `string` | `null` | no |
+| <a name="input_container_registry"></a> [container\_registry](#input\_container\_registry) | Azure container registry name to run acr quick task for inline scanning | `string` | n/a | yes |
 | <a name="input_image"></a> [image](#input\_image) | Image of the cloud-connector to deploy | `string` | `"quay.io/sysdig/cloud-connector:master"` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances | `string` | `"sfc-cloudconnector"` | no |
