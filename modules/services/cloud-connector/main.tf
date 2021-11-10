@@ -31,12 +31,12 @@ locals {
       }
     ]
     scanners = {
-       azure-acr = {}
-       azure-aci = {
-          subscriptionID = var.subscription_id
-          resourceGroup  = var.resource_group_name
-          containerRegistry = var.container_registry
-       }
+      azure-acr = {}
+      azure-aci = {
+        subscriptionID    = var.subscription_id
+        resourceGroup     = var.resource_group_name
+        containerRegistry = var.container_registry
+      }
     }
   })
 

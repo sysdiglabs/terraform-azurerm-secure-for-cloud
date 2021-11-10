@@ -41,10 +41,10 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_deploy_diagnostic_setting"></a> [deploy\_diagnostic\_setting](#input\_deploy\_diagnostic\_setting) | The resource group name to deploy cloud vision stack | `bool` | `true` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances | `string` | n/a | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The resource group name to deploy cloud vision stack | `string` | n/a | yes |
 | <a name="input_subscription_ids"></a> [subscription\_ids](#input\_subscription\_ids) | Subscription IDs where apply the infrastructure | `list(string)` | n/a | yes |
+| <a name="input_deploy_diagnostic_setting"></a> [deploy\_diagnostic\_setting](#input\_deploy\_diagnostic\_setting) | The resource group name to deploy cloud vision stack | `bool` | `true` | no |
 | <a name="input_eventhub_partition_count"></a> [eventhub\_partition\_count](#input\_eventhub\_partition\_count) | The partition count setting allows you to parallelize consumption across many consumers | `number` | `1` | no |
 | <a name="input_eventhub_retention_days"></a> [eventhub\_retention\_days](#input\_eventhub\_retention\_days) | The message retention setting specifies how long the Event Hubs service keeps data | `number` | `1` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"centralus"` | no |
