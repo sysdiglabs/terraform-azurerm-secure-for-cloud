@@ -1,12 +1,12 @@
-#data "azurerm_subscription" "current" {}
+data "azurerm_subscription" "current" {}
 
-#locals {
-#  subscription_id = data.azurerm_subscription.current.id
-#}
+locals {
+  subscription_id = data.azurerm_subscription.current.id
+}
 
-#provider "azurerm" {
-#  features {}
-#}
+provider "azurerm" {
+  features {}
+}
 
 resource "azuread_application" "aa" {
   display_name = "${var.name}-app"
@@ -32,24 +32,25 @@ resource "azuread_application_password" "aap" {
 
 resource "azurerm_role_definition" "ard" {
   name  = "${var.name}-role"
-  scope = var.subscription_id
+  scope = local.subscription_id
 
   permissions {
     actions = [
       "Microsoft.ContainerRegistry/registries/listCredentials/action",
       "Microsoft.ContainerRegistry/registries/scheduleRun/action",
-      "Microsoft.ContainerRegistry/registries/buildTasks/write"
+      "Microsoft.ContainerRegistry/registries/buildTasks/write",
+      "Microsoft.ContainerInstance/containerGroups/read"
     ]
     not_actions = []
   }
 
   assignable_scopes = [
-    var.subscription_id,
+    local.subscription_id,
   ]
 }
 
 resource "azurerm_role_assignment" "main" {
-  scope              = var.subscription_id
+  scope              = local.subscription_id
   role_definition_id = azurerm_role_definition.ard.role_definition_resource_id
   principal_id       = azuread_service_principal.asp.id
 }

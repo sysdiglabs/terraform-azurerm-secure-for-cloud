@@ -4,7 +4,7 @@ output "tenant_id" {
 }
 
 output "client_id" {
-  value       = azuread_application.ap.application_id
+  value       = azuread_application.aa.application_id
   description = "Service principal ID"
 }
 
@@ -12,4 +12,9 @@ output "client_secret" {
   value       = azuread_service_principal_password.aspp.value
   description = "Service principal secret"
   sensitive   = true
+}
+
+output "kk" {
+  value       = local.subscription_id
+  description = "kk"
 }

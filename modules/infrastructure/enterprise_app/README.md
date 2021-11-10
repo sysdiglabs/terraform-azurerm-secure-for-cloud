@@ -34,6 +34,7 @@ No modules.
 | [azuread_service_principal_password.aspp](https://registry.terraform.io/providers/hashicorp/azuread/2.7.0/docs/resources/service_principal_password) | resource |
 | [azurerm_role_assignment.main](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/role_assignment) | resource |
 | [azurerm_role_definition.ard](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/role_definition) | resource |
+| [azurerm_subscription.current](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/data-sources/subscription) | data source |
 
 ## Inputs
 
@@ -48,6 +49,7 @@ No modules.
 |------|-------------|
 | <a name="output_client_id"></a> [client\_id](#output\_client\_id) | Service principal ID |
 | <a name="output_client_secret"></a> [client\_secret](#output\_client\_secret) | Service principal secret |
+| <a name="output_kk"></a> [kk](#output\_kk) | kk |
 | <a name="output_tenant_id"></a> [tenant\_id](#output\_tenant\_id) | Service principal tenant ID |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
