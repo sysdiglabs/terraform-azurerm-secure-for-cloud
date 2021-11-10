@@ -18,7 +18,7 @@ variable "name" {
     condition     = can(regex("^[a-zA-Z0-9\\-]+$", var.name)) && length(var.name) > 1 && length(var.name) <= 64
     error_message = "Must enter a naming up to 64 alphanumeric characters."
   }
-  default = "testhayk"
+  default = "sfc"
 }
 
 variable "sysdig_secure_endpoint" {
