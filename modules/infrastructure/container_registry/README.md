@@ -32,7 +32,6 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_admin_enabled"></a> [admin\_enabled](#input\_admin\_enabled) | Specifies whether the admin user is enabled | `bool` | `false` | no |
 | <a name="input_eventhub_endpoint_id"></a> [eventhub\_endpoint\_id](#input\_eventhub\_endpoint\_id) | Specifies the id where the Event Hub is located | `string` | n/a | yes |
 | <a name="input_georeplication"></a> [georeplication](#input\_georeplication) | A list of Azure locations where the container registry should be geo-replicated | `list(string)` | <pre>[<br>  "centralus"<br>]</pre> | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"westus"` | no |
@@ -42,7 +41,9 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_container_registry"></a> [container\_registry](#output\_container\_registry) | Created container registry name |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Authors
