@@ -30,11 +30,13 @@ provider "azurerm" {
   features {}
   subscription_id = var.subscription_id
 }
+
 provider "helm" {
   kubernetes {
     config_path = "~/.kube/config"
   }
 }
+
 module "secure_for_cloud_azurerm_single_project_k8s" {
   source = "sysdiglabs/secure-for-cloud/google//examples/single-project-k8s"
   sysdig_secure_api_token = "11111111-0000-3333-4444-555555222224"
