@@ -14,9 +14,9 @@ All the required resources and workloads will be run under the same GCP project.
 Minimum requirements:
 
 
-1. **Azure** profile credentials configuration
-2. **Kubernetes** cluster configured within your helm provider
-3. **Sysdig** Secure requirements, as input variable value
+1. Configure [Terraform **Azure** Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
+2. Configure [**Helm** Provider](https://registry.terraform.io/providers/hashicorp/helm/latest/docs) for **Kubernetes** cluster
+3. **Sysdig Secure** requirements, as module input variable value
     ```
     sysdig_secure_api_token=<SECURE_API_TOKEN>
     ```
@@ -26,10 +26,17 @@ Minimum requirements:
 For quick testing, use this snippet on your terraform files
 
 ```terraform
+provider "azurerm" {
+  features {}
+  subscription_id = var.subscription_id
+}
+provider "helm" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
+}
 module "secure_for_cloud_azurerm_single_project_k8s" {
   source = "sysdiglabs/secure-for-cloud/google//examples/single-project-k8s"
-
-  subscription_id         = "00000000-1111-2222-3333-444444444444"
   sysdig_secure_api_token = "11111111-0000-3333-4444-555555222224"
 }
 ```
@@ -74,7 +81,6 @@ Notice that:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | The Azure subscription ID to use to deploy the resources | `string` | n/a | yes |
 | <a name="input_sysdig_secure_api_token"></a> [sysdig\_secure\_api\_token](#input\_sysdig\_secure\_api\_token) | Sysdig's Secure API Token | `string` | n/a | yes |
 | <a name="input_cloud_connector_image"></a> [cloud\_connector\_image](#input\_cloud\_connector\_image) | Cloud-connector image to deploy | `string` | `"quay.io/sysdig/cloud-connector"` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"westus"` | no |

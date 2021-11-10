@@ -1,18 +1,13 @@
 # Sysdig Secure for Cloud in Azure<br/>[ Example: Single-Subscription ]
 
-
 This module example creates a new resource group where deploy all module resources.
 
 ## Prerequisites
 
 Minimum requirements:
 
-1. Azure CLI login
-2. Azure subscription ID, as provider input variable
-    ```
-    subscription_id=<SUBSCRIPTION_ID>
-    ```
-3. Secure requirements, as module input variable value
+1. Configure [Terraform **Azure** Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
+1. **Sysdig Secure** requirements, as module input variable value
     ```
     sysdig_secure_api_token=<SECURE_API_TOKEN>
     ```
@@ -22,10 +17,13 @@ Minimum requirements:
 For quick testing, use this snippet on your terraform files
 
 ```terraform
+provider "azurerm" {
+   features {}
+   subscription_id = "<SUBSCRIPTION_ID>"
+}
+
 module "secure-for-cloud_example_single-account" {
   source = "sysdiglabs/secure-for-cloud/azurerm//examples/single-account"
-
-  subscription_id                = "00000000-1111-2222-3333-444444444444"
   sysdig_secure_api_token        = "11111111-0000-3333-4444-555555222224"
 }
 ```
@@ -76,7 +74,6 @@ Notice that:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_subscription_id"></a> [subscription\_id](#input\_subscription\_id) | The Azure subscription ID to use to deploy the resources | `string` | n/a | yes |
 | <a name="input_sysdig_secure_api_token"></a> [sysdig\_secure\_api\_token](#input\_sysdig\_secure\_api\_token) | Sysdig's Secure API Token | `string` | n/a | yes |
 | <a name="input_deploy_bench"></a> [deploy\_bench](#input\_deploy\_bench) | whether benchmark module is to be deployed | `bool` | `true` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"westus"` | no |
