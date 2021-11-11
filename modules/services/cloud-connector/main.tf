@@ -20,16 +20,23 @@ locals {
   default_config = yamlencode({
     logging = "info"
     rules   = []
-    ingestors = [
-      for subscription in var.subscription_ids : {
-        azure-event-hub = {
-          subscriptionID = subscription
+    ingestors = concat(
+      [
+        for subscription in var.subscription_ids :
+        {
+          azure-event-hub = {
+            subscriptionID = subscription
+          }
         }
-        azure-event-grid = {
-          subscriptionID = subscription
+      ],
+      [
+        for subscription in var.subscription_ids : {
+          azure-event-grid = {
+            subscriptionID = subscription
+          }
         }
-      }
-    ]
+      ]
+    )
     scanners = {
       azure-acr = {}
       azure-aci = {
