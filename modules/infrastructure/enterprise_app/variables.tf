@@ -7,8 +7,3 @@ variable "name" {
     error_message = "Must enter a naming prefix up to 64 alphanumeric characters."
   }
 }
-
-variable "subscription_id" {
-  type        = string
-  description = "Subscription ID where apply the infrastructure"
-}
