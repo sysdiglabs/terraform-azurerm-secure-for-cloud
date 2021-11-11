@@ -2,18 +2,10 @@ locals {
   verify_ssl = length(regexall("^https://.*?\\.sysdig.com/?", var.sysdig_secure_endpoint)) != 0
 }
 
-provider "azurerm" {
-  features {}
-  subscription_id = var.subscription_id
-}
-
 provider "sysdig" {
   sysdig_secure_url          = var.sysdig_secure_endpoint
   sysdig_secure_api_token    = var.sysdig_secure_api_token
   sysdig_secure_insecure_tls = !local.verify_ssl
-}
-
-data "azurerm_subscription" "current" {
 }
 
 module "infrastructure_eventhub" {
@@ -43,6 +35,6 @@ module "cloud_connector" {
 module "cloud_bench" {
   count           = var.deploy_bench ? 1 : 0
   source          = "../../modules/services/cloud-bench"
-  subscription_id = var.subscription_id
+  subscription_id = data.azurerm_subscription.current.id
   region          = var.region
 }

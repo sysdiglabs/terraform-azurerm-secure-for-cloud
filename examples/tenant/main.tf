@@ -2,9 +2,6 @@ locals {
   verify_ssl = length(regexall("^https://.*?\\.sysdig.com/?", var.sysdig_secure_endpoint)) != 0
 }
 
-data "azurerm_subscriptions" "available" {
-}
-
 module "infrastructure_eventhub" {
   source = "../../modules/infrastructure/eventhub"
 
@@ -43,10 +40,6 @@ provider "sysdig" {
   sysdig_secure_url          = var.sysdig_secure_endpoint
   sysdig_secure_api_token    = var.sysdig_secure_api_token
   sysdig_secure_insecure_tls = !local.verify_ssl
-}
-
-provider "azurerm" {
-  features {}
 }
 
 module "cloud_bench" {

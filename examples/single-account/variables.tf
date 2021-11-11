@@ -9,11 +9,6 @@ variable "name" {
   default = "sfc"
 }
 
-variable "subscription_id" {
-  type        = string
-  description = "The Azure subscription ID to use to deploy the resources"
-}
-
 variable "sysdig_secure_endpoint" {
   type        = string
   default     = "https://secure.sysdig.com"
