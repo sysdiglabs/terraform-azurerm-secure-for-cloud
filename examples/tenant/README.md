@@ -1,6 +1,16 @@
 # Sysdig Secure for Cloud in Azure<br/>[ Example: Tenant ]
 
 
+## Usage
+
+For quick testing, use this snippet on your terraform files
+
+```terraform
+provider "azurerm" {
+  features {}
+}
+```
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 

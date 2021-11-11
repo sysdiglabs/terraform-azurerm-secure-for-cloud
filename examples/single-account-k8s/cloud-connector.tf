@@ -39,7 +39,7 @@ resource "helm_release" "cloud_connector" {
 rules: []
 ingestors:
  - azure-event-hub:
-     subscriptionID: ${var.subscription_id}
+     subscriptionID: ${data.azurerm_subscription.current.subscription_id}
 notifiers: []
 EOF
   ]
