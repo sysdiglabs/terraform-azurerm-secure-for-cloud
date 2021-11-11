@@ -40,7 +40,7 @@ locals {
     scanners = {
       azure-acr = {}
       azure-aci = {
-        subscriptionID    = var.subscription_id
+        subscriptionID    = var.subscription_ids[0]
         resourceGroup     = var.resource_group_name
         containerRegistry = var.container_registry
       }
