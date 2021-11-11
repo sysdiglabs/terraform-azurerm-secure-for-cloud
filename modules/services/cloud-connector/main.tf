@@ -37,14 +37,15 @@ locals {
         }
       ]
     )
-    scanners = {
-      azure-acr = {}
-      azure-aci = {
-        subscriptionID    = var.subscription_ids[0]
-        resourceGroup     = var.resource_group_name
-        containerRegistry = var.container_registry
+    scanners : [
+      { azure-acr : {} },
+      { azure-aci : {
+        subscriptionID : var.subscription_ids[0]
+        resourceGroup : var.resource_group_name
+        containerRegistry : var.container_registry
+        }
       }
-    }
+    ]
   })
 
   config_content = var.config_content == null && var.config_source == null ? local.default_config : var.config_content
