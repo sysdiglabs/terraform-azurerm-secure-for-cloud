@@ -51,7 +51,7 @@ No modules.
 | <a name="input_tenant_id"></a> [tenant\_id](#input\_tenant\_id) | Azure tenant ID | `string` | n/a | yes |
 | <a name="input_config_content"></a> [config\_content](#input\_config\_content) | Configuration contents for the file stored in the bucket | `string` | `null` | no |
 | <a name="input_config_source"></a> [config\_source](#input\_config\_source) | Path to a file that contains the contents of the configuration file to be saved in the bucket | `string` | `null` | no |
-| <a name="input_image"></a> [image](#input\_image) | Image of the cloud-connector to deploy | `string` | `"quay.io/sysdig/cloud-connector:master"` | no |
+| <a name="input_image"></a> [image](#input\_image) | Image of the cloud-connector to deploy | `string` | `"quay.io/sysdig/cloud-connector:latest"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances | `string` | `"sfc-connector"` | no |
 | <a name="input_sysdig_secure_endpoint"></a> [sysdig\_secure\_endpoint](#input\_sysdig\_secure\_endpoint) | Sysdig's Secure API URL | `string` | `"https://secure.sysdig.com/"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to the resources | `map(string)` | <pre>{<br>  "product": "sysdig-secure-for-cloud"<br>}</pre> | no |

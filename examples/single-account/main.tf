@@ -29,7 +29,7 @@ module "infrastructure_eventhub" {
 module "infrastructure_eventgrid_eventhub" {
   source = "../../modules/infrastructure/eventhub"
 
-  subscription_id           = data.azurerm_subscription.current.subscription_id
+  subscription_ids          = [data.azurerm_subscription.current.subscription_id]
   location                  = var.location
   name                      = "${var.name}eventgrid"
   resource_group_name       = module.infrastructure_eventhub.resource_group_name

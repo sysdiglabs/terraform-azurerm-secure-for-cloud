@@ -1,6 +1,7 @@
 locals {
-  deploy_resource_group = var.resource_group_name == ""
-  resource_group_name   = var.resource_group_name != "" ? var.resource_group_name : azurerm_resource_group.rg[0].name
+  deploy_resource_group               = var.resource_group_name == ""
+  resource_group_name                 = var.resource_group_name != "" ? var.resource_group_name : azurerm_resource_group.rg[0].name
+  diagnostic_setting_subscription_ids = var.deploy_diagnostic_setting ? var.subscription_ids : []
 }
 
 resource "azurerm_resource_group" "rg" {
@@ -60,8 +61,7 @@ resource "azurerm_eventhub_authorization_rule" "eh_auth_rule" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "diagnostic_setting" {
-  count                          = var.deploy_diagnostic_setting ? 1 : 0
-  for_each                       = toset(var.subscription_ids)
+  for_each                       = toset(local.diagnostic_setting_subscription_ids)
   name                           = "${lower(var.name)}-diagnostic_setting"
   target_resource_id             = "/subscriptions/${each.key}"
   eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.ns_auth_rule.id
