@@ -25,8 +25,7 @@ module "infrastructure_eventgrid_eventhub" {
 module "infrastructure_enterprise_app" {
   source = "../../modules/infrastructure/enterprise_app"
 
-  name            = var.name
-  subscription_id = local.threat_detection_subscription_ids[0]
+  name = var.name
 }
 
 module "cloud_connector" {

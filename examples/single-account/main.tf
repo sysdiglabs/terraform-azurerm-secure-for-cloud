@@ -40,8 +40,7 @@ module "infrastructure_container_registry" {
 module "infrastructure_enterprise_app" {
   source = "../../modules/infrastructure/enterprise_app"
 
-  name            = var.name
-  subscription_id = data.azurerm_subscription.current.subscription_id
+  name = var.name
 }
 
 module "cloud_connector" {
