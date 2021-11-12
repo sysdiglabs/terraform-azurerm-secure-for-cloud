@@ -4,10 +4,6 @@ locals {
   subscription_id = data.azurerm_subscription.current.id
 }
 
-provider "azurerm" {
-  features {}
-}
-
 resource "azuread_application" "aa" {
   display_name = "${var.name}-app"
 }
