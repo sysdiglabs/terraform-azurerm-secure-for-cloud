@@ -36,7 +36,7 @@ jobs:
           bundler-cache: true
 
       - name: Run single-account test
-        run: bundle exec kitchen test "single-account-azure"
+        run: bundle exec kitchen test "single-account-azure" -- -lock=false
 
       - name: Destroy single-account resources
         if: ${{ failure() }}
