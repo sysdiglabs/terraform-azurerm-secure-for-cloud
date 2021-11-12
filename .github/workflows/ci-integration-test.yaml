@@ -39,9 +39,7 @@ jobs:
         run:
 
       - name: Run single-account test
-        run: |
-          terraform force-unlock -force "e24b822e-b54c-8ae7-d464-f7c64394bf63"
-          bundle exec kitchen test "single-account-azure"
+        run: bundle exec kitchen test "single-account-azure"
 
       - name: Destroy single-account resources
         if: ${{ failure() }}
