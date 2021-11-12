@@ -36,7 +36,7 @@ jobs:
           bundler-cache: true
 
       - name: unlock
-        run: terraform force-unlock "e24b822e-b54c-8ae7-d464-f7c64394bf63"
+        run: terraform force-unlock -force "e24b822e-b54c-8ae7-d464-f7c64394bf63"
 
       - name: Run single-account test
         run: bundle exec kitchen test "single-account-azure"
