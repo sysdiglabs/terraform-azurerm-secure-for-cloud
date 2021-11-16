@@ -10,6 +10,7 @@ Deploys a Cloud Connector in AWS as an ECS container deployment that will detect
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
+| <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | 2.7.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 2.64.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | >=3.1.0 |
 
@@ -43,6 +44,7 @@ No modules.
 | <a name="input_name"></a> [name](#input\_name) | Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances | `string` | n/a | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The resource group name to deploy cloud vision stack | `string` | n/a | yes |
 | <a name="input_subscription_ids"></a> [subscription\_ids](#input\_subscription\_ids) | Subscription IDs where apply the infrastructure | `list(string)` | n/a | yes |
+| <a name="input_deploy_diagnostic_setting"></a> [deploy\_diagnostic\_setting](#input\_deploy\_diagnostic\_setting) | The resource group name to deploy cloud vision stack | `bool` | `true` | no |
 | <a name="input_eventhub_partition_count"></a> [eventhub\_partition\_count](#input\_eventhub\_partition\_count) | The partition count setting allows you to parallelize consumption across many consumers | `number` | `1` | no |
 | <a name="input_eventhub_retention_days"></a> [eventhub\_retention\_days](#input\_eventhub\_retention\_days) | The message retention setting specifies how long the Event Hubs service keeps data | `number` | `1` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"centralus"` | no |
@@ -56,6 +58,7 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_azure_eventhub_connection_string"></a> [azure\_eventhub\_connection\_string](#output\_azure\_eventhub\_connection\_string) | EventHub SAS policy connection string |
+| <a name="output_azure_eventhub_id"></a> [azure\_eventhub\_id](#output\_azure\_eventhub\_id) | EventHub ID |
 | <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | Created resources group name |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

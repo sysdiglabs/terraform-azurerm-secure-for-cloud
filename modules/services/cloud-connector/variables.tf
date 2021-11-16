@@ -42,7 +42,7 @@ variable "config_content" {
 
 variable "image" {
   type        = string
-  default     = "quay.io/sysdig/cloud-connector:master"
+  default     = "quay.io/sysdig/cloud-connector:latest"
   description = "Image of the cloud-connector to deploy"
 }
 
@@ -54,6 +54,11 @@ variable "location" {
 variable "azure_eventhub_connection_string" {
   type        = string
   description = "EventHub SAS policy connection string"
+}
+
+variable "azure_eventgrid_eventhub_connection_string" {
+  type        = string
+  description = "EventHub SAS policy connection string for event grid"
 }
 
 variable "resource_group_name" {
@@ -72,4 +77,24 @@ variable "tags" {
 variable "subscription_ids" {
   type        = list(string)
   description = "Subscription IDs where apply the infrastructure"
+}
+
+variable "tenant_id" {
+  type        = string
+  description = "Azure tenant ID"
+}
+
+variable "client_id" {
+  type        = string
+  description = "Enterprise application ID"
+}
+
+variable "client_secret" {
+  type        = string
+  description = "Enterprise application service principal secret"
+}
+
+variable "container_registry" {
+  type        = string
+  description = "Azure container registry name to run acr quick task for inline scanning"
 }
