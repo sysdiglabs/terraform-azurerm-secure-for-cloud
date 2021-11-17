@@ -34,13 +34,40 @@ resource "helm_release" "cloud_connector" {
     value = module.infrastructure_eventhub.azure_eventhub_connection_string
   }
 
+  set {
+    name  = "azure.eventgridEventHubConnectionString"
+    value = module.infrastructure_eventgrid_eventhub.azure_eventhub_connection_string
+  }
+
+  set {
+    name  = "azure.tenantID"
+    value = module.infrastructure_enterprise_app.tenant_id
+  }
+
+  set {
+    name  = "azure.clientID"
+    value = module.infrastructure_enterprise_app.client_id
+  }
+
+  set {
+    name  = "azure.clientSecret"
+    value = module.infrastructure_enterprise_app.client_secret
+  }
+
   values = [
     <<EOF
 rules: []
 ingestors:
  - azure-event-hub:
      subscriptionID: ${data.azurerm_subscription.current.subscription_id}
-notifiers: []
+ - azure-event-grid:
+     subscriptionID: ${data.azurerm_subscription.current.subscription_id}
+scanners:
+ - azure-acr : {}
+ - azure-aci :
+     subscriptionID : ${data.azurerm_subscription.current.subscription_id}
+     resourceGroup : ${module.infrastructure_eventhub.resource_group_name}
+     containerRegistry : ${module.infrastructure_container_registry.container_registry}
 EOF
   ]
 }
