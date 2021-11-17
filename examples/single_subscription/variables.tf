@@ -50,5 +50,5 @@ variable "region" {
 variable "deploy_bench" {
   type        = bool
   description = "whether benchmark module is to be deployed"
-  default     = true
+  default     = false
 }
