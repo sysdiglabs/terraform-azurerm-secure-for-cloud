@@ -10,7 +10,7 @@ provider "helm" {
 }
 
 module "s4c_single_account_k8s_example" {
-  source = "../../../examples/single-account-k8s"
+  source = "../../../examples/single_subscription_k8s"
 
   sysdig_secure_api_token = var.sysdig_secure_api_token
   name                    = "kitchen"
