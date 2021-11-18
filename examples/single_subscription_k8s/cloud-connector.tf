@@ -35,23 +35,28 @@ resource "helm_release" "cloud_connector" {
   }
 
   set {
-    name  = "azure.eventgridEventHubConnectionString"
+    name  = "azure.eventGridEventHubConnectionString"
     value = module.infrastructure_eventgrid_eventhub.azure_eventhub_connection_string
   }
 
   set {
-    name  = "azure.tenantID"
+    name  = "azure.tenantId"
     value = module.infrastructure_enterprise_app.tenant_id
   }
 
   set {
-    name  = "azure.clientID"
+    name  = "azure.clientId"
     value = module.infrastructure_enterprise_app.client_id
   }
 
   set {
     name  = "azure.clientSecret"
     value = module.infrastructure_enterprise_app.client_secret
+  }
+
+  set {
+    name  = "azure.region"
+    value = var.location
   }
 
   values = [
