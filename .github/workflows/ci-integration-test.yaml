@@ -27,20 +27,20 @@ jobs:
           ruby-version: 2.7
           bundler-cache: true
 
-      - name: Run single_subscription test
-        run: bundle exec kitchen test "single_subscription_azure"
+      - name: Run single-subscription test
+        run: bundle exec kitchen test "single-subscription-azure"
 
-      - name: Destroy single_subscription resources
+      - name: Destroy single-subscription resources
         if: ${{ failure() }}
-        run: bundle exec kitchen destroy "single_subscription_azure"
+        run: bundle exec kitchen destroy "single-subscription-azure"
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.2.0
         with:
           wait: 120s
 
-      - name: Run single_subscription_k8s test
-        run: bundle exec kitchen test "single_subscription_k8s-azure"
+      - name: Run single-subscription-k8s test
+        run: bundle exec kitchen test "single-subscription-k8s-azure"
 
       - name: Inspect k8s failure
         if: ${{ failure() }}
@@ -51,5 +51,5 @@ jobs:
           kubectl logs deployment.apps/cloud-connector -n kitchen
           kubectl logs deployment.apps/cloud-scanning -n kitchen
 
-      - name: Destroy single_subscription_k8s test
-        run: bundle exec kitchen destroy "single_subscription_k8s-azure"
+      - name: Destroy single-subscription-k8s test
+        run: bundle exec kitchen destroy "single-subscription-k8s-azure"
