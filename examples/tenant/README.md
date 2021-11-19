@@ -1,15 +1,65 @@
-# Sysdig Secure for Cloud in Azure<br/>[ Example: Tenant ]
+# Sysdig Secure for Cloud in Azure<br/>[ Example: multi subscriptions ]
 
+This module example creates a new resource group where deploy all module resources for multiple subscription
+or tenant all subscriptions.
+
+## Prerequisites
+
+Minimum requirements:
+
+1. Configure [Terraform **Azure** Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
+2. **Sysdig Secure** requirements, as module input variable value
+    ```
+    sysdig_secure_api_token=<SECURE_API_TOKEN>
+    ```
+3. Azure tenant Id
+    ```
+    tenant_id = "11111111-0000-3333-4444-555555222224"
+    ```
 
 ## Usage
 
-For quick testing, use this snippet on your terraform files
+For quick testing, use this snippet on your terraform files. This example would use tenant all subscriptions.
+
+```terraform
+provider "azurerm" {
+   features {}
+}
+
+module "secure-for-cloud_example_single-account" {
+  source                         = "sysdiglabs/secure-for-cloud/azurerm//examples/tenant"
+  sysdig_secure_api_token        = "11111111-0000-3333-4444-555555222224"
+  tenant_id                      = "00000000-1111-3333-4444-555555222224"
+}
+```
+
+For specific tenant subscriptions, use this snippet on your terraform files.
 
 ```terraform
 provider "azurerm" {
   features {}
 }
+
+module "secure-for-cloud_example_single-account" {
+  source                            = "sysdiglabs/secure-for-cloud/azurerm//examples/tenant"
+  sysdig_secure_api_token           = "11111111-0000-3333-4444-555555222224"
+  tenant_id                         = "00000000-1111-3333-4444-555555222224"
+  threat_detection_subscription_ids = ["11111111-0000-3333-0000-222225222222", "22222222-1111-3333-4444-555555222224"]
+}
 ```
+
+See [inputs summary](#inputs) or module module [`variables.tf`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/new_resource_group/variables.tf) file for more optional configuration.
+
+To run this example you need be logged in Azure using Azure CLI tool and to execute:
+```terraform
+$ terraform init
+$ terraform plan
+$ terraform apply
+```
+
+Notice that:
+* This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
+* All created resources will be created within the tags `product:sysdig-secure-for-cloud`, within the resource-group `sysdig-secure-for-cloud`
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -50,7 +100,7 @@ provider "azurerm" {
 | <a name="input_sysdig_secure_api_token"></a> [sysdig\_secure\_api\_token](#input\_sysdig\_secure\_api\_token) | Sysdig's Secure API Token | `string` | n/a | yes |
 | <a name="input_tenant_id"></a> [tenant\_id](#input\_tenant\_id) | Azure Tenant ID | `string` | n/a | yes |
 | <a name="input_benchmark_subscription_ids"></a> [benchmark\_subscription\_ids](#input\_benchmark\_subscription\_ids) | Azure subscription IDs to run Benchmarks on. If no subscriptions are specified, all of the tenant will be used. | `list(string)` | `[]` | no |
-| <a name="input_deploy_bench"></a> [deploy\_bench](#input\_deploy\_bench) | whether benchmark module is to be deployed | `bool` | `true` | no |
+| <a name="input_deploy_bench"></a> [deploy\_bench](#input\_deploy\_bench) | whether benchmark module is to be deployed | `bool` | `false` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"westus"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances | `string` | `"sfc"` | no |
 | <a name="input_region"></a> [region](#input\_region) | Region in which to run benchmarks. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]. | `string` | `"AzureCloud"` | no |
