@@ -1,6 +1,7 @@
 # Sysdig Secure for Cloud in Azure
 
-Terraform module that deploys the **Sysdig Secure for Cloud** stack in **Azure**.<br/>
+Terraform module that deploys the [**Sysdig Secure for Cloud** stack in **Azure**](https://docs.sysdig.com/en/docs/installation/sysdig-secure-for-cloud/deploy-sysdig-secure-for-cloud-on-azure).
+
 It provides unified threat detection, compliance, forensics and analysis.
 
 There are three major component:
@@ -11,7 +12,7 @@ There are three major component:
 * **Cloud Scanning**: WIP
 
 [comment]: <> (  <br/><br/>)
-[comment]: <> (* **Cloud Scanning**: Automatically scans all container images pushed to the registry or as soon a new task which involves a container is spawned in your account.Managed through [cloud-scanning module]&#40;https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/modules/services/cloud-scanning&#41;.)
+[comment]: <> (* **Cloud Scanning**: Automatically scans all container images pushed to the registry or as soon a new task which involves a container is spawned in your account. Managed through [cloud-connector module]&#40;https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/modules/services/cloud-connector&#41;.)
 [comment]: <> (  <br/><br/>)
 For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud), [GCP](https://github.com/sysdiglabs/terraform-google-secure-for-cloud)
 
@@ -20,13 +21,13 @@ For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-a
 ### - Single-Subscription
 
 Sysdig workload will be deployed in the same account where user's resources will be watched.<br/>
-More info in [`./examples/single-account`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-account)
+More info in [`./examples/single-subscription`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single_subscription)
 
 
 ### - Single-Subscription with a pre-existing Kubernetes Cluster
 
 If you already own a Kubernetes Cluster on GCP, you can use it to deploy Sysdig Secure for Cloud, instead of default Container Group Instances.<br/>
-More info in [`./examples/single-account-k8s`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-account-k8s)
+More info in [`./examples/single-subscription-k8s`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single_subscription_k8s)
 
 
 ### - Tenant
