@@ -3,10 +3,15 @@ provider "azurerm" {
   subscription_id = var.subscription_id
 }
 
-module "s4c_single_account_example" {
-  source = "../../../examples/single_subscription"
+provider "helm" {
+  kubernetes {
+    config_path = "~/.kube/config"
+  }
+}
+
+module "s4c_single_account_k8s_example" {
+  source = "../../../examples/single-subscription-k8s"
 
   sysdig_secure_api_token = var.sysdig_secure_api_token
   name                    = "kitchen"
-  deploy_bench            = false
 }
