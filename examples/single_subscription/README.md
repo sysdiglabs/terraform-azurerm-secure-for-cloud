@@ -22,7 +22,7 @@ provider "azurerm" {
    subscription_id = "<SUBSCRIPTION_ID>"
 }
 
-module "secure-for-cloud_example_single-account" {
+module "secure-for-cloud_example_single_subscription" {
   source = "sysdiglabs/secure-for-cloud/azurerm//examples/single_subscription"
   sysdig_secure_api_token        = "11111111-0000-3333-4444-555555222224"
 }
