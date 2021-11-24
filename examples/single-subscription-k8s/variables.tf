@@ -22,6 +22,21 @@ variable "sysdig_secure_endpoint" {
   description = "Sysdig Secure API endpoint"
 }
 
+# benchmark
+variable "deploy_benchmark" {
+  type        = bool
+  description = "whether benchmark module is to be deployed"
+  default     = false
+}
+
+variable "region" {
+  type        = string
+  description = "Region in which to run benchmarks. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]."
+  default     = "AzureCloud"
+}
+
+
+# general
 variable "location" {
   type        = string
   default     = "westus"

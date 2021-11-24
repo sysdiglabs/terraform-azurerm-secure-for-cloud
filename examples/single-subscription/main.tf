@@ -61,10 +61,3 @@ module "cloud_connector" {
   tags                                       = var.tags
   subscription_ids                           = [data.azurerm_subscription.current.subscription_id]
 }
-
-module "cloud_bench" {
-  count           = var.deploy_bench ? 1 : 0
-  source          = "../../modules/services/cloud-bench"
-  subscription_id = data.azurerm_subscription.current.id
-  region          = var.region
-}
