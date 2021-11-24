@@ -1,4 +1,4 @@
-# Sysdig Secure for Cloud in Azure<br/>[ Example: multi subscriptions ]
+# Sysdig Secure for Cloud in Azure<br/>[ Example: tenant / multi subscriptions ]
 
 This module example creates a new resource group where deploy all module resources for multiple subscription
 or tenant all subscriptions.

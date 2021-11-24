@@ -41,13 +41,14 @@ variable "resource_group_name" {
   description = "The resource group name to deploy cloud vision stack"
 }
 
+# benchmark
 variable "region" {
   type        = string
   description = "Region in which to run benchmarks. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]."
   default     = "AzureCloud"
 }
 
-variable "deploy_bench" {
+variable "deploy_benchmark" {
   type        = bool
   description = "whether benchmark module is to be deployed"
   default     = false

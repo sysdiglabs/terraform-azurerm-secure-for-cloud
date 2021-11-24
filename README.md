@@ -2,18 +2,19 @@
 
 Terraform module that deploys the [**Sysdig Secure for Cloud** stack in **Azure**](https://docs.sysdig.com/en/docs/installation/sysdig-secure-for-cloud/deploy-sysdig-secure-for-cloud-on-azure).
 
-It provides unified threat detection, compliance, forensics and analysis.
+Terraform module that deploys the [**Sysdig Secure for Cloud** stack in **AWS**](https://docs.sysdig.com/en/docs/installation/sysdig-secure-for-cloud/deploy-sysdig-secure-for-cloud-on-aws).
+<br/>
 
-There are three major component:
+Provides unified threat-detection, compliance, forensics and analysis through these major components:
 
-* **Cloud Threat Detection**: Tracks abnormal and suspicious activities in your cloud environment based on Falco language. Managed through [cloud-connector module](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/modules/services/cloud-connector).
-<br/><br/>
-* **CSPM/Compliance**: It evaluates periodically your cloud configuration, using Cloud Custodian, against some benchmarks and returns the results and remediation you need to fix. Managed through [cloud-bench module](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/modules/services/cloud-bench)
-* **Cloud Scanning**: WIP
+* **[CSPM/Compliance](https://docs.sysdig.com/en/docs/sysdig-secure/benchmarks/)**: It evaluates periodically your cloud configuration, using Cloud Custodian, against some benchmarks and returns the results and remediation you need to fix. Managed through `cloud-bench` module. <br/>
 
-[comment]: <> (  <br/><br/>)
-[comment]: <> (* **Cloud Scanning**: Automatically scans all container images pushed to the registry or as soon a new task which involves a container is spawned in your account. Managed through [cloud-connector module]&#40;https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/modules/services/cloud-connector&#41;.)
-[comment]: <> (  <br/><br/>)
+* **[CIEM](https://docs.sysdig.com/en/docs/sysdig-secure/posture/)**: Permissions and Entitlements management. Requires BOTH modules  `cloud-connector` and `cloud-bench`. <br/>
+
+* **[Cloud Threat Detection](https://docs.sysdig.com/en/docs/sysdig-secure/insights/)**: Tracks abnormal and suspicious activities in your cloud environment based on Falco language. Managed through `cloud-connector` module. <br/>
+
+* **[Cloud Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)**: Automatically scans all container images pushed to the registry or as soon a new task which involves a container is spawned in your account. Managed through `cloud-connector`. <br/>
+
 For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud), [GCP](https://github.com/sysdiglabs/terraform-google-secure-for-cloud)
 
 ## Usage
@@ -21,20 +22,19 @@ For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-a
 ### - Single-Subscription
 
 Sysdig workload will be deployed in the same account where user's resources will be watched.<br/>
-More info in [`./examples/single-subscription`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single_subscription)
+More info in [`./examples/single-subscription`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription)
 
 
 ### - Single-Subscription with a pre-existing Kubernetes Cluster
 
 If you already own a Kubernetes Cluster on GCP, you can use it to deploy Sysdig Secure for Cloud, instead of default Container Group Instances.<br/>
-More info in [`./examples/single-subscription-k8s`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single_subscription_k8s)
+More info in [`./examples/single-subscription-k8s`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription-k8s)
 
 
 ### - Tenant
 
 Deploy all workload on Tenant Subscriptions (all or specified)<br/>
 More info in [`./examples/tenant`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/tenant)
-
 
 
 ### - Self-Baked
