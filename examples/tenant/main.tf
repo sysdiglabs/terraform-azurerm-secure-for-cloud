@@ -2,8 +2,12 @@ locals {
   verify_ssl = length(regexall("^https://.*?\\.sysdig.com/?", var.sysdig_secure_endpoint)) != 0
 }
 
-provider "azurerm" {
-  features {}
+module "infrastructure_resource_group" {
+  source = "../../modules/infrastructure/resource_group"
+
+  location            = var.location
+  name                = var.name
+  resource_group_name = var.resource_group_name
 }
 
 module "infrastructure_eventhub" {
@@ -13,7 +17,7 @@ module "infrastructure_eventhub" {
   location            = var.location
   name                = var.name
   tags                = var.tags
-  resource_group_name = var.resource_group_name
+  resource_group_name = module.infrastructure_resource_group.resource_group_name
 }
 
 module "infrastructure_eventgrid_eventhub" {
@@ -22,7 +26,7 @@ module "infrastructure_eventgrid_eventhub" {
   subscription_ids          = local.threat_detection_subscription_ids
   location                  = var.location
   name                      = "${var.name}eventgrid"
-  resource_group_name       = module.infrastructure_eventhub.resource_group_name
+  resource_group_name       = module.infrastructure_resource_group.resource_group_name
   deploy_diagnostic_setting = false
 }
 
@@ -31,7 +35,7 @@ module "infrastructure_container_registry" {
 
   location             = var.location
   name                 = var.name
-  resource_group_name  = module.infrastructure_eventhub.resource_group_name
+  resource_group_name  = module.infrastructure_resource_group.resource_group_name
   eventhub_endpoint_id = module.infrastructure_eventgrid_eventhub.azure_eventhub_id
 }
 
@@ -46,7 +50,7 @@ module "cloud_connector" {
   name   = "${var.name}-connector"
 
   subscription_ids                           = local.threat_detection_subscription_ids
-  resource_group_name                        = module.infrastructure_eventhub.resource_group_name
+  resource_group_name                        = module.infrastructure_resource_group.resource_group_name
   container_registry                         = module.infrastructure_container_registry.container_registry
   azure_eventhub_connection_string           = module.infrastructure_eventhub.azure_eventhub_connection_string
   azure_eventgrid_eventhub_connection_string = module.infrastructure_eventgrid_eventhub.azure_eventhub_connection_string

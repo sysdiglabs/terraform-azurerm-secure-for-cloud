@@ -1,6 +1,6 @@
 variable "subscription_id" {
   type        = string
-  description = "The Azure subscription ID to use to deploy the resources"
+  description = "The Azure subscription ID used to deploy the resources"
 }
 
 variable "sysdig_secure_api_token" {

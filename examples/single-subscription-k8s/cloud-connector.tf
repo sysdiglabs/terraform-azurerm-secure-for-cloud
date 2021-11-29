@@ -71,7 +71,7 @@ scanners:
  - azure-acr : {}
  - azure-aci :
      subscriptionID : ${data.azurerm_subscription.current.subscription_id}
-     resourceGroup : ${module.infrastructure_eventhub.resource_group_name}
+     resourceGroup : ${module.infrastructure_resource_group.resource_group_name}
      containerRegistry : ${module.infrastructure_container_registry.container_registry}
 EOF
   ]

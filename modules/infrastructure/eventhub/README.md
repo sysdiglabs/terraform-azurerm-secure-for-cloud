@@ -1,8 +1,7 @@
 
 # Event hub
 
-[Cloud Connector](https://github.com/sysdiglabs/cloud-connector)
-Deploys a Cloud Connector in AWS as an ECS container deployment that will detect events in your infrastructure.
+Deploys an Event Hub and a diagnostic setting.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -34,7 +33,6 @@ No modules.
 | [azurerm_eventhub_namespace.evn](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/eventhub_namespace) | resource |
 | [azurerm_eventhub_namespace_authorization_rule.ns_auth_rule](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/eventhub_namespace_authorization_rule) | resource |
 | [azurerm_monitor_diagnostic_setting.diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/monitor_diagnostic_setting) | resource |
-| [azurerm_resource_group.rg](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/resource_group) | resource |
 | [random_string.random](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
 
 ## Inputs
@@ -59,7 +57,6 @@ No modules.
 |------|-------------|
 | <a name="output_azure_eventhub_connection_string"></a> [azure\_eventhub\_connection\_string](#output\_azure\_eventhub\_connection\_string) | EventHub SAS policy connection string |
 | <a name="output_azure_eventhub_id"></a> [azure\_eventhub\_id](#output\_azure\_eventhub\_id) | EventHub ID |
-| <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | Created resources group name |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Authors

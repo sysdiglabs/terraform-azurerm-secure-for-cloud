@@ -1,6 +1,14 @@
 name: CI - Integration Tests
 
-on: workflow_dispatch
+on:
+  pull_request:
+    paths:
+      - '**.tf'
+  push:
+    branches:
+      - master
+    paths:
+      - '**.tf'
 concurrency: terraform
 jobs:
   integration_test:
