@@ -1,11 +1,3 @@
-variable "tags" {
-  type        = map(string)
-  description = "Tags to be added to the resources"
-  default = {
-    Team = "Sysdig"
-  }
-}
-
 variable "resource_group_name" {
   type        = string
   description = "The resource group name to deploy cloud vision stack"
@@ -66,4 +58,12 @@ variable "logs" {
   description = "List of log categories."
   type        = list(string)
   default     = ["Administrative", "Security", "ServiceHealth", "Alert", "Recommendation", "Policy", "Autoscale", "ResourceHealth"]
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags to be added to the resources"
+  default = {
+    Team = "Sysdig"
+  }
 }
