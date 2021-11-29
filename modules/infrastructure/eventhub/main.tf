@@ -50,6 +50,7 @@ resource "azurerm_eventhub" "aev" {
 }
 
 resource "azurerm_eventhub_authorization_rule" "eh_auth_rule" {
+  depends_on          = [azurerm_resource_group.rg]
   name                = "${lower(var.name)}-eventhub_auth_rule"
   namespace_name      = azurerm_eventhub_namespace.evn.name
   eventhub_name       = azurerm_eventhub.aev.name
