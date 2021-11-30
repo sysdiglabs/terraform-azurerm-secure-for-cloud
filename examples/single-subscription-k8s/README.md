@@ -38,8 +38,8 @@ provider "helm" {
   }
 }
 
-module "secure_for_cloud_azurerm_single_project_k8s" {
-  source = "sysdiglabs/secure-for-cloud/google//examples/single-project-k8s"
+module "secure-for-cloud_example_single-subscription-k8s" {
+  source = "sysdiglabs/secure-for-cloud/azurerm//examples/single-subscription-k8s"
   sysdig_secure_api_token = "11111111-0000-3333-4444-555555222224"
 }
 ```
