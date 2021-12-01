@@ -21,12 +21,6 @@ variable "location" {
   description = "Zone where the stack will be deployed"
 }
 
-variable "georeplication" {
-  description = "A list of Azure locations where the container registry should be geo-replicated"
-  type        = list(string)
-  default     = ["centralus"]
-}
-
 variable "name" {
   type        = string
   description = "Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances"

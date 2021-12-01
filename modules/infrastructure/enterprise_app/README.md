@@ -11,14 +11,14 @@ Creates an enterprise application as contributor role to run the inline scanning
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
 | <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | 2.7.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 2.64.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 2.87.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_azuread"></a> [azuread](#provider\_azuread) | 2.7.0 |
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.64.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.87.0 |
 
 ## Modules
 
@@ -32,9 +32,9 @@ No modules.
 | [azuread_application_password.aap](https://registry.terraform.io/providers/hashicorp/azuread/2.7.0/docs/resources/application_password) | resource |
 | [azuread_service_principal.asp](https://registry.terraform.io/providers/hashicorp/azuread/2.7.0/docs/resources/service_principal) | resource |
 | [azuread_service_principal_password.aspp](https://registry.terraform.io/providers/hashicorp/azuread/2.7.0/docs/resources/service_principal_password) | resource |
-| [azurerm_role_assignment.main](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/role_assignment) | resource |
-| [azurerm_role_definition.ard](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/resources/role_definition) | resource |
-| [azurerm_subscription.current](https://registry.terraform.io/providers/hashicorp/azurerm/2.64.0/docs/data-sources/subscription) | data source |
+| [azurerm_role_assignment.main](https://registry.terraform.io/providers/hashicorp/azurerm/2.87.0/docs/resources/role_assignment) | resource |
+| [azurerm_role_definition.ard](https://registry.terraform.io/providers/hashicorp/azurerm/2.87.0/docs/resources/role_definition) | resource |
+| [azurerm_subscription.current](https://registry.terraform.io/providers/hashicorp/azurerm/2.87.0/docs/data-sources/subscription) | data source |
 
 ## Inputs
 
