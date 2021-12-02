@@ -22,6 +22,13 @@ variable "sysdig_secure_endpoint" {
   description = "Sysdig Secure API endpoint"
 }
 
+#scanning
+variable "deploy_scanning" {
+  type        = bool
+  description = "whether scanning module is to be deployed"
+  default     = false
+}
+
 # benchmark
 variable "deploy_benchmark" {
   type        = bool

@@ -71,3 +71,9 @@ variable "deploy_bench" {
   description = "whether benchmark module is to be deployed"
   default     = false
 }
+
+variable "deploy_scanning" {
+  type        = bool
+  description = "whether scanning module is to be deployed"
+  default     = false
+}

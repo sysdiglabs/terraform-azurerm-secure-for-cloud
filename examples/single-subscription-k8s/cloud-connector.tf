@@ -1,3 +1,34 @@
+locals {
+  values_with_scanning = [
+    <<EOF
+rules: []
+ingestors:
+ - azure-event-hub:
+     subscriptionID: ${data.azurerm_subscription.current.subscription_id}
+ - azure-event-grid:
+     subscriptionID: ${data.azurerm_subscription.current.subscription_id}
+scanners:
+ - azure-acr : {}
+ - azure-aci :
+     subscriptionID : ${data.azurerm_subscription.current.subscription_id}
+     resourceGroup : ${module.infrastructure_resource_group.resource_group_name}
+     containerRegistry : ${local.container_registry}
+EOF
+  ]
+  values_without_scanning = [
+    <<EOF
+rules: []
+ingestors:
+ - azure-event-hub:
+     subscriptionID: ${data.azurerm_subscription.current.subscription_id}
+scanners:
+EOF
+  ]
+
+  values = var.deploy_scanning ? local.values_with_scanning : local.values_without_scanning
+
+}
+
 resource "helm_release" "cloud_connector" {
   name = "cloud-connector"
 
@@ -36,22 +67,22 @@ resource "helm_release" "cloud_connector" {
 
   set {
     name  = "azure.eventGridEventHubConnectionString"
-    value = module.infrastructure_eventgrid_eventhub.azure_eventhub_connection_string
+    value = local.eventgrid_eventhub_connection_string
   }
 
   set {
     name  = "azure.tenantId"
-    value = module.infrastructure_enterprise_app.tenant_id
+    value = local.tenant_id
   }
 
   set {
     name  = "azure.clientId"
-    value = module.infrastructure_enterprise_app.client_id
+    value = local.client_id
   }
 
   set {
     name  = "azure.clientSecret"
-    value = module.infrastructure_enterprise_app.client_secret
+    value = local.client_secret
   }
 
   set {
@@ -59,20 +90,5 @@ resource "helm_release" "cloud_connector" {
     value = var.location
   }
 
-  values = [
-    <<EOF
-rules: []
-ingestors:
- - azure-event-hub:
-     subscriptionID: ${data.azurerm_subscription.current.subscription_id}
- - azure-event-grid:
-     subscriptionID: ${data.azurerm_subscription.current.subscription_id}
-scanners:
- - azure-acr : {}
- - azure-aci :
-     subscriptionID : ${data.azurerm_subscription.current.subscription_id}
-     resourceGroup : ${module.infrastructure_resource_group.resource_group_name}
-     containerRegistry : ${module.infrastructure_container_registry.container_registry}
-EOF
-  ]
+  values = local.values
 }
