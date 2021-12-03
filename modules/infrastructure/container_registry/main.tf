@@ -1,13 +1,3 @@
-locals {
-  georeplication_collection = [
-    for location in toset(var.georeplication) : {
-      location                = location
-      zone_redundancy_enabled = true
-      tags                    = {}
-    }
-  ]
-  georeplication = var.sku != "Premium" ? [] : local.georeplication_collection
-}
 
 resource "azurerm_container_registry" "acr" {
   name                = "${lower(var.name)}containerregistry"
@@ -15,7 +5,6 @@ resource "azurerm_container_registry" "acr" {
   location            = var.location
   sku                 = var.sku
   admin_enabled       = true
-  georeplications     = local.georeplication
 }
 
 resource "azurerm_eventgrid_event_subscription" "default" {

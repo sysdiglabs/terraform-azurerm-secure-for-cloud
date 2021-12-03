@@ -15,9 +15,23 @@ locals {
     AZURE_CLIENT_SECRET                         = var.client_secret
   }
 
-  config_source_md5 = var.config_content == null && var.config_source == null ? md5(local.default_config) : (var.config_source == null ? md5(var.config_content) : filemd5(var.config_source))
 
-  default_config = yamlencode({
+  config_without_scanning = yamlencode({
+    logging = "info"
+    rules   = []
+    ingestors = concat(
+      [
+        for subscription in var.subscription_ids :
+        {
+          azure-event-hub = {
+            subscriptionID = subscription
+          }
+        }
+      ],
+    )
+  })
+
+  config_with_scanning = yamlencode({
     logging = "info"
     rules   = []
     ingestors = concat(
@@ -47,6 +61,10 @@ locals {
       }
     ]
   })
+
+  default_config = var.deploy_scanning ? local.config_with_scanning : local.config_without_scanning
+
+  config_source_md5 = var.config_content == null && var.config_source == null ? md5(local.default_config) : (var.config_source == null ? md5(var.config_content) : filemd5(var.config_source))
 
   config_content = var.config_content == null && var.config_source == null ? local.default_config : var.config_content
 }
