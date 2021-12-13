@@ -1,6 +1,6 @@
 name: CI - Integration Tests
 
-on: workflow_dispatch
+on:
   pull_request:
     paths:
       - '**.tf'
