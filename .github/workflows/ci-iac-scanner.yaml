@@ -1,0 +1,21 @@
+name: CI - Cloud IAC Scanner
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  iac-scanner:
+    name: Test-Kitchen
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cloud IAC parser
+        uses: sysdiglabs/cloud-iac-scanner-action@0.0.1
+        with:
+          parser: 'tf-file'

@@ -61,17 +61,3 @@ jobs:
 
       - name: Destroy single-subscription-k8s test
         run: bundle exec kitchen destroy "single-subscription-k8s-azure"
-
-  iac-scanner:
-    name: Test-Kitchen
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Cloud IAC parser
-        uses: sysdiglabs/cloud-iac-scanner-action@0.0.1
-        with:
-          parser: 'tf-module'
-
