@@ -32,7 +32,7 @@ More info in [`./examples/single-subscription-k8s`](https://github.com/sysdiglab
 ### - Tenant
 
 Deploy all workload on Tenant Subscriptions (all or specified)<br/>
-More info in [`./examples/tenant`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/tenant)
+More info in [`./examples/tenant-subscriptions`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/tenant-subscriptions)
 
 
 ### - Self-Baked

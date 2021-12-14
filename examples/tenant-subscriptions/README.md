@@ -1,6 +1,6 @@
-# Sysdig Secure for Cloud in Azure<br/>[ Example: tenant / multi subscriptions ]
+# Sysdig Secure for Cloud in Azure<br/>[ Example: tenant subscriptions ]
 
-This module example creates a new resource group where deploy all module resources for multiple subscription
+This module example deploys Sysdig Secure for Cloud for tenant subscriptions
 or tenant all subscriptions.
 
 ## Prerequisites
@@ -12,10 +12,6 @@ Minimum requirements:
     ```
     sysdig_secure_api_token=<SECURE_API_TOKEN>
     ```
-3. Azure tenant Id
-    ```
-    tenant_id = "11111111-0000-3333-4444-555555222224"
-    ```
 
 ## Usage
 
@@ -24,12 +20,13 @@ For quick testing, use this snippet on your terraform files. This example would 
 ```terraform
 provider "azurerm" {
    features {}
+   subscription_id = "<SUBSCRIPTION_ID>"
 }
 
-module "secure-for-cloud_example_single-account" {
-  source                         = "sysdiglabs/secure-for-cloud/azurerm//examples/tenant"
+module "secure_for_cloud_tenant_subscriptions" {
+  source                         = "sysdiglabs/secure-for-cloud/azurerm//examples/tenant-subscriptions"
+
   sysdig_secure_api_token        = "11111111-0000-3333-4444-555555222224"
-  tenant_id                      = "00000000-1111-3333-4444-555555222224"
 }
 ```
 
@@ -41,9 +38,8 @@ provider "azurerm" {
 }
 
 module "secure-for-cloud_example_single-account" {
-  source                            = "sysdiglabs/secure-for-cloud/azurerm//examples/tenant"
+  source                            = "sysdiglabs/secure-for-cloud/azurerm//examples/tenant-subscriptions"
   sysdig_secure_api_token           = "11111111-0000-3333-4444-555555222224"
-  tenant_id                         = "00000000-1111-3333-4444-555555222224"
   threat_detection_subscription_ids = ["11111111-0000-3333-0000-222225222222", "22222222-1111-3333-4444-555555222224"]
 }
 ```
@@ -102,7 +98,7 @@ Notice that:
 | <a name="input_tenant_id"></a> [tenant\_id](#input\_tenant\_id) | Azure Tenant ID | `string` | n/a | yes |
 | <a name="input_benchmark_subscription_ids"></a> [benchmark\_subscription\_ids](#input\_benchmark\_subscription\_ids) | Azure subscription IDs to run Benchmarks on. If no subscriptions are specified, all of the tenant will be used. | `list(string)` | `[]` | no |
 | <a name="input_deploy_bench"></a> [deploy\_bench](#input\_deploy\_bench) | whether benchmark module is to be deployed | `bool` | `false` | no |
-| <a name="input_deploy_scanning"></a> [deploy\_scanning](#input\_deploy\_scanning) | whether scanning module is to be deployed | `bool` | `false` | no |
+| <a name="input_deploy_scanning"></a> [deploy\_scanning](#input\_deploy\_scanning) | whether scanning module is to be deployed | `bool` | `true` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"westus"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances | `string` | `"sfc"` | no |
 | <a name="input_region"></a> [region](#input\_region) | Region in which to run benchmarks. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]. | `string` | `"AzureCloud"` | no |
