@@ -52,7 +52,7 @@ Tenant subscriptions (by default), or the ones you select through the input vari
 More info
 in [`./examples/tenant-subscriptions`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/tenant-subscriptions)
 
-![tenant subscription diagram](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/tenant-subscriptions/diagram-single.png?raw=true)
+![tenant subscription diagram](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/tenant-subscriptions/diagram-tenant.png?raw=true)
 
 ### - Self-Baked
 
