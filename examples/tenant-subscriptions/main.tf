@@ -1,11 +1,11 @@
 locals {
   verify_ssl                           = length(regexall("^https://.*?\\.sysdig.com/?", var.sysdig_secure_endpoint)) != 0
-  eventgrid_eventhub_connection_string = length(module.infrastructure_eventgrid_eventhub) > 0 ? module.infrastructure_eventgrid_eventhub.azure_eventhub_connection_string : ""
-  eventgrid_eventhub_id                = length(module.infrastructure_eventgrid_eventhub) > 0 ? module.infrastructure_eventgrid_eventhub.azure_eventhub_id : ""
-  container_registry                   = length(module.infrastructure_container_registry) > 0 ? module.infrastructure_container_registry.container_registry : ""
-  tenant_id                            = length(module.infrastructure_enterprise_app) > 0 ? module.infrastructure_enterprise_app.tenant_id : ""
-  client_id                            = length(module.infrastructure_enterprise_app) > 0 ? module.infrastructure_enterprise_app.client_id : ""
-  client_secret                        = length(module.infrastructure_enterprise_app) > 0 ? module.infrastructure_enterprise_app.client_secret : ""
+  eventgrid_eventhub_connection_string = length(module.infrastructure_eventgrid_eventhub) > 0 ? module.infrastructure_eventgrid_eventhub[0].azure_eventhub_connection_string : ""
+  eventgrid_eventhub_id                = length(module.infrastructure_eventgrid_eventhub) > 0 ? module.infrastructure_eventgrid_eventhub[0].azure_eventhub_id : ""
+  container_registry                   = length(module.infrastructure_container_registry) > 0 ? module.infrastructure_container_registry[0].container_registry : ""
+  tenant_id                            = length(module.infrastructure_enterprise_app) > 0 ? module.infrastructure_enterprise_app[0].tenant_id : ""
+  client_id                            = length(module.infrastructure_enterprise_app) > 0 ? module.infrastructure_enterprise_app[0].client_id : ""
+  client_secret                        = length(module.infrastructure_enterprise_app) > 0 ? module.infrastructure_enterprise_app[0].client_secret : ""
 }
 
 module "infrastructure_resource_group" {

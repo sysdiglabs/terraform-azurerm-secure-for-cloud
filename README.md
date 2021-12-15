@@ -9,9 +9,7 @@ Provides unified threat-detection, compliance, forensics and analysis through th
 * **[CSPM/Compliance](https://docs.sysdig.com/en/docs/sysdig-secure/benchmarks/)**: It evaluates periodically your cloud
   configuration, using Cloud Custodian, against some benchmarks and returns the results and remediation you need to fix.
   Managed through `cloud-bench` module. <br/>
-
-* **[CIEM](https://docs.sysdig.com/en/docs/sysdig-secure/posture/)**: Permissions and Entitlements management. Requires
-  BOTH modules  `cloud-connector` and `cloud-bench`. <br/>
+  Note: This feature is under development, not available yet.
 
 * **[Cloud Threat Detection](https://docs.sysdig.com/en/docs/sysdig-secure/insights/)**: Tracks abnormal and suspicious
   activities in your cloud environment based on Falco language. Managed through `cloud-connector` module. <br/>
@@ -22,6 +20,12 @@ Provides unified threat-detection, compliance, forensics and analysis through th
 
 For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud)
 , [GCP](https://github.com/sysdiglabs/terraform-google-secure-for-cloud)
+
+## Permissions
+
+- Threat Detection requires `Contributor` role user authentication
+- For scanning, an App (with its Service Principal) is required to be created in the ActiveDirectory, to enable
+  ContainerRegistry Task to run the image scanning This requires `Security Administrator` role.
 
 ## Usage
 
@@ -40,13 +44,14 @@ Container Group Instances.<br/>
 More info
 in [`./examples/single-subscription-k8s`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription-k8s)
 
-### - Tenant
+### - Tenant-Subscriptions
 
-Deploy all workload on Tenant Subscriptions (all or specified)<br/>
+Sysdig resources will only be deployed on the Sysdig-designated subscription, but features will be available on all the
+Tenant subscriptions (by default), or the ones you select through the input variables.<br/>
 More info
-in [`./examples/tenant`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/tenant)
+in [`./examples/tenant-subscriptions`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/tenant-subscriptions)
 
-![single project diagram](https://github.com/sysdiglabs/terraform-azure-secure-for-cloud/blob/master/examples/single-subscription/diagram-single.png?raw=true)
+![tenant subscription diagram](https://github.com/sysdiglabs/terraform-azure-secure-for-cloud/blob/master/examples/tenant-subscription/diagram-single.png?raw=true)
 
 ### - Self-Baked
 
