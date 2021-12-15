@@ -18,7 +18,7 @@ role_attr = {
     "fontsize": "9",
 }
 
-with Diagram("Sysdig Secure for Cloud\n(Single Subscription)", graph_attr=diagram_attr, filename="diagram-single",
+with Diagram("Sysdig Secure for Cloud\n(Single Subscription)", graph_attr=diagram_attr, filename="diagram-tenant",
              show=True,
              direction="TB"):
     with Cluster("Azure Tenant"):

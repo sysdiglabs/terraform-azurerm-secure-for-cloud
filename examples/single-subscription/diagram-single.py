@@ -21,10 +21,10 @@ role_attr = {
 with Diagram("Sysdig Secure for Cloud\n(Single Subscription)", graph_attr=diagram_attr, filename="diagram-single",
              show=True,
              direction="TB"):
-    with Cluster("Azure Tenant"):
-        with Cluster("Sysdig", graph_attr={"bgcolor": "lightblue"}):
-            sds = Custom("Sysdig Secure", "../../resources/diag-sysdig-icon.png")
+    with Cluster("Sysdig", graph_attr={"bgcolor": "lightblue"}):
+        sds = Custom("Sysdig Secure", "../../resources/diag-sysdig-icon.png")
 
+    with Cluster("Azure Tenant"):
         with Cluster("Azure Account Subscription"):
             diagnosticSettings = AppConfiguration("Diagnostic Settings")
             with Cluster("Resource Group"):
