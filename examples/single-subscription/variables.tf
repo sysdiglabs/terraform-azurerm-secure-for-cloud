@@ -51,7 +51,7 @@ variable "region" {
 variable "deploy_benchmark" {
   type        = bool
   description = "whether benchmark module is to be deployed"
-  default     = false
+  default     = true
 }
 
 variable "deploy_scanning" {
