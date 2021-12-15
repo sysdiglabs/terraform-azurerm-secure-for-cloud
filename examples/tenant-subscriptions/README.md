@@ -1,10 +1,13 @@
 # Sysdig Secure for Cloud in Azure<br/>[ Example: tenant-subscriptions ]
 
-Sysdig resources will only be deployed on the Sysdig-designated subscription, provided in the `provider` `subscription_id`
+Sysdig resources will only be deployed on the Sysdig-designated subscription, provided in
+the `provider` `subscription_id`
 but features will be available on all the Tenant subscriptions (by default).
 
-You can also select in which subscription you would like benchmark and threat detection be deployed through the `benchmark_subscription_ids` and `threat_detection_subscription_ids` input vars<br/>
+You can also select in which subscription you would like benchmark and threat detection be deployed through
+the `benchmark_subscription_ids` and `threat_detection_subscription_ids` input vars<br/>
 
+![tenant subscription diagram](https://github.com/sysdiglabs/terraform-azure-secure-for-cloud/blob/master/examples/tenant-subscription/diagram-tenant.png?raw=true)
 
 ## Prerequisites
 
@@ -22,14 +25,14 @@ For quick testing, use this snippet on your terraform files. This example would 
 
 ```terraform
 provider "azurerm" {
-   features {}
-   subscription_id = "<SUBSCRIPTION_ID>"
+  features {}
+  subscription_id = "<SUBSCRIPTION_ID>"
 }
 
 module "secure_for_cloud_tenant_subscriptions" {
-  source                         = "sysdiglabs/secure-for-cloud/azurerm//examples/tenant-subscriptions"
+  source = "sysdiglabs/secure-for-cloud/azurerm//examples/tenant-subscriptions"
 
-  sysdig_secure_api_token        = "11111111-0000-3333-4444-555555222224"
+  sysdig_secure_api_token = "11111111-0000-3333-4444-555555222224"
 }
 ```
 
@@ -37,20 +40,23 @@ For specific tenant subscriptions, use this snippet on your terraform files.
 
 ```terraform
 provider "azurerm" {
-   features {}
-   subscription_id = "<SUBSCRIPTION_ID>"
+  features {}
+  subscription_id = "<SUBSCRIPTION_ID>"
 }
 
 module "secure-for-cloud_example_single-account" {
-   source                            = "sysdiglabs/secure-for-cloud/azurerm//examples/tenant-subscriptions"
-   sysdig_secure_api_token           = "11111111-0000-3333-4444-555555222224"
-   threat_detection_subscription_ids = ["11111111-0000-3333-0000-222225222222", "22222222-1111-3333-4444-555555222224"]
+  source                            = "sysdiglabs/secure-for-cloud/azurerm//examples/tenant-subscriptions"
+  sysdig_secure_api_token           = "11111111-0000-3333-4444-555555222224"
+  threat_detection_subscription_ids = ["11111111-0000-3333-0000-222225222222", "22222222-1111-3333-4444-555555222224"]
 }
 ```
 
-See [inputs summary](#inputs) or module module [`variables.tf`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/new_resource_group/variables.tf) file for more optional configuration.
+See [inputs summary](#inputs) or module
+module [`variables.tf`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/new_resource_group/variables.tf)
+file for more optional configuration.
 
 To run this example you need be logged in Azure using Azure CLI tool and to execute:
+
 ```terraform
 $ terraform init
 $ terraform plan
@@ -58,8 +64,10 @@ $ terraform apply
 ```
 
 Notice that:
+
 * This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
-* All created resources will be created within the tags `product:sysdig-secure-for-cloud`, within the resource-group `sysdig-secure-for-cloud`
+* All created resources will be created within the tags `product:sysdig-secure-for-cloud`, within the
+  resource-group `sysdig-secure-for-cloud`
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
