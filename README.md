@@ -36,7 +36,7 @@ Sysdig workload will be deployed in the same account where user's resources will
 More info
 in [`./examples/single-subscription`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription)
 
-![single project diagram](https://github.com/sysdiglabs/terraform-azure-secure-for-cloud/blob/master/examples/single-subscription/diagram-single.png?raw=true)
+![single project diagram](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/single-subscription/diagram-single.png?raw=true)
 
 ### - Single-Subscription with a pre-existing Kubernetes Cluster
 
@@ -52,7 +52,7 @@ Tenant subscriptions (by default), or the ones you select through the input vari
 More info
 in [`./examples/tenant-subscriptions`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/tenant-subscriptions)
 
-![tenant subscription diagram](https://github.com/sysdiglabs/terraform-azure-secure-for-cloud/blob/master/examples/tenant-subscription/diagram-single.png?raw=true)
+![tenant subscription diagram](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/tenant-subscription/diagram-single.png?raw=true)
 
 ### - Self-Baked
 

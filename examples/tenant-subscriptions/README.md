@@ -7,7 +7,7 @@ but features will be available on all the Tenant subscriptions (by default).
 You can also select in which subscription you would like benchmark and threat detection be deployed through
 the `benchmark_subscription_ids` and `threat_detection_subscription_ids` input vars<br/>
 
-![tenant subscription diagram](https://github.com/sysdiglabs/terraform-azure-secure-for-cloud/blob/master/examples/tenant-subscription/diagram-tenant.png?raw=true)
+![tenant subscription diagram](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/tenant-subscription/diagram-tenant.png?raw=true)
 
 ## Prerequisites
 
@@ -70,19 +70,20 @@ Notice that:
   resource-group `sysdig-secure-for-cloud`
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.87.0 |
-| <a name="requirement_sysdig"></a> [sysdig](#requirement\_sysdig) | >= 0.5.27 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | > = 0.15.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | > = 2.87.0 |
+| <a name="requirement_sysdig"></a> [sysdig](#requirement\_sysdig) | > = 0.5.27 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 2.87.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | > = 2.87.0 |
 
 ## Modules
 
