@@ -1,7 +1,10 @@
-# Sysdig Secure for Cloud in Azure<br/>[ Example: tenant subscriptions ]
+# Sysdig Secure for Cloud in Azure<br/>[ Example: tenant-subscriptions ]
 
-This module example deploys Sysdig Secure for Cloud for tenant subscriptions
-or tenant all subscriptions.
+Sysdig resources will only be deployed on the Sysdig-designated subscription, provided in the `provider` `subscription_id`
+but features will be available on all the Tenant subscriptions (by default).
+
+You can also select in which subscription you would like benchmark and threat detection be deployed through the `benchmark_subscription_ids` and `threat_detection_subscription_ids` input vars<br/>
+
 
 ## Prerequisites
 
@@ -34,13 +37,14 @@ For specific tenant subscriptions, use this snippet on your terraform files.
 
 ```terraform
 provider "azurerm" {
-  features {}
+   features {}
+   subscription_id = "<SUBSCRIPTION_ID>"
 }
 
 module "secure-for-cloud_example_single-account" {
-  source                            = "sysdiglabs/secure-for-cloud/azurerm//examples/tenant-subscriptions"
-  sysdig_secure_api_token           = "11111111-0000-3333-4444-555555222224"
-  threat_detection_subscription_ids = ["11111111-0000-3333-0000-222225222222", "22222222-1111-3333-4444-555555222224"]
+   source                            = "sysdiglabs/secure-for-cloud/azurerm//examples/tenant-subscriptions"
+   sysdig_secure_api_token           = "11111111-0000-3333-4444-555555222224"
+   threat_detection_subscription_ids = ["11111111-0000-3333-0000-222225222222", "22222222-1111-3333-4444-555555222224"]
 }
 ```
 
