@@ -69,7 +69,7 @@ variable "threat_detection_subscription_ids" {
 variable "deploy_bench" {
   type        = bool
   description = "whether benchmark module is to be deployed"
-  default     = false
+  default     = true
 }
 
 variable "deploy_scanning" {
