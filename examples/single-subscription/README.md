@@ -1,5 +1,7 @@
 # Sysdig Secure for Cloud in Azure<br/>[ Example: Single-Subscription ]
 
+![single subscription diagram](https://github.com/sysdiglabs/terraform-azure-secure-for-cloud/blob/master/examples/single-subscription/diagram-single.png?raw=true)
+
 This module example creates a new resource group where deploy all module resources.
 
 ## Prerequisites
@@ -18,19 +20,22 @@ For quick testing, use this snippet on your terraform files
 
 ```terraform
 provider "azurerm" {
-   features {}
-   subscription_id = "<SUBSCRIPTION_ID>"
+  features {}
+  subscription_id = "<SUBSCRIPTION_ID>"
 }
 
 module "secure-for-cloud_example_single_subscription" {
-  source = "sysdiglabs/secure-for-cloud/azurerm//examples/single-subscription"
-  sysdig_secure_api_token        = "11111111-0000-3333-4444-555555222224"
+  source                  = "sysdiglabs/secure-for-cloud/azurerm//examples/single-subscription"
+  sysdig_secure_api_token = "11111111-0000-3333-4444-555555222224"
 }
 ```
 
-See [inputs summary](#inputs) or module module [`variables.tf`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/new_resource_group/variables.tf) file for more optional configuration.
+See [inputs summary](#inputs) or module
+module [`variables.tf`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/new_resource_group/variables.tf)
+file for more optional configuration.
 
 To run this example you need be logged in Azure using Azure CLI tool and to execute:
+
 ```terraform
 $ terraform init
 $ terraform plan
@@ -38,17 +43,20 @@ $ terraform apply
 ```
 
 Notice that:
+
 * This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
-* All created resources will be created within the tags `product:sysdig-secure-for-cloud`, within the resource-group `sysdig-secure-for-cloud`
+* All created resources will be created within the tags `product:sysdig-secure-for-cloud`, within the
+  resource-group `sysdig-secure-for-cloud`
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | > = 0.15.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 2.87.0 |
-| <a name="requirement_sysdig"></a> [sysdig](#requirement\_sysdig) | >= 0.5.27 |
+| <a name="requirement_sysdig"></a> [sysdig](#requirement\_sysdig) | > = 0.5.27 |
 
 ## Providers
 
