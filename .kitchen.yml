@@ -1,6 +1,7 @@
 ---
 driver:
   name: terraform
+  verify_version: false
   root_module_directory: test/fixtures
   parallelism: 4
 

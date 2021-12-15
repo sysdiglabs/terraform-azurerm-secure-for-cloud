@@ -6,12 +6,20 @@ Terraform module that deploys the [**Sysdig Secure for Cloud** stack in **Azure*
 Provides unified threat-detection, compliance, forensics and analysis through these major components:
 
 * **[CSPM/Compliance](https://docs.sysdig.com/en/docs/sysdig-secure/benchmarks/)**: It evaluates periodically your cloud configuration, using Cloud Custodian, against some benchmarks and returns the results and remediation you need to fix. Managed through `cloud-bench` module. <br/>
+  Note: This feature is under development, not available yet.
 
 * **[Cloud Threat Detection](https://docs.sysdig.com/en/docs/sysdig-secure/insights/)**: Tracks abnormal and suspicious activities in your cloud environment based on Falco language. Managed through `cloud-connector` module. <br/>
 
 * **[Cloud Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)**: Automatically scans all container images pushed to the registry or as soon a new task which involves a container is spawned in your account. Managed through `cloud-connector`. <br/>
 
 For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud), [GCP](https://github.com/sysdiglabs/terraform-google-secure-for-cloud)
+
+## Permissions
+
+- Threat Detection requires `Contributor` role user authentication
+- For scanning, an App (with its Service Principal) is required to be created in the ActiveDirectory, to enable ContainerRegistry Task to run the image scanning
+  This requires `Security Administrator` role.
+
 
 ## Usage
 
@@ -27,10 +35,10 @@ If you already own a Kubernetes Cluster on GCP, you can use it to deploy Sysdig 
 More info in [`./examples/single-subscription-k8s`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription-k8s)
 
 
-### - Tenant
+### - Tenant-Subscriptions
 
-Deploy all workload on Tenant Subscriptions (all or specified)<br/>
-More info in [`./examples/tenant`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/tenant)
+Sysdig resources will only be deployed on the Sysdig-designated subscription, but features will be available on all the Tenant subscriptions (by default), or the ones you select through the input variables.<br/>
+More info in [`./examples/tenant-subscriptions`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/tenant-subscriptions)
 
 
 ### - Self-Baked
