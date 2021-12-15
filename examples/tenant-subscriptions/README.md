@@ -7,7 +7,7 @@ but features will be available on all the Tenant subscriptions (by default).
 You can also select in which subscription you would like benchmark and threat detection be deployed through
 the `benchmark_subscription_ids` and `threat_detection_subscription_ids` input vars<br/>
 
-![tenant subscription diagram](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/tenant-subscription/diagram-tenant.png?raw=true)
+![tenant subscription diagram](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/tenant-subscriptions/diagram-tenant.png?raw=true)
 
 ## Prerequisites
 
