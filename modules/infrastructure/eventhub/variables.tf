@@ -67,3 +67,9 @@ variable "tags" {
     Team = "Sysdig"
   }
 }
+
+variable "active_directory_logs" {
+  description = "List of active director log categories."
+  type        = list(string)
+  default     = ["SignInLogs", "AuditLogs", "NonInteractiveUserSignInLogs", "ServicePrincipalSignInLogs", "ManagedIdentitySignInLogs", "ProvisioningLogs", "ADFSSignInLogs"]
+}
