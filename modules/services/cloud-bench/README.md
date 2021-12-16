@@ -1,5 +1,4 @@
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
 ## Requirements
 
 | Name | Version |
@@ -45,3 +44,4 @@ Module is maintained and supported by [Sysdig](https://sysdig.com).
 ## License
 
 Apache 2 Licensed. See LICENSE for full details.
+
