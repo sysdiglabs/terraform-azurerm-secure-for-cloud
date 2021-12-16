@@ -81,4 +81,13 @@ No resources.
 ## Outputs
 
 No outputs.
-<!-- END_TF_DOCS -->
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## Authors
+
+Module is maintained and supported by [Sysdig](https://sysdig.com).
+
+## License
+
+Apache 2 Licensed. See LICENSE for full details.
+
