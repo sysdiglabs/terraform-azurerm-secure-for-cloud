@@ -1,10 +1,12 @@
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.64.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | >= 3.1.0 |
 | <a name="requirement_sysdig"></a> [sysdig](#requirement\_sysdig) | >= 0.5.27 |
 
 ## Providers
@@ -12,6 +14,7 @@
 | Name | Version |
 |------|---------|
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 2.64.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | >= 3.1.0 |
 | <a name="provider_sysdig"></a> [sysdig](#provider\_sysdig) | >= 0.5.27 |
 
 ## Modules
@@ -22,6 +25,8 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [random_integer.hour](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/integer) | resource |
+| [random_integer.minute](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/integer) | resource |
 | [sysdig_secure_benchmark_task.benchmark_task](https://registry.terraform.io/providers/sysdiglabs/sysdig/latest/docs/resources/secure_benchmark_task) | resource |
 | [azurerm_subscription.subscription](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscription) | data source |
 | [azurerm_subscriptions.available](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
