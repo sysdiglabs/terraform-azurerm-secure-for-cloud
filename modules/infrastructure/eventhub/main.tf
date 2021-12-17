@@ -72,10 +72,10 @@ resource "azurerm_monitor_diagnostic_setting" "diagnostic_setting" {
   }
 }
 
-resource "azurerm_monitor_aad_diagnostic_setting" "example" {
-  count  = var.deploy_diagnostic_setting ? 1 : 0
+resource "azurerm_monitor_aad_diagnostic_setting" "active_directory_diagnostic_setting" {
+  count                          = var.deploy_diagnostic_setting ? 1 : 0
   name                           = "${lower(var.name)}-aad-diagnostic-setting"
-  eventhub_authorization_rule_id = azurerm_eventhub_authorization_rule.eh_auth_rule.id
+  eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.ns_auth_rule.id
   eventhub_name                  = azurerm_eventhub.aev.name
 
   dynamic "log" {
