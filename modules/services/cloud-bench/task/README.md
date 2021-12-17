@@ -1,5 +1,4 @@
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -43,12 +42,4 @@ No modules.
 ## Outputs
 
 No outputs.
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-## Authors
-
-Module is maintained and supported by [Sysdig](https://sysdig.com).
-
-## License
-
-Apache 2 Licensed. See LICENSE for full details.
+<!-- END_TF_DOCS -->
