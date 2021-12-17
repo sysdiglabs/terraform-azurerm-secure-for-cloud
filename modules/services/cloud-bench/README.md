@@ -1,10 +1,11 @@
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 2.87.0 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | >= 3.1.0 |
 | <a name="requirement_sysdig"></a> [sysdig](#requirement\_sysdig) | >= 0.5.27 |
 
 ## Providers
@@ -15,8 +16,8 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_task"></a> [task](#module\_task) | ./task |  |
-| <a name="module_trust_relationship"></a> [trust\_relationship](#module\_trust\_relationship) | ./trust_relationship |  |
+| <a name="module_task"></a> [task](#module\_task) | ./task | n/a |
+| <a name="module_trust_relationship"></a> [trust\_relationship](#module\_trust\_relationship) | ./trust_relationship | n/a |
 
 ## Resources
 
@@ -34,12 +35,4 @@ No resources.
 ## Outputs
 
 No outputs.
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
-## Authors
-
-Module is maintained and supported by [Sysdig](https://sysdig.com).
-
-## License
-
-Apache 2 Licensed. See LICENSE for full details.
+<!-- END_TF_DOCS -->
