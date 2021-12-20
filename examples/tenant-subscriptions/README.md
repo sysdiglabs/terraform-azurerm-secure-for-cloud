@@ -100,6 +100,7 @@ Notice that:
 
 | Name | Type |
 |------|------|
+| [azurerm_subscription.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscription) | data source |
 | [azurerm_subscriptions.available](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
 
 ## Inputs
@@ -107,7 +108,6 @@ Notice that:
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_sysdig_secure_api_token"></a> [sysdig\_secure\_api\_token](#input\_sysdig\_secure\_api\_token) | Sysdig's Secure API Token | `string` | n/a | yes |
-| <a name="input_tenant_id"></a> [tenant\_id](#input\_tenant\_id) | Azure Tenant ID | `string` | n/a | yes |
 | <a name="input_benchmark_subscription_ids"></a> [benchmark\_subscription\_ids](#input\_benchmark\_subscription\_ids) | Azure subscription IDs to run Benchmarks on. If no subscriptions are specified, all of the tenant will be used. | `list(string)` | `[]` | no |
 | <a name="input_deploy_bench"></a> [deploy\_bench](#input\_deploy\_bench) | whether benchmark module is to be deployed | `bool` | `true` | no |
 | <a name="input_deploy_scanning"></a> [deploy\_scanning](#input\_deploy\_scanning) | whether scanning module is to be deployed | `bool` | `true` | no |

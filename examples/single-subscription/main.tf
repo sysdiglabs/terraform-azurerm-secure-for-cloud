@@ -76,5 +76,5 @@ module "cloud_connector" {
   sysdig_secure_endpoint                     = var.sysdig_secure_endpoint
   verify_ssl                                 = local.verify_ssl
   tags                                       = var.tags
-  subscription_ids                           = [data.azurerm_subscription.current.subscription_id]
+  subscription_id                            = data.azurerm_subscription.current.subscription_id
 }

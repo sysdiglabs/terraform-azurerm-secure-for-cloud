@@ -1,9 +1,9 @@
 locals {
+  tenant_id                            = data.azurerm_subscription.current.tenant_id
   verify_ssl                           = length(regexall("^https://.*?\\.sysdig.com/?", var.sysdig_secure_endpoint)) != 0
   eventgrid_eventhub_connection_string = length(module.infrastructure_eventgrid_eventhub) > 0 ? module.infrastructure_eventgrid_eventhub[0].azure_eventhub_connection_string : ""
   eventgrid_eventhub_id                = length(module.infrastructure_eventgrid_eventhub) > 0 ? module.infrastructure_eventgrid_eventhub[0].azure_eventhub_id : ""
   container_registry                   = length(module.infrastructure_container_registry) > 0 ? module.infrastructure_container_registry[0].container_registry : ""
-  tenant_id                            = length(module.infrastructure_enterprise_app) > 0 ? module.infrastructure_enterprise_app[0].tenant_id : ""
   client_id                            = length(module.infrastructure_enterprise_app) > 0 ? module.infrastructure_enterprise_app[0].client_id : ""
   client_secret                        = length(module.infrastructure_enterprise_app) > 0 ? module.infrastructure_enterprise_app[0].client_secret : ""
 }
@@ -59,7 +59,7 @@ module "cloud_connector" {
   name   = "${var.name}-connector"
 
   deploy_scanning                            = var.deploy_scanning
-  subscription_ids                           = local.threat_detection_subscription_ids
+  subscription_id                            = data.azurerm_subscription.current.subscription_id
   resource_group_name                        = module.infrastructure_resource_group.resource_group_name
   container_registry                         = local.container_registry
   azure_eventhub_connection_string           = module.infrastructure_eventhub.azure_eventhub_connection_string
@@ -76,8 +76,8 @@ module "cloud_connector" {
 
 locals {
   available_subscriptions           = data.azurerm_subscriptions.available.subscriptions
-  benchmark_subscription_ids        = length(var.benchmark_subscription_ids) == 0 ? [for s in local.available_subscriptions : s.subscription_id if s.tenant_id == var.tenant_id] : var.benchmark_subscription_ids
-  threat_detection_subscription_ids = length(var.threat_detection_subscription_ids) == 0 ? [for s in local.available_subscriptions : s.subscription_id if s.tenant_id == var.tenant_id] : var.threat_detection_subscription_ids
+  benchmark_subscription_ids        = length(var.benchmark_subscription_ids) == 0 ? [for s in local.available_subscriptions : s.subscription_id if s.tenant_id == local.tenant_id] : var.benchmark_subscription_ids
+  threat_detection_subscription_ids = length(var.threat_detection_subscription_ids) == 0 ? [for s in local.available_subscriptions : s.subscription_id if s.tenant_id == local.tenant_id] : var.threat_detection_subscription_ids
 }
 
 #######################

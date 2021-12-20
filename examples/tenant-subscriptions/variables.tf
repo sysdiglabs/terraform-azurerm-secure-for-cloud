@@ -4,12 +4,6 @@ variable "sysdig_secure_api_token" {
   description = "Sysdig's Secure API Token"
 }
 
-variable "tenant_id" {
-  type        = string
-  description = "Azure Tenant ID"
-}
-
-
 ## Vars with defaults
 variable "name" {
   type        = string
