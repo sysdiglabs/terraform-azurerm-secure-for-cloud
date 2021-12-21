@@ -33,7 +33,19 @@ variable "tags" {
 variable "resource_group_name" {
   type        = string
   default     = ""
-  description = "The resource group name to deploy cloud vision stack"
+  description = "The resource group name to deploy secure for cloud stack"
+}
+
+variable "registry_name" {
+  type        = string
+  default     = ""
+  description = "The existing Container Registry name"
+}
+
+variable "registry_resource_group_name" {
+  type        = string
+  default     = ""
+  description = "The existing Container Registry name resource group name, if the registry is in the workload resource group it could be empty"
 }
 
 variable "sysdig_secure_endpoint" {
