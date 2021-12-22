@@ -56,7 +56,7 @@ variable "registry_name" {
 variable "registry_resource_group_name" {
   type        = string
   default     = ""
-  description = "The existing Container Registry name resource group name, if the registry is in the workload resource group it could be empty"
+  description = "The existing Container Registry name resource group name when is different than workload resource group name"
 }
 
 # benchmark
@@ -69,5 +69,5 @@ variable "region" {
 variable "deploy_benchmark" {
   type        = bool
   description = "whether benchmark module is to be deployed"
-  default     = false
+  default     = true
 }
