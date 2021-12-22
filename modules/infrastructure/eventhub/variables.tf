@@ -5,7 +5,13 @@ variable "resource_group_name" {
 
 variable "deploy_diagnostic_setting" {
   type        = bool
-  description = "The resource group name to deploy cloud vision stack"
+  description = "whether the diagnostic settings are to be deployed"
+  default     = true
+}
+
+variable "deploy_ad_diagnostic_setting" {
+  type        = bool
+  description = "whether the diagnostic setting is to be deployed"
   default     = true
 }
 

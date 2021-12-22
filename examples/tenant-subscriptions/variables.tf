@@ -48,6 +48,12 @@ variable "registry_resource_group_name" {
   description = "The existing Container Registry name resource group name when is different than workload resource group name"
 }
 
+variable "deploy_active_directory" {
+  type        = bool
+  default     = true
+  description = "whether the Active Directory features are to be deployed"
+}
+
 variable "sysdig_secure_endpoint" {
   type        = string
   default     = "https://secure.sysdig.com"

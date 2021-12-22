@@ -20,11 +20,12 @@ module "infrastructure_resource_group" {
 module "infrastructure_eventhub" {
   source = "../../modules/infrastructure/eventhub"
 
-  subscription_ids    = local.threat_detection_subscription_ids
-  location            = var.location
-  name                = var.name
-  tags                = var.tags
-  resource_group_name = module.infrastructure_resource_group.resource_group_name
+  subscription_ids             = local.threat_detection_subscription_ids
+  location                     = var.location
+  name                         = var.name
+  tags                         = var.tags
+  resource_group_name          = module.infrastructure_resource_group.resource_group_name
+  deploy_ad_diagnostic_setting = var.deploy_active_directory
 }
 
 module "infrastructure_eventgrid_eventhub" {

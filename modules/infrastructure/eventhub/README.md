@@ -44,7 +44,8 @@ No modules.
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The resource group name to deploy cloud vision stack | `string` | n/a | yes |
 | <a name="input_subscription_ids"></a> [subscription\_ids](#input\_subscription\_ids) | Subscription IDs where apply the infrastructure | `list(string)` | n/a | yes |
 | <a name="input_active_directory_logs"></a> [active\_directory\_logs](#input\_active\_directory\_logs) | List of active director log categories. | `list(string)` | <pre>[<br>  "SignInLogs",<br>  "AuditLogs",<br>  "NonInteractiveUserSignInLogs",<br>  "ServicePrincipalSignInLogs",<br>  "ManagedIdentitySignInLogs",<br>  "ProvisioningLogs",<br>  "ADFSSignInLogs"<br>]</pre> | no |
-| <a name="input_deploy_diagnostic_setting"></a> [deploy\_diagnostic\_setting](#input\_deploy\_diagnostic\_setting) | The resource group name to deploy cloud vision stack | `bool` | `true` | no |
+| <a name="input_deploy_ad_diagnostic_setting"></a> [deploy\_ad\_diagnostic\_setting](#input\_deploy\_ad\_diagnostic\_setting) | whether the diagnostic setting is to be deployed | `bool` | `true` | no |
+| <a name="input_deploy_diagnostic_setting"></a> [deploy\_diagnostic\_setting](#input\_deploy\_diagnostic\_setting) | whether the diagnostic settings are to be deployed | `bool` | `true` | no |
 | <a name="input_eventhub_partition_count"></a> [eventhub\_partition\_count](#input\_eventhub\_partition\_count) | The partition count setting allows you to parallelize consumption across many consumers | `number` | `1` | no |
 | <a name="input_eventhub_retention_days"></a> [eventhub\_retention\_days](#input\_eventhub\_retention\_days) | The message retention setting specifies how long the Event Hubs service keeps data | `number` | `1` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"centralus"` | no |

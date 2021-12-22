@@ -15,4 +15,5 @@ module "s4c_single_account_k8s_example" {
   sysdig_secure_api_token = var.sysdig_secure_api_token
   name                    = "kitchenk8s"
   deploy_benchmark        = false
+  deploy_active_directory = false
 }

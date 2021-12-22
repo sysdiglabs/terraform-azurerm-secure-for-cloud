@@ -1,5 +1,6 @@
 locals {
   diagnostic_setting_subscription_ids = var.deploy_diagnostic_setting ? var.subscription_ids : []
+  deploy_ad_diagnostic_setting        = var.deploy_diagnostic_setting && var.deploy_ad_diagnostic_setting
 }
 
 resource "random_string" "random" {
@@ -73,7 +74,7 @@ resource "azurerm_monitor_diagnostic_setting" "diagnostic_setting" {
 }
 
 resource "azurerm_monitor_aad_diagnostic_setting" "active_directory_diagnostic_setting" {
-  count                          = var.deploy_diagnostic_setting ? 1 : 0
+  count                          = local.deploy_ad_diagnostic_setting ? 1 : 0
   name                           = "${lower(var.name)}-aad-diagnostic-setting"
   eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.ns_auth_rule.id
   eventhub_name                  = azurerm_eventhub.aev.name

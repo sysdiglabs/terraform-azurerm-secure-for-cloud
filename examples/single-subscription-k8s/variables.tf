@@ -33,7 +33,7 @@ variable "deploy_scanning" {
 variable "deploy_benchmark" {
   type        = bool
   description = "whether benchmark module is to be deployed"
-  default     = true
+  default     = false
 }
 
 variable "region" {
@@ -68,4 +68,22 @@ variable "cloud_connector_image" {
   type        = string
   description = "Cloud-connector image to deploy"
   default     = "quay.io/sysdig/cloud-connector"
+}
+
+variable "deploy_active_directory" {
+  type        = bool
+  default     = true
+  description = "whether the Active Directory features are to be deployed"
+}
+
+variable "registry_name" {
+  type        = string
+  default     = ""
+  description = "The existing Container Registry name"
+}
+
+variable "registry_resource_group_name" {
+  type        = string
+  default     = ""
+  description = "The existing Container Registry name resource group name when is different than workload resource group name"
 }
