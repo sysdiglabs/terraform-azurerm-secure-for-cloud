@@ -13,8 +13,3 @@ output "client_secret" {
   description = "Service principal secret"
   sensitive   = true
 }
-
-output "kk" {
-  value       = local.subscription_id
-  description = "kk"
-}

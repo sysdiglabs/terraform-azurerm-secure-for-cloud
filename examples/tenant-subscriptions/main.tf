@@ -54,7 +54,8 @@ module "infrastructure_enterprise_app" {
   count  = var.deploy_scanning ? 1 : 0
   source = "../../modules/infrastructure/enterprise_app"
 
-  name = var.name
+  subscription_ids = local.threat_detection_subscription_ids
+  name             = var.name
 }
 
 module "cloud_connector" {

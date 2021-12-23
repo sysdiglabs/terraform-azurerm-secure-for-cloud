@@ -34,13 +34,13 @@ No modules.
 | [azuread_service_principal_password.aspp](https://registry.terraform.io/providers/hashicorp/azuread/2.7.0/docs/resources/service_principal_password) | resource |
 | [azurerm_role_assignment.main](https://registry.terraform.io/providers/hashicorp/azurerm/2.85.0/docs/resources/role_assignment) | resource |
 | [azurerm_role_definition.ard](https://registry.terraform.io/providers/hashicorp/azurerm/2.85.0/docs/resources/role_definition) | resource |
-| [azurerm_subscription.current](https://registry.terraform.io/providers/hashicorp/azurerm/2.85.0/docs/data-sources/subscription) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_name"></a> [name](#input\_name) | Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances | `string` | n/a | yes |
+| <a name="input_subscription_ids"></a> [subscription\_ids](#input\_subscription\_ids) | Subscription IDs for apply the service principal scope | `list(string)` | n/a | yes |
 
 ## Outputs
 
@@ -48,7 +48,6 @@ No modules.
 |------|-------------|
 | <a name="output_client_id"></a> [client\_id](#output\_client\_id) | Service principal ID |
 | <a name="output_client_secret"></a> [client\_secret](#output\_client\_secret) | Service principal secret |
-| <a name="output_kk"></a> [kk](#output\_kk) | kk |
 | <a name="output_tenant_id"></a> [tenant\_id](#output\_tenant\_id) | Service principal tenant ID |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

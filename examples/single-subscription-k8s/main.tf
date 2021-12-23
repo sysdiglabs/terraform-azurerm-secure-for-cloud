@@ -44,7 +44,8 @@ module "infrastructure_enterprise_app" {
   count  = var.deploy_scanning ? 1 : 0
   source = "../../modules/infrastructure/enterprise_app"
 
-  name = var.name
+  name             = var.name
+  subscription_ids = [data.azurerm_subscription.current.subscription_id]
 }
 
 module "infrastructure_container_registry" {

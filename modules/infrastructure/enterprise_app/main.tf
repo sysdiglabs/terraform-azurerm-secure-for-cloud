@@ -1,11 +1,9 @@
-data "azurerm_subscription" "current" {}
-
 locals {
-  subscription_id = data.azurerm_subscription.current.id
+  scopes = toset([for s in var.subscription_ids : "/subscriptions/${s}"])
 }
 
 resource "azuread_application" "aa" {
-  display_name = "${var.name}-test-app"
+  display_name = "${var.name}-app"
 }
 
 resource "azuread_service_principal" "asp" {
@@ -27,8 +25,8 @@ resource "azuread_application_password" "aap" {
 }
 
 resource "azurerm_role_definition" "ard" {
-  name  = "${var.name}-test-role"
-  scope = local.subscription_id
+  name  = "${var.name}-role"
+  scope = "/subscriptions/${var.subscription_ids[0]}"
 
   permissions {
     actions = [
@@ -40,13 +38,12 @@ resource "azurerm_role_definition" "ard" {
     not_actions = []
   }
 
-  assignable_scopes = [
-    local.subscription_id,
-  ]
+  assignable_scopes = local.scopes
 }
 
 resource "azurerm_role_assignment" "main" {
-  scope              = local.subscription_id
+  for_each           = local.scopes
+  scope              = each.value
   role_definition_id = azurerm_role_definition.ard.role_definition_resource_id
   principal_id       = azuread_service_principal.asp.id
 }
