@@ -15,20 +15,16 @@ locals {
     AZURE_CLIENT_SECRET                         = var.client_secret
   }
 
-
   config_without_scanning = yamlencode({
     logging = "info"
     rules   = []
-    ingestors = concat(
-      [
-        for subscription in var.subscription_ids :
-        {
-          azure-event-hub = {
-            subscriptionID = subscription
-          }
+    ingestors = [
+      {
+        azure-event-hub : {
+          subscriptionID : var.subscription_id
         }
-      ],
-    )
+      },
+    ],
   })
 
   config_with_scanning = yamlencode({
@@ -36,25 +32,24 @@ locals {
     rules   = []
     ingestors = concat(
       [
-        for subscription in var.subscription_ids :
         {
-          azure-event-hub = {
-            subscriptionID = subscription
+          azure-event-hub : {
+            subscriptionID : var.subscription_id
           }
-        }
+        },
       ],
       [
-        for subscription in var.subscription_ids : {
-          azure-event-grid = {
-            subscriptionID = subscription
+        {
+          azure-event-grid : {
+            subscriptionID : var.subscription_id
           }
-        }
+        },
       ]
     )
     scanners : [
       { azure-acr : {} },
       { azure-aci : {
-        subscriptionID : var.subscription_ids[0]
+        subscriptionID : var.subscription_id
         resourceGroup : var.resource_group_name
         containerRegistry : var.container_registry
         }

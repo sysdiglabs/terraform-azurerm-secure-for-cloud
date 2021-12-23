@@ -4,12 +4,6 @@ variable "sysdig_secure_api_token" {
   description = "Sysdig's Secure API Token"
 }
 
-variable "tenant_id" {
-  type        = string
-  description = "Azure Tenant ID"
-}
-
-
 ## Vars with defaults
 variable "name" {
   type        = string
@@ -39,7 +33,25 @@ variable "tags" {
 variable "resource_group_name" {
   type        = string
   default     = ""
-  description = "The resource group name to deploy cloud vision stack"
+  description = "The resource group name to deploy secure for cloud stack"
+}
+
+variable "registry_name" {
+  type        = string
+  default     = ""
+  description = "The existing Container Registry name"
+}
+
+variable "registry_resource_group_name" {
+  type        = string
+  default     = ""
+  description = "The existing Container Registry name resource group name when is different than workload resource group name"
+}
+
+variable "deploy_active_directory" {
+  type        = bool
+  default     = true
+  description = "whether the Active Directory features are to be deployed"
 }
 
 variable "sysdig_secure_endpoint" {

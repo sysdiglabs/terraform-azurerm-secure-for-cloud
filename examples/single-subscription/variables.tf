@@ -41,6 +41,30 @@ variable "resource_group_name" {
   description = "The resource group name to deploy cloud vision stack"
 }
 
+variable "deploy_scanning" {
+  type        = bool
+  description = "whether scanning module is to be deployed"
+  default     = true
+}
+
+variable "registry_name" {
+  type        = string
+  default     = ""
+  description = "The existing Container Registry name"
+}
+
+variable "registry_resource_group_name" {
+  type        = string
+  default     = ""
+  description = "The existing Container Registry name resource group name when is different than workload resource group name"
+}
+
+variable "deploy_active_directory" {
+  type        = bool
+  default     = true
+  description = "whether the Active Directory features are to be deployed"
+}
+
 # benchmark
 variable "region" {
   type        = string
@@ -51,11 +75,5 @@ variable "region" {
 variable "deploy_benchmark" {
   type        = bool
   description = "whether benchmark module is to be deployed"
-  default     = true
-}
-
-variable "deploy_scanning" {
-  type        = bool
-  description = "whether scanning module is to be deployed"
   default     = true
 }
