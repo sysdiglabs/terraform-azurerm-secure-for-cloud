@@ -7,3 +7,8 @@ variable "name" {
     error_message = "Must enter a naming prefix up to 64 alphanumeric characters."
   }
 }
+
+variable "subscription_ids" {
+  type        = list(string)
+  description = "Subscription IDs for apply the service principal scope"
+}
