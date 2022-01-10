@@ -3,7 +3,7 @@ locals {
 }
 
 resource "azuread_application" "aa" {
-  display_name = "${var.name}-app"
+  display_name = "${var.name}-sd-app"
 }
 
 resource "azuread_service_principal" "asp" {
@@ -25,7 +25,7 @@ resource "azuread_application_password" "aap" {
 }
 
 resource "azurerm_role_definition" "ard" {
-  name  = "${var.name}-role"
+  name  = "${var.name}-sd-role"
   scope = "/subscriptions/${var.subscription_ids[0]}"
 
   permissions {
