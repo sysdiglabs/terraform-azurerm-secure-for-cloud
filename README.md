@@ -1,7 +1,7 @@
 # Sysdig Secure for Cloud in Azure
 
 Terraform module that deploys the [**Sysdig Secure for
-Cloud** stack in ** Azure**](https://docs.sysdig.com/en/docs/installation/sysdig-secure-for-cloud/deploy-sysdig-secure-for-cloud-on-azure)
+Cloud** stack in **Azure**](https://docs.sysdig.com/en/docs/installation/sysdig-secure-for-cloud/deploy-sysdig-secure-for-cloud-on-azure)
 .
 <br/>
 
