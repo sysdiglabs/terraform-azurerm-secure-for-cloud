@@ -28,13 +28,13 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azuread_client_config](https://registry.terraform.io/providers/hashicorp/azuread/2.14.0/docs/data-sources/client_config) | data source |
 | [azuread_application.aa](https://registry.terraform.io/providers/hashicorp/azuread/2.7.0/docs/resources/application) | resource |
 | [azuread_application_password.aap](https://registry.terraform.io/providers/hashicorp/azuread/2.7.0/docs/resources/application_password) | resource |
 | [azuread_service_principal.asp](https://registry.terraform.io/providers/hashicorp/azuread/2.7.0/docs/resources/service_principal) | resource |
 | [azuread_service_principal_password.aspp](https://registry.terraform.io/providers/hashicorp/azuread/2.7.0/docs/resources/service_principal_password) | resource |
 | [azurerm_role_assignment.main](https://registry.terraform.io/providers/hashicorp/azurerm/2.85.0/docs/resources/role_assignment) | resource |
 | [azurerm_role_definition.ard](https://registry.terraform.io/providers/hashicorp/azurerm/2.85.0/docs/resources/role_definition) | resource |
+| [azuread_client_config.current](https://registry.terraform.io/providers/hashicorp/azuread/2.7.0/docs/data-sources/client_config) | data source |
 
 ## Inputs
 
