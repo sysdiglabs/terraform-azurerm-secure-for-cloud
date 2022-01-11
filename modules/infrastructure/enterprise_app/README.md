@@ -34,6 +34,7 @@ No modules.
 | [azuread_service_principal_password.aspp](https://registry.terraform.io/providers/hashicorp/azuread/2.7.0/docs/resources/service_principal_password) | resource |
 | [azurerm_role_assignment.main](https://registry.terraform.io/providers/hashicorp/azurerm/2.85.0/docs/resources/role_assignment) | resource |
 | [azurerm_role_definition.ard](https://registry.terraform.io/providers/hashicorp/azurerm/2.85.0/docs/resources/role_definition) | resource |
+| [azuread_client_config.current](https://registry.terraform.io/providers/hashicorp/azuread/2.7.0/docs/data-sources/client_config) | data source |
 
 ## Inputs
 

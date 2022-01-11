@@ -2,12 +2,20 @@ locals {
   scopes = toset([for s in var.subscription_ids : "/subscriptions/${s}"])
 }
 
+data "azuread_client_config" "current" {}
+
 resource "azuread_application" "aa" {
   display_name = "${var.name}-sd-app"
+  owners = [
+    data.azuread_client_config.current.object_id
+  ]
 }
 
 resource "azuread_service_principal" "asp" {
   application_id = azuread_application.aa.application_id
+  owners = [
+    data.azuread_client_config.current.object_id
+  ]
 }
 
 resource "azuread_service_principal_password" "aspp" {
