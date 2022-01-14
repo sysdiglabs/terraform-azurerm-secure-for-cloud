@@ -2,9 +2,17 @@ locals {
   deploy_container_registry = var.registry_name == ""
 }
 
+resource "random_string" "random" {
+  length  = 5
+  lower   = true
+  upper   = false
+  special = false
+  number  = false
+}
+
 resource "azurerm_container_registry" "acr" {
   count               = local.deploy_container_registry ? 1 : 0
-  name                = "${lower(var.name)}containerregistry"
+  name                = "containerregistry${lower(var.name)}${random_string.random.result}"
   resource_group_name = var.resource_group_name
   location            = var.location
   sku                 = var.sku
