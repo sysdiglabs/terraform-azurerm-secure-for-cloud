@@ -4,8 +4,7 @@
 Deploy Sysdig Secure for Cloud in a provided existing Kubernetes Cluster.
 
 - Sysdig **Helm** [cloud-connector chart](https://charts.sysdig.com/charts/cloud-connector/) will be used to deploy threat-detection and scanning features
-  <br/>Because these charts require specific AWS credentials to be passed by parameter, a new user + access key will be created within account. See [`credentials.tf`](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud/blob/master/examples/single-account-k8s/credentials.tf)
-- Used architecture is similar to [single-account](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/single-subscription) but changing Container Group Instance <---> with
+- Used architecture is similar to [single-subscription](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/single-subscription) but changing Container Group Instance <---> with
   an existing K8s
 
 - All the required resources and workloads will be run under the same Azure subscription.
