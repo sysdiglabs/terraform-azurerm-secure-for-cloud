@@ -1,8 +1,3 @@
-provider "azurerm" {
-  features {}
-  subscription_id = var.subscription_id
-}
-
 resource "azurerm_storage_account" "sa" {
   name                      = "triggerazureevent"
   resource_group_name       = var.resource_group_name
@@ -14,5 +9,4 @@ resource "azurerm_storage_account" "sa" {
   }
   allow_blob_public_access  = true
   enable_https_traffic_only = false
-
 }
