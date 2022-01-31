@@ -26,7 +26,6 @@ provider "azurerm" {
 
 module "secure_for_cloud_trigger_events" {
   source                  = "sysdiglabs/secure-for-cloud/azurerm//examples/trigger-events"
-  sysdig_secure_api_token = "11111111-0000-3333-4444-555555222224"
   resource_group_name     = "existing-resource-group"
 }
 ```
