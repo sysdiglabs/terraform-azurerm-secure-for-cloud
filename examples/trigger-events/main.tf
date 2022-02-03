@@ -7,11 +7,11 @@ resource "random_string" "random" {
 }
 
 resource "azurerm_storage_account" "sa" {
-  name                      = "triggerazureevent${random_string.random}"
-  resource_group_name       = var.resource_group_name
-  location                  = var.location
-  account_tier              = "Standard"
-  account_replication_type  = "LRS"
+  name                     = "triggerazureevent${random_string.random}"
+  resource_group_name      = var.resource_group_name
+  location                 = var.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
   network_rules {
     default_action = "Allow"
   }
