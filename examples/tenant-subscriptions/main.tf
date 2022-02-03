@@ -97,7 +97,7 @@ provider "sysdig" {
 }
 
 module "cloud_bench" {
-  count  = var.deploy_bench ? 1 : 0
+  count  = var.deploy_benchmark ? 1 : 0
   source = "../../modules/services/cloud-bench"
 
   subscription_ids = local.benchmark_subscription_ids
