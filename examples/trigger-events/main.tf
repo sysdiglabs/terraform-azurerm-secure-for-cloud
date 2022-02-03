@@ -1,5 +1,13 @@
+resource "random_string" "random" {
+  length  = 5
+  lower   = true
+  upper   = false
+  special = false
+  number  = false
+}
+
 resource "azurerm_storage_account" "sa" {
-  name                     = "triggerazureevent"
+  name                     = "triggerazureevent${random_string.random}"
   resource_group_name      = var.resource_group_name
   location                 = var.location
   account_tier             = "Standard"
