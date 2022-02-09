@@ -1,14 +1,16 @@
-# Sysdig Secure for Cloud in Azure<br/>   Trigger Azure Event
+# Sysdig Secure for Cloud in AWS<br/>[ Example :: Trigger-Events]
 
-This module example helps to trigger Azure events. To achieve this we create a new Security Group called
-_triggerazureevent_ in an **existing** resource group.
+This example helps to trigger AWS Events. Cloud connector stack is required to be able to generate events.
+After applying the module, this will create a new Security Group named _triggerazureevent_ in an **exisiting** resource group.
+**Azure Access Level creation attempt for Blob Container Set to Public** event will prompt once the module is destroyed.
 
 ## Prerequisites
 
 Minimum requirements:
 
-1. Configure [Terraform **Azure** Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
-2. **Sysdig Secure** requirements, as module input variable value
+1. Deploy Cloud Connector Stack on Azure
+2. Configure [Terraform **Azure** Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
+3. **Sysdig Secure** requirements, as module input variable value
     ```
     sysdig_secure_api_token=<SECURE_API_TOKEN>
     resource_group_name=<EXISTING_RESOURCE_GROUP_NAME>

@@ -97,6 +97,12 @@ Notice that:
 - These examples will create resources that cost money. Run `terraform destroy` when you don't need them anymore
 - All created resources will be created within the tags `product:sysdig-secure-for-cloud`
 
+## Forcing Events
+
+**Threat Detection**
+
+Terraform example module to trigger _Azure Access Level creation attempt for Blob Container Set to Public_ event can be found on [examples/trigger-events](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/trigger-events).
+
 ## Authors
 
 Module is maintained and supported by [Sysdig](https://sysdig.com).
