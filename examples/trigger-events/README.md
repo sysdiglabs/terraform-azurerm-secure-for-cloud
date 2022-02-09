@@ -12,8 +12,7 @@ Minimum requirements:
 2. Configure [Terraform **Azure** Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
 3. **Sysdig Secure** requirements, as module input variable value
     ```
-    sysdig_secure_api_token=<SECURE_API_TOKEN>
-    resource_group_name=<EXISTING_RESOURCE_GROUP_NAME>
+    resource_group_name = <EXISTING_RESOURCE_GROUP_NAME>
     ```
 
 ## Usage
