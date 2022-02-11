@@ -11,8 +11,8 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 2.85.0 |
-| <a name="provider_sysdig"></a> [sysdig](#provider\_sysdig) | >= 0.5.27 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.96.0 |
+| <a name="provider_sysdig"></a> [sysdig](#provider\_sysdig) | 0.5.32 |
 
 ## Modules
 
