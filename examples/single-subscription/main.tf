@@ -79,6 +79,8 @@ module "cloud_connector" {
   sysdig_secure_api_token                    = var.sysdig_secure_api_token
   sysdig_secure_endpoint                     = var.sysdig_secure_endpoint
   verify_ssl                                 = local.verify_ssl
+  cpu                                        = var.cpu
+  memory                                     = var.memory
   tags                                       = var.tags
   subscription_id                            = data.azurerm_subscription.current.subscription_id
 }

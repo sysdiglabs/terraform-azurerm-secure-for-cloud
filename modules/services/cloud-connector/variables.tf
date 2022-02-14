@@ -66,6 +66,18 @@ variable "resource_group_name" {
   description = "The resource group name to deploy cloud vision stack"
 }
 
+variable "cpu" {
+  type        = string
+  default     = "0.5"
+  description = "Number of CPU cores of the containers"
+}
+
+variable "memory" {
+  type        = string
+  default     = "1"
+  description = "Number of CPU cores of the containers"
+}
+
 variable "tags" {
   type        = map(string)
   description = "Tags to be added to the resources"

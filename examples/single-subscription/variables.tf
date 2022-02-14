@@ -59,6 +59,18 @@ variable "registry_resource_group_name" {
   description = "The existing Container Registry name resource group name when is different than workload resource group name"
 }
 
+variable "cpu" {
+  type        = string
+  default     = "0.5"
+  description = "Number of CPU cores of the containers"
+}
+
+variable "memory" {
+  type        = string
+  default     = "1"
+  description = "Number of CPU cores of the containers"
+}
+
 variable "deploy_active_directory" {
   type        = bool
   default     = true
