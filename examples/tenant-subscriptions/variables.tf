@@ -66,6 +66,18 @@ variable "region" {
   default     = "AzureCloud"
 }
 
+variable "cpu" {
+  type        = string
+  default     = "0.5"
+  description = "Number of CPU cores of the containers"
+}
+
+variable "memory" {
+  type        = string
+  default     = "1"
+  description = "Number of CPU cores of the containers"
+}
+
 variable "benchmark_subscription_ids" {
   default     = []
   type        = list(string)

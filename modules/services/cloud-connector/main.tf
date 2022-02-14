@@ -148,8 +148,8 @@ resource "azurerm_container_group" "cg" {
   container {
     name   = "${var.name}-container"
     image  = var.image
-    cpu    = "1"
-    memory = "2"
+    cpu    = var.cpu
+    memory = var.memory
 
     environment_variables = local.env_vars
 
