@@ -1,6 +1,6 @@
-# Sysdig Secure for Cloud in AWS<br/>[ Example :: Trigger-Events]
+# Sysdig Secure for Cloud in Azure<br/>[ Example :: Trigger-Events]
 
-This example helps to trigger AWS Events. Cloud connector stack is required to be able to generate events.
+This example helps to trigger Azure Events. Cloud connector stack is required to be able to generate events.
 After applying the module, this will create a new Security Group named _triggerazureevent_ in an **exisiting** resource group.
 **Azure Access Level creation attempt for Blob Container Set to Public** event will prompt once the module is destroyed.
 
