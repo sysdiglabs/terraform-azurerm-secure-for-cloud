@@ -1,4 +1,6 @@
 # diagrams as code vía https://diagrams.mingrammer.com
+
+from diagrams.aws.general import General
 from diagrams import Diagram, Cluster, Edge
 from diagrams.azure.compute import ContainerInstances, ContainerRegistries, FunctionApps
 from diagrams.azure.storage import StorageAccounts
@@ -18,11 +20,11 @@ role_attr = {
     "fontsize": "9",
 }
 
+color_non_important="gray"
+
 with Diagram("Sysdig Secure for Cloud\n(Single Subscription)", graph_attr=diagram_attr, filename="diagram-single",
              show=True,
              direction="TB"):
-    with Cluster("Sysdig", graph_attr={"bgcolor": "lightblue"}):
-        sds = Custom("Sysdig Secure", "../../resources/diag-sysdig-icon.png")
 
     with Cluster("Azure Tenant"):
         with Cluster("Azure Account Subscription"):
@@ -38,7 +40,7 @@ with Diagram("Sysdig Secure for Cloud\n(Single Subscription)", graph_attr=diagra
                 app = EnterpriseApplications("Enterprise App")
                 cregistry = ContainerRegistries("ACR Task \n Image Scanning")
                 eventGrid = EventGridDomains("Event Grid")
-                bench = Custom("Azure Lighthouse \n CSPM", "../../resources/diag-lighthouse.jpeg")
+                lighthouse = Custom("Azure Lighthouse \n CSPM", "../../resources/diag-lighthouse.jpeg")
 
                 ccConfig >> Edge(style="dashed", label="Get CC \n config file") >> cc
                 cregistry << app
@@ -46,9 +48,15 @@ with Diagram("Sysdig Secure for Cloud\n(Single Subscription)", graph_attr=diagra
                 eventhubCC >> cc
                 eventhubCS >> cc
                 cc >> app
-                bench >> sds
 
                 eventGrid << cregistry
                 eventGrid >> eventhubCS
 
-                sds << Edge(style="dashed") << cc
+
+    with Cluster("Sysdig", graph_attr={"bgcolor": "lightblue"}):
+        sds = Custom("Sysdig Secure", "../../resources/diag-sysdig-icon.png")
+        bench = General("Cloud Bench")
+        sds >> Edge(label="schedule on rand rand * * *") >> bench
+
+    sds << Edge(style="dashed") << cc
+    lighthouse <<  Edge(color=color_non_important) << bench

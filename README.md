@@ -7,16 +7,16 @@ Cloud** stack in **Azure**](https://docs.sysdig.com/en/docs/installation/sysdig-
 
 Provides unified threat-detection, compliance, forensics and analysis through these major components:
 
-* **[CSPM/Compliance](https://docs.sysdig.com/en/docs/sysdig-secure/benchmarks/)**: It evaluates periodically your cloud
+* **[CSPM/Compliance](https://docs.sysdig.com/en/docs/sysdig-secure/posture/compliance-unified-/)**: It evaluates periodically your cloud
   configuration, using Cloud Custodian, against some benchmarks and returns the results and remediation you need to fix.
   Managed through `cloud-bench` module. <br/>
 
 * **[Cloud Threat Detection](https://docs.sysdig.com/en/docs/sysdig-secure/insights/)**: Tracks abnormal and suspicious
   activities in your cloud environment based on Falco language. Managed through `cloud-connector` module. <br/>
 
-* **[Cloud Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)**: Automatically scans all container
-  images pushed to the registry or as soon a new task which involves a container is spawned in your account. Managed
-  through `cloud-connector`. <br/>
+* **[Cloud Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)**:
+Automatically scans all container images pushed to the registry (ACR) and the images that run on the Azure workload (currently AzureContainerInstances).
+Managed through `cloud-connector`. <br/>
 
 For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud)
 , [GCP](https://github.com/sysdiglabs/terraform-google-secure-for-cloud)
