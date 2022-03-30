@@ -55,6 +55,13 @@ resource "helm_release" "cloud_connector" {
     value = local.verify_ssl
   }
 
+
+  set {
+    name  = "extraEnvVars[0].TELEMETRY_DEPLOYMENT_METHOD"
+    value = "terraform_azure_k8s_org"
+  }
+
+
   set {
     name  = "image.repository"
     value = var.cloud_connector_image
