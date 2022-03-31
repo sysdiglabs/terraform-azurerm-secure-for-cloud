@@ -143,7 +143,7 @@ resource "azurerm_container_group" "cg" {
   name                = "${var.name}-group"
   location            = var.location
   resource_group_name = var.resource_group_name
-  ip_address_type     = "private"
+  ip_address_type     = "Private"
   os_type             = "Linux"
   network_profile_id  = azurerm_network_profile.np.id
 
