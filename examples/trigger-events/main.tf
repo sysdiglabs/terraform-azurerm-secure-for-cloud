@@ -15,6 +15,6 @@ resource "azurerm_storage_account" "sa" {
   network_rules {
     default_action = "Allow"
   }
-  allow_blob_public_access  = true
+  allow_nested_items_to_be_public  = true
   enable_https_traffic_only = false
 }
