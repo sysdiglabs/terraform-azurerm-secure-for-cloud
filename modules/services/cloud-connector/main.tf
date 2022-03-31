@@ -1,8 +1,9 @@
 locals {
+  suffix_org = var.is_organizational ? "org" : "single"
   env_vars = {
     SECURE_URL                                  = var.sysdig_secure_endpoint,
     SECURE_API_TOKEN                            = var.sysdig_secure_api_token,
-    TELEMETRY_DEPLOYMENT_METHOD                 = "terraform_azure_aci_${var.is_organizational?org:single}"
+    TELEMETRY_DEPLOYMENT_METHOD                 = "terraform_azure_aci_${local.suffix_org}"
     VERIFY_SSL                                  = tostring(var.verify_ssl)
     CONFIG_PATH                                 = "az://${azurerm_storage_account.sa.name}.blob.core.windows.net/${azurerm_storage_container.sc.name}/${azurerm_storage_blob.sb.name}"
     AZURE_EVENT_HUB_CONNECTION_STRING           = var.azure_eventhub_connection_string
