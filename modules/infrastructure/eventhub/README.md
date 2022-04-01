@@ -10,15 +10,15 @@ Deploys an Event Hub and a diagnostic setting.
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
 | <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | 2.7.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 2.85.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=3.0.2 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | >=3.1.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.85.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.1.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.0.2 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.1.2 |
 
 ## Modules
 
@@ -28,12 +28,12 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [azurerm_eventhub.aev](https://registry.terraform.io/providers/hashicorp/azurerm/2.85.0/docs/resources/eventhub) | resource |
-| [azurerm_eventhub_authorization_rule.eh_auth_rule](https://registry.terraform.io/providers/hashicorp/azurerm/2.85.0/docs/resources/eventhub_authorization_rule) | resource |
-| [azurerm_eventhub_namespace.evn](https://registry.terraform.io/providers/hashicorp/azurerm/2.85.0/docs/resources/eventhub_namespace) | resource |
-| [azurerm_eventhub_namespace_authorization_rule.ns_auth_rule](https://registry.terraform.io/providers/hashicorp/azurerm/2.85.0/docs/resources/eventhub_namespace_authorization_rule) | resource |
-| [azurerm_monitor_aad_diagnostic_setting.active_directory_diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/2.85.0/docs/resources/monitor_aad_diagnostic_setting) | resource |
-| [azurerm_monitor_diagnostic_setting.diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/2.85.0/docs/resources/monitor_diagnostic_setting) | resource |
+| [azurerm_eventhub.aev](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/eventhub) | resource |
+| [azurerm_eventhub_authorization_rule.eh_auth_rule](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/eventhub_authorization_rule) | resource |
+| [azurerm_eventhub_namespace.evn](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/eventhub_namespace) | resource |
+| [azurerm_eventhub_namespace_authorization_rule.ns_auth_rule](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/eventhub_namespace_authorization_rule) | resource |
+| [azurerm_monitor_aad_diagnostic_setting.active_directory_diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_aad_diagnostic_setting) | resource |
+| [azurerm_monitor_diagnostic_setting.diagnostic_setting](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/monitor_diagnostic_setting) | resource |
 | [random_string.random](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
 
 ## Inputs

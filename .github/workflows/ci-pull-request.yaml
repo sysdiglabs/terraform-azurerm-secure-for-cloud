@@ -1,9 +1,10 @@
 name: CI - Pull Request
 
 on:
+  push:
   pull_request:
     branches:
-    - master
+      - master
 
 env:
   GO_VERSION: "^1.17"
