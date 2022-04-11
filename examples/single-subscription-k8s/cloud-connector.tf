@@ -90,5 +90,10 @@ resource "helm_release" "cloud_connector" {
     value = var.location
   }
 
+  set {
+    name  = "telemetryDeploymentMethod"
+    value = "terraform_azure_k8s_single"
+  }
+
   values = local.values
 }

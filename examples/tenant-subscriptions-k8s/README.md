@@ -56,7 +56,7 @@ Notice that:
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 2.85.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=3.0.2 |
 | <a name="requirement_helm"></a> [helm](#requirement\_helm) | >=2.3.0 |
 | <a name="requirement_sysdig"></a> [sysdig](#requirement\_sysdig) | >= 0.5.27 |
 
@@ -64,8 +64,8 @@ Notice that:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 2.85.0 |
-| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.4.1 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.0.2 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.5.0 |
 
 ## Modules
 
@@ -83,8 +83,8 @@ Notice that:
 | Name | Type |
 |------|------|
 | [helm_release.cloud_connector](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
-| [azurerm_subscription.current](https://registry.terraform.io/providers/hashicorp/azurerm/2.85.0/docs/data-sources/subscription) | data source |
-| [azurerm_subscriptions.available](https://registry.terraform.io/providers/hashicorp/azurerm/2.85.0/docs/data-sources/subscriptions) | data source |
+| [azurerm_subscription.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscription) | data source |
+| [azurerm_subscriptions.available](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscriptions) | data source |
 
 ## Inputs
 

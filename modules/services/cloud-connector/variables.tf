@@ -116,3 +116,9 @@ variable "deploy_scanning" {
   description = "whether scanning module is to be deployed"
   default     = false
 }
+
+variable "is_organizational" {
+  type        = bool
+  default     = false
+  description = "whether secure-for-cloud should be deployed in an organizational setup"
+}
