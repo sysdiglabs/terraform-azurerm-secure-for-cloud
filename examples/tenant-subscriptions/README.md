@@ -112,6 +112,7 @@ Notice that:
 | <a name="input_cpu"></a> [cpu](#input\_cpu) | Number of CPU cores of the containers | `string` | `"0.5"` | no |
 | <a name="input_deploy_active_directory"></a> [deploy\_active\_directory](#input\_deploy\_active\_directory) | whether the Active Directory features are to be deployed | `bool` | `true` | no |
 | <a name="input_deploy_benchmark"></a> [deploy\_benchmark](#input\_deploy\_benchmark) | whether benchmark module is to be deployed | `bool` | `true` | no |
+| <a name="input_deploy_cloud_connector_module"></a> [deploy\_cloud\_connector\_module](#input\_deploy\_cloud\_connector\_module) | whether cloud-connector module and requirements are to be deployed. TODO enable deploy\_thread\_detection option | `bool` | `false` | no |
 | <a name="input_deploy_scanning"></a> [deploy\_scanning](#input\_deploy\_scanning) | whether scanning module is to be deployed | `bool` | `true` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"westus"` | no |
 | <a name="input_memory"></a> [memory](#input\_memory) | Number of CPU cores of the containers | `string` | `"1"` | no |
