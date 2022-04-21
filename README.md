@@ -7,14 +7,11 @@ Cloud** stack in **Azure**](https://docs.sysdig.com/en/docs/installation/sysdig-
 
 Provides unified threat-detection, compliance, forensics and analysis through these major components:
 
-* **[CSPM/Compliance](https://docs.sysdig.com/en/docs/sysdig-secure/posture/compliance-unified-/)**: It evaluates periodically your cloud
-  configuration, using Cloud Custodian, against some benchmarks and returns the results and remediation you need to fix.
-  Managed through `cloud-bench` module. <br/>
+* **[Threat Detection](https://docs.sysdig.com/en/docs/sysdig-secure/insights/)**: Tracks abnormal and suspicious activities in your cloud environment based on Falco language. Managed through `cloud-connector` module. <br/>
 
-* **[Cloud Threat Detection](https://docs.sysdig.com/en/docs/sysdig-secure/insights/)**: Tracks abnormal and suspicious
-  activities in your cloud environment based on Falco language. Managed through `cloud-connector` module. <br/>
+* **[Compliance](https://docs.sysdig.com/en/docs/sysdig-secure/posture/compliance/compliance-unified-/)**: Enables the evaluation of standard compliance frameworks. Requires both modules  `cloud-connector` and `cloud-bench`. <br/>
 
-* **[Cloud Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)**:
+* **[Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)**:
 Automatically scans all container images pushed to the registry (ACR) and the images that run on the Azure workload (currently AzureContainerInstances).
 Managed through `cloud-connector`. <br/>
 

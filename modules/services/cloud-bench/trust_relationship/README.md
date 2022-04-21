@@ -11,7 +11,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.0.2 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.2.0 |
 | <a name="provider_sysdig"></a> [sysdig](#provider\_sysdig) | 0.5.36 |
 
 ## Modules
