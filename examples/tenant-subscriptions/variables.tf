@@ -52,7 +52,7 @@ variable "deploy_active_directory" {
 variable "deploy_scanning" {
   type        = bool
   description = "whether scanning module is to be deployed"
-  default     = true
+  default     = false
 }
 
 variable "registry_name" {
