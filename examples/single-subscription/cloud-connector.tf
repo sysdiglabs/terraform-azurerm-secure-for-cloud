@@ -35,7 +35,7 @@ module "cloud_connector" {
   sysdig_secure_endpoint  = var.sysdig_secure_endpoint
   verify_ssl              = local.verify_ssl
 
-  azure_eventhub_connection_string = module.infrastructure_eventhub[0].azure_eventhub_connection_string
+  azure_eventhub_connection_string = module.infrastructure_eventhub.azure_eventhub_connection_string
   cpu                              = var.cpu
   memory                           = var.memory
 
