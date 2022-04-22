@@ -63,7 +63,7 @@ Notice that:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.2.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.3.0 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | 2.5.1 |
 
 ## Modules
