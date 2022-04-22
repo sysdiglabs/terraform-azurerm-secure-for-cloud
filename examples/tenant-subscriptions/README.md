@@ -7,6 +7,13 @@ but features will be available on all the Tenant subscriptions (by default).
 You can also select in which subscription you would like benchmark and threat detection be deployed through
 the `benchmark_subscription_ids` and `threat_detection_subscription_ids` input vars<br/>
 
+### Notice
+
+* All Sysdig Secure for Cloud features **but [Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)** are enabled by default. You can enable it through `deploy_scanning` input variable parameters.<br/>
+* This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
+* All created resources will be created within the tags `product:sysdig-secure-for-cloud`, within the
+  resource-group `sysdig-secure-for-cloud`
+
 ![tenant subscription diagram](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/tenant-subscriptions/diagram-tenant.png?raw=true)
 
 ## Prerequisites
@@ -62,12 +69,6 @@ $ terraform init
 $ terraform plan
 $ terraform apply
 ```
-
-Notice that:
-
-* This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
-* All created resources will be created within the tags `product:sysdig-secure-for-cloud`, within the
-  resource-group `sysdig-secure-for-cloud`
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
