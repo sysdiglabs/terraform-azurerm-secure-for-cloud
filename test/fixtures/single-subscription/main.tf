@@ -9,8 +9,7 @@ module "s4c_single_account_example" {
   sysdig_secure_api_token = var.sysdig_secure_api_token
   name                    = "kitchen"
 
-  deploy_cloud_connector_module = true
-  deploy_scanning               = true
+  deploy_scanning = true
 
   // cannot make it work with current azure account
   deploy_benchmark        = false

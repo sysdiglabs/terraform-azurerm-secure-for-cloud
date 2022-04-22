@@ -1,6 +1,6 @@
 locals {
   container_registry           = length(module.infrastructure_container_registry) > 0 ? module.infrastructure_container_registry[0].container_registry : ""
-  registry_resource_group_name = var.registry_resource_group_name == "" ? module.infrastructure_resource_group[0].resource_group_name : var.registry_resource_group_name
+  registry_resource_group_name = var.registry_resource_group_name == "" ? module.infrastructure_resource_group.resource_group_name : var.registry_resource_group_name
 }
 
 
@@ -12,7 +12,7 @@ module "infrastructure_eventgrid_eventhub" {
   location                  = var.location
   name                      = "${var.name}eventgrid"
   tags                      = var.tags
-  resource_group_name       = module.infrastructure_resource_group[0].resource_group_name
+  resource_group_name       = module.infrastructure_resource_group.resource_group_name
   deploy_diagnostic_setting = false
 }
 

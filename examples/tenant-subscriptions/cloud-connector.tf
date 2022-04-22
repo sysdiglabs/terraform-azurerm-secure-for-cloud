@@ -10,32 +10,28 @@ locals {
 }
 
 module "infrastructure_eventhub" {
-  count = var.deploy_cloud_connector_module ? 1 : 0
-
   source = "../../modules/infrastructure/eventhub"
   name   = var.name
 
   subscription_ids             = local.threat_detection_subscription_ids
   location                     = var.location
-  resource_group_name          = module.infrastructure_resource_group[0].resource_group_name
+  resource_group_name          = module.infrastructure_resource_group.resource_group_name
   deploy_ad_diagnostic_setting = var.deploy_active_directory
 
   tags = var.tags
 }
 
 module "cloud_connector" {
-  count = var.deploy_cloud_connector_module ? 1 : 0
-
   source = "../../modules/services/cloud-connector"
   name   = "${var.name}-connector"
 
   is_organizational   = true
   subscription_id     = data.azurerm_subscription.current.subscription_id
-  resource_group_name = module.infrastructure_resource_group[0].resource_group_name
+  resource_group_name = module.infrastructure_resource_group.resource_group_name
 
   deploy_scanning                            = var.deploy_scanning
   container_registry                         = local.container_registry
-  azure_eventhub_connection_string           = module.infrastructure_eventhub[0].azure_eventhub_connection_string
+  azure_eventhub_connection_string           = module.infrastructure_eventhub.azure_eventhub_connection_string
   azure_eventgrid_eventhub_connection_string = local.eventgrid_eventhub_connection_string
 
   tenant_id     = local.tenant_id

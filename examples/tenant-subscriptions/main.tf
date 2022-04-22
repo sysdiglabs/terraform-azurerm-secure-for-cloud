@@ -3,7 +3,6 @@ locals {
 }
 
 module "infrastructure_resource_group" {
-  count  = var.deploy_cloud_connector_module ? 1 : 0
   source = "../../modules/infrastructure/resource_group"
 
   location            = var.location

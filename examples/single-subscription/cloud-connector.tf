@@ -10,25 +10,22 @@ locals {
 
 
 module "infrastructure_eventhub" {
-  count = var.deploy_cloud_connector_module ? 1 : 0
-
   source = "../../modules/infrastructure/eventhub"
 
   subscription_ids             = [data.azurerm_subscription.current.subscription_id]
   location                     = var.location
   name                         = var.name
-  resource_group_name          = module.infrastructure_resource_group[0].resource_group_name
+  resource_group_name          = module.infrastructure_resource_group.resource_group_name
   deploy_ad_diagnostic_setting = var.deploy_active_directory
 }
 
 module "cloud_connector" {
-  count = var.deploy_cloud_connector_module ? 1 : 0
 
   source = "../../modules/services/cloud-connector"
   name   = "${var.name}-connector"
 
   subscription_id     = data.azurerm_subscription.current.subscription_id
-  resource_group_name = module.infrastructure_resource_group[0].resource_group_name
+  resource_group_name = module.infrastructure_resource_group.resource_group_name
   tenant_id           = local.tenant_id
   client_id           = local.client_id
   client_secret       = local.client_secret
