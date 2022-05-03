@@ -13,7 +13,7 @@ jobs:
         env:
           SLACK_CHANNEL: ws-cloudnative-internal
           SLACK_ICON: https://upload.wikimedia.org/wikipedia/commons/8/8a/Noun_project_exclamation_icon_620383.svg
-          SLACK_MESSAGE: 'An issue has been open in Azure Terraform repository'
+          SLACK_MESSAGE: 'An issue has been opened in Azure Terraform repository'
           SLACK_TITLE: Issue Created
           SLACK_USERNAME: gitHub
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
