@@ -12,8 +12,9 @@ Provides unified threat-detection, compliance, forensics and analysis through th
 * **[Compliance](https://docs.sysdig.com/en/docs/sysdig-secure/posture/compliance/compliance-unified-/)**: Enables the evaluation of standard compliance frameworks. Requires both modules  `cloud-connector` and `cloud-bench`. <br/>
 
 * **[Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)**:
-Automatically scans all container images pushed to the registry (ACR) and the images that run on the Azure workload (currently AzureContainerInstances).
-Managed through `cloud-connector`. <br/>Disabled by Default, can be enabled through `deploy_scanning` input variable parameters.<br/>
+Automatically scans images that run on the Azure workload (currently AzureContainerInstances).<br/>
+Define an AzureRegistry (ACR) through `registry_name` and also scan all the repository images pushed to the registry.<br/>
+Managed through `cloud-connector`. <br/>Scanning is disabled by default, can be enabled through `deploy_scanning` input variable parameters.<br/>
 
 For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud)
 , [GCP](https://github.com/sysdiglabs/terraform-google-secure-for-cloud)
