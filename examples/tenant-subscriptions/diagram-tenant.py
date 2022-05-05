@@ -25,6 +25,9 @@ color_non_important="gray"
 with Diagram("Sysdig Secure for Cloud\n(Tenant-Subscriptions)", graph_attr=diagram_attr, filename="diagram-tenant",
              show=True,
              direction="TB"):
+
+    public_registries = Custom("Public Registries","../../resources/diag-registry-icon.png")
+
     with Cluster("Azure Tenant"):
         app = EnterpriseApplications("Enterprise App")
 
@@ -84,3 +87,5 @@ with Diagram("Sysdig Secure for Cloud\n(Tenant-Subscriptions)", graph_attr=diagr
     sds << Edge(style="dashed") << cc
     lighthouse1 <<  Edge(color=color_non_important) << bench
     lighthouse2 <<  Edge(color=color_non_important) << bench
+
+    cregistry >> Edge(color=color_non_important) >> public_registries
