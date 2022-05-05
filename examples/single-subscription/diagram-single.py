@@ -27,30 +27,36 @@ with Diagram("Sysdig Secure for Cloud\n(Single Subscription)", graph_attr=diagra
              direction="TB"):
 
     with Cluster("Azure Tenant"):
+        app = EnterpriseApplications("Enterprise App")
+
         with Cluster("Azure Account Subscription"):
             diagnosticSettings = AppConfiguration("Diagnostic Settings")
             with Cluster("Resource Group"):
-                eventhubCC = EventHubs("Cloud Connector \n Event Hub")
-                eventhubCS = EventHubs("Cloud Scanning \n Event Hub")
-                diagnosticSettings >> eventhubCC
-                with Cluster("Container Instance Group"):
-                    cc = ContainerInstances("Cloud Connector \n Container Instance")
-                ccConfig = StorageAccounts("Cloud Connector \n config")
+              with Cluster("AzureContainerRegistry"):
+                eventGrid = EventGridDomains("Event Grid \n(event subscription topic)")
+                cregistry = ContainerRegistries("ACR Task \n(image scanning)")
 
-                app = EnterpriseApplications("Enterprise App")
-                cregistry = ContainerRegistries("ACR Task \n Image Scanning")
-                eventGrid = EventGridDomains("Event Grid")
-                lighthouse = Custom("Azure Lighthouse \n CSPM", "../../resources/diag-lighthouse.jpeg")
+              eventhubCC = EventHubs("Cloud Connector \nEvent Hub")
+              eventhubCS = EventHubs("Cloud Scanning \nEvent Hub")
+              diagnosticSettings >> eventhubCC
+              with Cluster("Container Instance Group"):
+                  cc = ContainerInstances("Cloud Connector \n Container Instance")
+              ccConfig = StorageAccounts("Cloud Connector \n config")
 
-                ccConfig >> Edge(style="dashed", label="Get CC \n config file") >> cc
-                cregistry << app
+              lighthouse = Custom("Azure Lighthouse \n CSPM", "../../resources/diag-lighthouse.jpeg")
 
-                eventhubCC >> cc
-                eventhubCS >> cc
-                cc >> app
 
-                eventGrid << cregistry
-                eventGrid >> eventhubCS
+
+
+              ccConfig << Edge(style="dotted") << cc
+              cregistry << app
+
+              eventhubCC >> cc
+              eventhubCS >> cc
+              cc >> app
+
+              eventGrid << cregistry
+              eventGrid >> eventhubCS
 
 
     with Cluster("Sysdig", graph_attr={"bgcolor": "lightblue"}):
@@ -60,3 +66,4 @@ with Diagram("Sysdig Secure for Cloud\n(Single Subscription)", graph_attr=diagra
 
     sds << Edge(style="dashed") << cc
     lighthouse <<  Edge(color=color_non_important) << bench
+    cregistry >> Edge(style="dashed")  >> sds
