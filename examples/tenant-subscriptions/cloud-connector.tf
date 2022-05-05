@@ -37,14 +37,14 @@ module "cloud_connector" {
   tenant_id     = local.tenant_id
   client_id     = local.client_id
   client_secret = local.client_secret
-
-  location = var.location
-  cpu      = var.cpu
-  memory   = var.memory
+  location      = var.location
 
   sysdig_secure_api_token = var.sysdig_secure_api_token
   sysdig_secure_endpoint  = var.sysdig_secure_endpoint
   verify_ssl              = local.verify_ssl
+
+  cpu    = var.cpu
+  memory = var.memory
 
   tags = var.tags
 }
