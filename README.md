@@ -22,6 +22,7 @@ For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-a
 ## Permissions
 
 - Threat Detection requires `Contributor` role user authentication
+  - For AD diagnostic `Security Administrator` role must be granted to on the Organizational level. This can be disabled setting `deploy_active_directory=false` on all examples
 - For scanning, an App (with its Service Principal) is required to be created in the ActiveDirectory, to enable
   ContainerRegistry Task to run the image scanning This requires `Security Administrator` role.
 
