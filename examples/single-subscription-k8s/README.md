@@ -1,13 +1,19 @@
 # Sysdig Secure for Cloud in Azure<br/>[ Example: Single-Subscription on Kubernetes Cluster ]
 
-
 Deploy Sysdig Secure for Cloud in a provided existing Kubernetes Cluster.
 
 - Sysdig **Helm** [cloud-connector chart](https://charts.sysdig.com/charts/cloud-connector/) will be used to deploy threat-detection and scanning features
 - Used architecture is similar to [single-subscription](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/single-subscription) but changing Container Group Instance <---> with
   an existing K8s
 
-- All the required resources and workloads will be run under the same Azure subscription.
+
+### Notice
+
+* All the required resources and workloads will be run under the same Azure subscription.
+* All Sysdig Secure for Cloud features **but [Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)** are enabled by default. You can enable it through `deploy_scanning` input variable parameters.<br/>
+* This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
+* All created resources will be created within the tags `product:sysdig-secure-for-cloud`, within the
+  resource-group `sysdig-secure-for-cloud`
 
 ## Prerequisites
 
@@ -45,11 +51,6 @@ module "secure-for-cloud_example_single-subscription-k8s" {
 
 See [inputs summary](#inputs) or module module [`variables.tf`](./variables.tf) file for more optional configuration.
 
-Notice that:
-
-* This example will create resources that **cost money**. Run `terraform destroy` when you don't need them anymore.
-* All created resources will be created within the tags `product:sysdig-secure-for-cloud`.
-
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -63,7 +64,7 @@ Notice that:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.2.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.4.0 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | 2.5.1 |
 
 ## Modules
@@ -92,7 +93,7 @@ Notice that:
 | <a name="input_cloud_connector_image"></a> [cloud\_connector\_image](#input\_cloud\_connector\_image) | Cloud-connector image to deploy | `string` | `"quay.io/sysdig/cloud-connector"` | no |
 | <a name="input_deploy_active_directory"></a> [deploy\_active\_directory](#input\_deploy\_active\_directory) | whether the Active Directory features are to be deployed | `bool` | `true` | no |
 | <a name="input_deploy_benchmark"></a> [deploy\_benchmark](#input\_deploy\_benchmark) | whether benchmark module is to be deployed | `bool` | `false` | no |
-| <a name="input_deploy_scanning"></a> [deploy\_scanning](#input\_deploy\_scanning) | whether scanning module is to be deployed | `bool` | `true` | no |
+| <a name="input_deploy_scanning"></a> [deploy\_scanning](#input\_deploy\_scanning) | whether scanning module is to be deployed | `bool` | `false` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"westus"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances | `string` | `"sfc"` | no |
 | <a name="input_region"></a> [region](#input\_region) | Region in which to run benchmarks. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]. | `string` | `"AzureCloud"` | no |

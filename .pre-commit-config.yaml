@@ -1,4 +1,13 @@
 repos:
+  # https://github.com/antonbabenko/pre-commit-terraform/blob/master/README.md#terraform_validate (point 4)
+  - repo: local
+    hooks:
+      - id: terraform_clean
+        name: "Terraform Cleanup"
+        pass_filenames: false
+        language: system
+        entry: bash -c "find . \( -iname ".terraform*" ! -iname ".terraform-docs*" ! -path "*/test/*" \)  -print0 | xargs -0 rm -r; true"
+
   - repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: v1.64.0
     hooks:
@@ -10,18 +19,20 @@ repos:
       - id: terraform_tflint
         exclude: (test)|(examples-internal)\/.*$
         args:
-          - '--args=--only=terraform_deprecated_interpolation'
-          - '--args=--only=terraform_deprecated_index'
-          - '--args=--only=terraform_unused_declarations'
           - '--args=--only=terraform_comment_syntax'
+          - '--args=--only=terraform_deprecated_index'
+          - '--args=--only=terraform_deprecated_interpolation'
           - '--args=--only=terraform_documented_outputs'
           - '--args=--only=terraform_documented_variables'
-          - '--args=--only=terraform_typed_variables'
-          - '--args=--only=terraform_module_pinned_source'
-          - '--args=--only=terraform_naming_convention'
-          - '--args=--only=terraform_required_version'
+#          - '--args=--only=terraform_module_pinned_source'   # TODO. fix
+#          - '--args=--only=terraform_module_version'
+#          - '--args=--only=terraform_naming_convention'
           - '--args=--only=terraform_required_providers'
+          - '--args=--only=terraform_required_version'
           - '--args=--only=terraform_standard_module_structure'
+          - '--args=--only=terraform_typed_variables'
+          - '--args=--only=terraform_unused_declarations'
+          - '--args=--only=terraform_unused_required_providers'
           - '--args=--only=terraform_workspace_remote'
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.0.1

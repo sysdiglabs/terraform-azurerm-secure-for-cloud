@@ -12,8 +12,9 @@ Provides unified threat-detection, compliance, forensics and analysis through th
 * **[Compliance](https://docs.sysdig.com/en/docs/sysdig-secure/posture/compliance/compliance-unified-/)**: Enables the evaluation of standard compliance frameworks. Requires both modules  `cloud-connector` and `cloud-bench`. <br/>
 
 * **[Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)**:
-Automatically scans all container images pushed to the registry (ACR) and the images that run on the Azure workload (currently AzureContainerInstances).
-Managed through `cloud-connector`. <br/>
+Automatically scans images that run on the Azure workload (currently AzureContainerInstances).<br/>
+Define an AzureRegistry (ACR) through `registry_name` and also scan all the repository images pushed to the registry.<br/>
+Managed through `cloud-connector`. <br/>Scanning is disabled by default, can be enabled through `deploy_scanning` input variable parameters.<br/>
 
 For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud)
 , [GCP](https://github.com/sysdiglabs/terraform-google-secure-for-cloud)
@@ -21,6 +22,7 @@ For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-a
 ## Permissions
 
 - Threat Detection requires `Contributor` role user authentication
+  - For AD diagnostic `Security Administrator` role must be granted to on the Organizational level. This can be disabled setting `deploy_active_directory=false` on all examples
 - For scanning, an App (with its Service Principal) is required to be created in the ActiveDirectory, to enable
   ContainerRegistry Task to run the image scanning This requires `Security Administrator` role.
 
@@ -100,6 +102,48 @@ Notice that:
 
 Terraform example module to trigger _Azure Access Level creation attempt for Blob Container Set to Public_ event can be found on [examples/trigger-events](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/trigger-events).
 
+This can also be tested manually; choose one of the rules contained in the Sysdig `Azure Best Practices` policy and execute it in your Azure account.
+
+**Image Scanning**
+- For registry image scanning (ACR), upload any image to a registry repository.
+  ```shell
+  $ docker login -u xxx -p  xxx your-registry.azurecr.io  # acr access-key user and password
+  $ docker tag your-registry.azurecr.io/artifact:tag
+  $ docker push your-registry.azurecr.io/artifact:tag
+  ```
+- For workload image scanning in AzureContainerInstances (ACI), deploy any workload to a instance.
+
+## Troubleshooting
+
+### Q-Scanning: I see no image result on Secure
+
+A: 1. Check that the repository where you're uploading images to, is from a registry that has been configured on the deployment, otherwise configure it through `registry_name` input variable <br/>
+2. Check that in this registry 'Tasks > Runs' a new image scanning deployment has been spawned<br/>
+3. Check if in the CloudConnector ContainerInstance any log shows that a new image has been detected<br/>
+
+### Q-Azure: Getting Error 403 on Monitor AAD Diagnostic Setting
+```shell
+│ Error: checking for presence of existing Monitor AAD Diagnostic Setting: (Name "iru-aad-diagnostic-setting"):
+aad.DiagnosticSettingsClient#Get: Failure responding to request: StatusCode=403
+-- Original Error: autorest/azure: Service returned an error.
+Status=403 Code="AuthorizationFailed" Message="The client 'iru@***.onmicrosoft.com' with object id '***' does not have authorization to perform action
+'microsoft.aadiam/diagnosticSettings/read' over scope '/providers/microsoft.aadiam/diagnosticSettings/iru-aad-diagnostic-setting' or the scope is invalid.
+If access was recently granted, please refresh your credentials."
+```
+A: Deployment user has not enough permissions to enable AD diagnostic settings for threat-detection.<br/>
+S: Grant `Security Administrator` organizational role or disable this type of detections through `deploy_active_directory=false`
+
+### Q-Azure: Getting Error 404 could not configure MSI Authorizer: NewMsiConfig: could not validate MSI endpoint
+```shell
+╷
+│ Error: could not configure MSI Authorizer: NewMsiConfig: could not validate MSI endpoint: received HTTP status 404
+│
+│   with provider["registry.terraform.io/hashicorp/azuread"],
+│   on main.tf line 1, in provider "azuread":
+│    1: provider "azuread" {
+```
+A: This may happen if you're using Azure console shell to deploy terraform. MSI (managed service identity has connection limitations)<br/>
+S: Unset `MSI_ENDPOINT` environment variable [[1](https://github.com/hashicorp/terraform-provider-azuread/issues/633)]. We will upgrade provider soon to avoid this.
 ## Authors
 
 Module is maintained and supported by [Sysdig](https://sysdig.com).
