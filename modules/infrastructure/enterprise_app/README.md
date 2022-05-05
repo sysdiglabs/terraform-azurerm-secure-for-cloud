@@ -18,7 +18,7 @@ Creates an enterprise application as contributor role to run the inline scanning
 | Name | Version |
 |------|---------|
 | <a name="provider_azuread"></a> [azuread](#provider\_azuread) | 2.7.0 |
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.4.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >=3.0.2 |
 
 ## Modules
 
