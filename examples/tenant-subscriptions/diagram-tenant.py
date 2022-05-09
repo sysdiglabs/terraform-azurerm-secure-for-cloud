@@ -64,9 +64,6 @@ with Diagram("Sysdig Secure for Cloud\n(Tenant-Subscriptions)", graph_attr=diagr
                 with Cluster("Container Instance Group"):
                     cc = ContainerInstances("Cloud Connector \n Container Instance")
 
-                ccConfig = StorageAccounts("Cloud Connector \n config")
-
-                ccConfig >> Edge(style="dotted") >> cc
                 cregistry << app
 
                 eventhubCC >> cc
