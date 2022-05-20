@@ -8,9 +8,3 @@ variable "sysdig_secure_api_token" {
   description = "Sysdig's Secure API Token"
   sensitive   = true
 }
-
-variable "sysdig_secure_endpoint" {
-  type        = string
-  default     = "https://secure.sysdig.com"
-  description = "Sysdig Secure API endpoint"
-}
