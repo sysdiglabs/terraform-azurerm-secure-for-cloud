@@ -21,15 +21,20 @@ For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-a
 
 ## Permissions
 
-- Threat Detection requires `Contributor` role user authentication
-  - For AD diagnostic `Security Administrator` role must be granted to on the Organizational level. This can be disabled setting `deploy_active_directory=false` on all examples
+- Threat Detection feature requires `Contributor` subscritpion-level role user assignment
+  - For AD diagnostic `Security Administrator` role must be granted to at Organizational level.
+
+    Otherwise, it can be disabled setting `deploy_active_directory=false` on all examples
 - For scanning, an App (with its Service Principal) is required to be created in the ActiveDirectory, to enable
-  ContainerRegistry Task to run the image scanning This requires `Security Administrator` role.
+  ContainerRegistry Task to run the image scanning This requires subscription-level `Security Administrator` role.
+
+
+
+Note: Beware that pervious roles in AD are found in two different levels; Organizational level (user AD **Assigned Roles**), and Subscription level (user AD **Azure role assignments**). This role assignments take some time to consolidate.
+
+![Azure AD roles](./resources/troubleshoot-ad-roles.png)
 
 ## Usage
-
-
-If you're unsure about what/how to use this module, please fill the [questionnaire](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud/blob/master/use-cases/_questionnaire.md) report as an issue and let us know your context, we will be happy to help and improve our module.
 
 ### - Single-Subscription
 
@@ -134,7 +139,7 @@ Status=403 Code="AuthorizationFailed" Message="The client 'iru@***.onmicrosoft.c
 If access was recently granted, please refresh your credentials."
 ```
 A: Deployment user has not enough permissions to enable AD diagnostic settings for threat-detection.<br/>
-S: Grant `Security Administrator` organizational role (in the AD user Assigned Roles) or disable this type of detections through `deploy_active_directory=false`
+S:  Check [Permissions](#permissions) section
 
 ### Q-Azure: Getting Error 404 could not configure MSI Authorizer: NewMsiConfig: could not validate MSI endpoint
 ```shell
