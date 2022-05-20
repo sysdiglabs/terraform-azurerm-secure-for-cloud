@@ -134,7 +134,7 @@ Status=403 Code="AuthorizationFailed" Message="The client 'iru@***.onmicrosoft.c
 If access was recently granted, please refresh your credentials."
 ```
 A: Deployment user has not enough permissions to enable AD diagnostic settings for threat-detection.<br/>
-S: Grant `Security Administrator` organizational role or disable this type of detections through `deploy_active_directory=false`
+S: Grant `Security Administrator` organizational role (in the AD user Assigned Roles) or disable this type of detections through `deploy_active_directory=false`
 
 ### Q-Azure: Getting Error 404 could not configure MSI Authorizer: NewMsiConfig: could not validate MSI endpoint
 ```shell
