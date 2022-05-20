@@ -5,7 +5,7 @@ terraform {
       source  = "hashicorp/azurerm"
       version = ">=3.0.2"
     }
-    sysdig  = {
+    sysdig = {
       source  = "sysdiglabs/sysdig"
       version = ">= 0.5.27"
     }
