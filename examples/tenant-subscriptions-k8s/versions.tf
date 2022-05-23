@@ -9,5 +9,9 @@ terraform {
       source  = "hashicorp/helm"
       version = ">=2.3.0"
     }
+    sysdig = {
+      source  = "sysdiglabs/sysdig"
+      version = ">= 0.5.27"
+    }
   }
 }

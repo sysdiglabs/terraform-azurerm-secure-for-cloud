@@ -20,7 +20,7 @@ module "infrastructure_resource_group" {
 module "infrastructure_eventhub" {
   source = "../../modules/infrastructure/eventhub"
 
-  subscription_ids             = [
+  subscription_ids = [
     data.azurerm_subscription.current.subscription_id
   ]
   location                     = var.location
@@ -34,7 +34,7 @@ module "infrastructure_eventgrid_eventhub" {
   count  = var.deploy_scanning ? 1 : 0
   source = "../../modules/infrastructure/eventhub"
 
-  subscription_ids          = [
+  subscription_ids = [
     data.azurerm_subscription.current.subscription_id
   ]
   location                  = var.location

@@ -91,7 +91,7 @@ variable "name" {
 variable "tags" {
   type        = map(string)
   description = "Tags to be added to the resources"
-  default     = {
+  default = {
     product = "sysdig-secure-for-cloud"
   }
 }

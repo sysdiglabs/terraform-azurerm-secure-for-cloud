@@ -1,5 +1,5 @@
 locals {
-  values_with_scanning    = [
+  values_with_scanning = [
     <<EOF
 rules: []
 ingestors:
