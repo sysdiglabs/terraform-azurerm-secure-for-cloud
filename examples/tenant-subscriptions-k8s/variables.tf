@@ -1,10 +1,3 @@
-variable "sysdig_secure_api_token" {
-  type        = string
-  description = "Sysdig's Secure API Token"
-  sensitive   = true
-}
-
-
 variable "name" {
   type        = string
   description = "Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances"
@@ -14,12 +7,6 @@ variable "name" {
     error_message = "Must enter a naming up to 64 alphanumeric characters."
   }
   default = "sfc"
-}
-
-variable "sysdig_secure_endpoint" {
-  type        = string
-  default     = "https://secure.sysdig.com"
-  description = "Sysdig Secure API endpoint"
 }
 
 variable "benchmark_subscription_ids" {
@@ -65,7 +52,7 @@ variable "location" {
 variable "tags" {
   type        = map(string)
   description = "Tags to be added to the resources"
-  default = {
+  default     = {
     product = "sysdig-secure-for-cloud"
   }
 }
