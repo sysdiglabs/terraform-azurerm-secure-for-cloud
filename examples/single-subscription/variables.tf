@@ -1,9 +1,3 @@
-variable "sysdig_secure_api_token" {
-  type        = string
-  description = "Sysdig's Secure API Token"
-  sensitive   = true
-}
-
 #---------------------------------
 # optionals - with defaults
 #---------------------------------
@@ -83,13 +77,6 @@ variable "region" {
 # general
 #
 
-variable "sysdig_secure_endpoint" {
-  type        = string
-  default     = "https://secure.sysdig.com"
-  description = "Sysdig Secure API endpoint"
-}
-
-
 variable "name" {
   type        = string
   description = "Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances"
@@ -104,7 +91,7 @@ variable "name" {
 variable "tags" {
   type        = map(string)
   description = "Tags to be added to the resources"
-  default = {
+  default     = {
     product = "sysdig-secure-for-cloud"
   }
 }

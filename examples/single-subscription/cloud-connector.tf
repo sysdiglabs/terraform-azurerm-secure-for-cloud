@@ -8,12 +8,13 @@ locals {
 }
 
 
-
 module "infrastructure_eventhub" {
   source = "../../modules/infrastructure/eventhub"
   name   = var.name
 
-  subscription_ids             = [data.azurerm_subscription.current.subscription_id]
+  subscription_ids             = [
+    data.azurerm_subscription.current.subscription_id
+  ]
   location                     = var.location
   resource_group_name          = module.infrastructure_resource_group.resource_group_name
   deploy_ad_diagnostic_setting = var.deploy_active_directory
@@ -38,8 +39,8 @@ module "cloud_connector" {
   client_secret = local.client_secret
   location      = var.location
 
-  sysdig_secure_api_token = var.sysdig_secure_api_token
-  sysdig_secure_endpoint  = var.sysdig_secure_endpoint
+  sysdig_secure_api_token = data.sysdig_secure_connection.current.sysdig_secure_api_token
+  sysdig_secure_endpoint  = data.sysdig_secure_connection.current.secure_url
   verify_ssl              = local.verify_ssl
 
   cpu    = var.cpu

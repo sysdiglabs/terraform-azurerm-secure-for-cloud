@@ -5,7 +5,7 @@ terraform {
       source  = "hashicorp/azurerm"
       version = ">=3.0.2"
     }
-    sysdig = {
+    sysdig  = {
       source  = "sysdiglabs/sysdig"
       version = ">= 0.5.27"
     }
@@ -25,7 +25,6 @@ provider "sysdig" {
 module "s4c_single_account_example" {
   source = "../../../examples/single-subscription"
 
-  sysdig_secure_api_token = var.sysdig_secure_api_token
   name                    = "kitchen"
   deploy_scanning         = true
   deploy_benchmark        = false
