@@ -1,5 +1,5 @@
 locals {
-  verify_ssl                           = length(regexall("^https://.*?\\.sysdig.com/?", var.sysdig_secure_endpoint)) != 0
+  verify_ssl                           = length(regexall("^https://.*?\\.sysdig.com/?", data.sysdig_secure_connection.current.secure_url)) != 0
   eventgrid_eventhub_connection_string = length(module.infrastructure_eventgrid_eventhub) > 0 ? module.infrastructure_eventgrid_eventhub[0].azure_eventhub_connection_string : ""
   eventgrid_eventhub_id                = length(module.infrastructure_eventgrid_eventhub) > 0 ? module.infrastructure_eventgrid_eventhub[0].azure_eventhub_id : ""
   container_registry                   = length(module.infrastructure_container_registry) > 0 ? module.infrastructure_container_registry[0].container_registry : ""
@@ -20,7 +20,9 @@ module "infrastructure_resource_group" {
 module "infrastructure_eventhub" {
   source = "../../modules/infrastructure/eventhub"
 
-  subscription_ids             = [data.azurerm_subscription.current.subscription_id]
+  subscription_ids             = [
+    data.azurerm_subscription.current.subscription_id
+  ]
   location                     = var.location
   name                         = var.name
   tags                         = var.tags
@@ -32,7 +34,9 @@ module "infrastructure_eventgrid_eventhub" {
   count  = var.deploy_scanning ? 1 : 0
   source = "../../modules/infrastructure/eventhub"
 
-  subscription_ids          = [data.azurerm_subscription.current.subscription_id]
+  subscription_ids          = [
+    data.azurerm_subscription.current.subscription_id
+  ]
   location                  = var.location
   name                      = var.name
   tags                      = var.tags
