@@ -12,7 +12,7 @@ module "infrastructure_eventhub" {
   source = "../../modules/infrastructure/eventhub"
   name   = var.name
 
-  subscription_ids             = [
+  subscription_ids = [
     data.azurerm_subscription.current.subscription_id
   ]
   location                     = var.location
