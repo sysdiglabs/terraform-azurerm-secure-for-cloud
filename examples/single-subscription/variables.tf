@@ -1,9 +1,3 @@
-variable "sysdig_secure_api_token" {
-  type        = string
-  description = "Sysdig's Secure API Token"
-  sensitive   = true
-}
-
 #---------------------------------
 # optionals - with defaults
 #---------------------------------
@@ -82,13 +76,6 @@ variable "region" {
 #
 # general
 #
-
-variable "sysdig_secure_endpoint" {
-  type        = string
-  default     = "https://secure.sysdig.com"
-  description = "Sysdig Secure API endpoint"
-}
-
 
 variable "name" {
   type        = string

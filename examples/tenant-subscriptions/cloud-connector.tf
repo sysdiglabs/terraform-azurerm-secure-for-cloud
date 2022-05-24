@@ -39,8 +39,8 @@ module "cloud_connector" {
   client_secret = local.client_secret
   location      = var.location
 
-  sysdig_secure_api_token = var.sysdig_secure_api_token
-  sysdig_secure_endpoint  = var.sysdig_secure_endpoint
+  sysdig_secure_api_token = data.sysdig_secure_connection.current.secure_api_token
+  sysdig_secure_endpoint  = data.sysdig_secure_connection.current.secure_url
   verify_ssl              = local.verify_ssl
 
   cpu    = var.cpu
