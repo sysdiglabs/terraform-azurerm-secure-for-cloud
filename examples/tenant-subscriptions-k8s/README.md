@@ -1,11 +1,12 @@
 # Sysdig Secure for Cloud in Azure<br/>[ Example: tenant-Subscriptions on Kubernetes Cluster ]
 
-
 Deploy Sysdig Secure for Cloud in a provided existing Kubernetes Cluster.
 
-- Sysdig **Helm** [cloud-connector chart](https://charts.sysdig.com/charts/cloud-connector/) will be used to deploy threat-detection and scanning features
-- Used architecture is similar to [tenant-subscriptions](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/tenant-subscriptions) but changing Container Group Instance <---> with
-  an existing K8s
+- Sysdig **Helm** [cloud-connector chart](https://charts.sysdig.com/charts/cloud-connector/) will be used to deploy
+  threat-detection and scanning features
+- Used architecture is similar
+  to [tenant-subscriptions](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/tenant-subscriptions)
+  but changing Container Group Instance <---> with an existing K8s
 
 - All the required resources and workloads will be run under the same Azure subscription.
 
@@ -13,9 +14,9 @@ Deploy Sysdig Secure for Cloud in a provided existing Kubernetes Cluster.
 
 Minimum requirements:
 
-
 1. Configure [Terraform **Azure** Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
-2. Configure [**Helm** Provider](https://registry.terraform.io/providers/hashicorp/helm/latest/docs) for **Kubernetes** cluster
+2. Configure [**Helm** Provider](https://registry.terraform.io/providers/hashicorp/helm/latest/docs) for **Kubernetes**
+   cluster
 3. **Sysdig Secure** requirements, as module input variable value
     ```
     sysdig_secure_api_token=<SECURE_API_TOKEN>
@@ -35,6 +36,11 @@ provider "helm" {
   kubernetes {
     config_path = "~/.kube/config"
   }
+}
+
+provider "sysdig" {
+  sysdig_secure_url       = var.sysdig_secure_endpoint
+  sysdig_secure_api_token = var.sysdig_secure_api_token
 }
 
 module "secure-for-cloud_example_single-subscription-k8s" {
