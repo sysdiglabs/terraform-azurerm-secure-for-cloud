@@ -35,13 +35,8 @@ For quick testing, use this snippet on your terraform files. This example would 
 terraform {
   required_version = ">= 0.15.0"
   required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">=3.0.2"
-    }
-    sysdig  = {
-      source  = "sysdiglabs/sysdig"
-      version = ">= 0.5.27"
+    sysdig = {
+      source = "sysdiglabs/sysdig"
     }
   }
 }
@@ -66,6 +61,14 @@ module "secure_for_cloud_tenant_subscriptions" {
 For specific tenant subscriptions, use this snippet on your terraform files.
 
 ```terraform
+terraform {
+  required_providers {
+    sysdig = {
+      source = "sysdiglabs/sysdig"
+    }
+  }
+}
+
 provider "azurerm" {
   features {}
   subscription_id = "<SUBSCRIPTION_ID>"

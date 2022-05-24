@@ -28,15 +28,9 @@ For quick testing, use this snippet on your terraform files
 
 ```terraform
 terraform {
-  required_version = ">= 0.15.0"
   required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">=3.0.2"
-    }
-    sysdig  = {
-      source  = "sysdiglabs/sysdig"
-      version = ">= 0.5.27"
+    sysdig = {
+      source = "sysdiglabs/sysdig"
     }
   }
 }
@@ -70,13 +64,14 @@ $ terraform apply
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=3.0.2 |
-| <a name="requirement_sysdig"></a> [sysdig](#requirement\_sysdig) | >= 0.5.27 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | > = 0.15.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | > =3.0.2 |
+| <a name="requirement_sysdig"></a> [sysdig](#requirement\_sysdig) | > = 0.5.27 |
 
 ## Providers
 

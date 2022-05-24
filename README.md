@@ -72,6 +72,14 @@ use-case, be free to call desired modules directly.
 In this use-case we will ONLY deploy cloud-bench, into the target account, calling modules directly
 
 ```terraform
+terraform {
+  required_providers {
+    sysdig = {
+      source = "sysdiglabs/sysdig"
+    }
+  }
+}
+
 provider "azurerm" {
   features {}
   subscription_id = "SUBSCRIPTION-ID"
