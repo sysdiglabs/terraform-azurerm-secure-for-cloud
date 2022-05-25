@@ -2,15 +2,17 @@
 
 Deploy Sysdig Secure for Cloud in a provided existing Kubernetes Cluster.
 
-- Sysdig **Helm** [cloud-connector chart](https://charts.sysdig.com/charts/cloud-connector/) will be used to deploy threat-detection and scanning features
-- Used architecture is similar to [single-subscription](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/single-subscription) but changing Container Group Instance <---> with
-  an existing K8s
-
+- Sysdig **Helm** [cloud-connector chart](https://charts.sysdig.com/charts/cloud-connector/) will be used to deploy
+  threat-detection and scanning features
+- Used architecture is similar
+  to [single-subscription](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/single-subscription)
+  but changing Container Group Instance <---> with an existing K8s
 
 ### Notice
 
 * All the required resources and workloads will be run under the same Azure subscription.
-* All Sysdig Secure for Cloud features **but [Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)** are enabled by default. You can enable it through `deploy_scanning` input variable parameters.<br/>
+* All Sysdig Secure for Cloud features **but [Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)**
+  are enabled by default. You can enable it through `deploy_scanning` input variable parameters.<br/>
 * This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
 * All created resources will be created within the tags `product:sysdig-secure-for-cloud`, within the
   resource-group `sysdig-secure-for-cloud`
@@ -19,9 +21,9 @@ Deploy Sysdig Secure for Cloud in a provided existing Kubernetes Cluster.
 
 Minimum requirements:
 
-
 1. Configure [Terraform **Azure** Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
-2. Configure [**Helm** Provider](https://registry.terraform.io/providers/hashicorp/helm/latest/docs) for **Kubernetes** cluster
+2. Configure [**Helm** Provider](https://registry.terraform.io/providers/hashicorp/helm/latest/docs) for **Kubernetes**
+   cluster
 3. **Sysdig Secure** requirements, as module input variable value
     ```
     sysdig_secure_api_token=<SECURE_API_TOKEN>
@@ -32,6 +34,14 @@ Minimum requirements:
 For quick testing, use this snippet on your terraform files
 
 ```terraform
+terraform {
+  required_providers {
+    sysdig = {
+      source = "sysdiglabs/sysdig"
+    }
+  }
+}
+
 provider "azurerm" {
   features {}
   subscription_id = var.subscription_id
@@ -43,8 +53,13 @@ provider "helm" {
   }
 }
 
+provider "sysdig" {
+  sysdig_secure_url       = var.sysdig_secure_endpoint
+  sysdig_secure_api_token = var.sysdig_secure_api_token
+}
+
 module "secure-for-cloud_example_single-subscription-k8s" {
-  source = "sysdiglabs/secure-for-cloud/azurerm//examples/single-subscription-k8s"
+  source                  = "sysdiglabs/secure-for-cloud/azurerm//examples/single-subscription-k8s"
   sysdig_secure_api_token = "11111111-0000-3333-4444-555555222224"
 }
 ```

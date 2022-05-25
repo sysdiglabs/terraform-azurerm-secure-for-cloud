@@ -9,7 +9,8 @@ the `benchmark_subscription_ids` and `threat_detection_subscription_ids` input v
 
 ### Notice
 
-* All Sysdig Secure for Cloud features **but [Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)** are enabled by default. You can enable it through `deploy_scanning` input variable parameters.<br/>
+* All Sysdig Secure for Cloud features **but [Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)**
+  are enabled by default. You can enable it through `deploy_scanning` input variable parameters.<br/>
 * This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
 * All created resources will be created within the tags `product:sysdig-secure-for-cloud`, within the
   resource-group `sysdig-secure-for-cloud`
@@ -31,9 +32,23 @@ Minimum requirements:
 For quick testing, use this snippet on your terraform files. This example would use tenant all subscriptions.
 
 ```terraform
+terraform {
+  required_version = ">= 0.15.0"
+  required_providers {
+    sysdig = {
+      source = "sysdiglabs/sysdig"
+    }
+  }
+}
+
 provider "azurerm" {
   features {}
   subscription_id = "<SUBSCRIPTION_ID>"
+}
+
+provider "sysdig" {
+  sysdig_secure_url       = var.sysdig_secure_endpoint
+  sysdig_secure_api_token = var.sysdig_secure_api_token
 }
 
 module "secure_for_cloud_tenant_subscriptions" {
@@ -46,9 +61,22 @@ module "secure_for_cloud_tenant_subscriptions" {
 For specific tenant subscriptions, use this snippet on your terraform files.
 
 ```terraform
+terraform {
+  required_providers {
+    sysdig = {
+      source = "sysdiglabs/sysdig"
+    }
+  }
+}
+
 provider "azurerm" {
   features {}
   subscription_id = "<SUBSCRIPTION_ID>"
+}
+
+provider "sysdig" {
+  sysdig_secure_url       = var.sysdig_secure_endpoint
+  sysdig_secure_api_token = var.sysdig_secure_api_token
 }
 
 module "secure-for-cloud_example_single-account" {
