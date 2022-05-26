@@ -1,7 +1,6 @@
 # Sysdig Secure for Cloud in Azure
 
-Terraform module that deploys the [**Sysdig Secure for Cloud** stack in **
-Azure**](https://docs.sysdig.com/en/docs/installation/sysdig-secure-for-cloud/deploy-sysdig-secure-for-cloud-on-azure)
+Terraform module that deploys the [**Sysdig Secure for Cloud** stack in **Azure**](https://docs.sysdig.com/en/docs/installation/sysdig-secure-for-cloud/deploy-sysdig-secure-for-cloud-on-azure)
 .
 <br/>
 
@@ -37,6 +36,12 @@ Roles**), and Subscription level (user AD **Azure role assignments**). This role
 consolidate.
 
 ![Azure AD roles](./resources/troubleshoot-ad-roles.png)
+
+
+## Notice
+* **Resource creation inventory** Find all the resources created by Sysdig examples in the resource-group `sysdig-secure-for-cloud` (AWS Resource Group & Tag Editor) <br/>
+* All Sysdig Secure for Cloud features but [Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/) are enabled by default. You can enable it through `deploy_scanning` input variable parameters.<br/>
+* **Deployment cost** This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
 
 ## Usage
 
@@ -115,11 +120,6 @@ $ terraform init
 $ terraform plan
 $ terraform apply
 ```
-
-Notice that:
-
-- These examples will create resources that cost money. Run `terraform destroy` when you don't need them anymore
-- All created resources will be created within the tags `product:sysdig-secure-for-cloud`
 
 ## Forcing Events
 
