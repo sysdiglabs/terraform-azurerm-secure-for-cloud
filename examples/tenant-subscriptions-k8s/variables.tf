@@ -25,7 +25,7 @@ variable "threat_detection_subscription_ids" {
 variable "deploy_scanning" {
   type        = bool
   description = "whether scanning module is to be deployed"
-  default     = true
+  default     = false
 }
 
 # benchmark
