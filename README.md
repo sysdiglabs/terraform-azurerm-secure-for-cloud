@@ -141,7 +141,8 @@ execute it in your Azure account.
   $ docker tag your-registry.azurecr.io/artifact:tag
   $ docker push your-registry.azurecr.io/artifact:tag
   ```
-- For workload image scanning in AzureContainerInstances (ACI), deploy any workload to a instance.
+- For workload image scanning in AzureContainerInstances (ACI), deploy any workload to an instance. Azure gives you the option for a quickstart
+  ![azure aci quickstart](./resources/aci-quickstart.png)
 
 ## Troubleshooting
 
