@@ -39,7 +39,7 @@ variable "deploy_active_directory" {
 
 variable "deploy_scanning" {
   type        = bool
-  description = "whether scanning module is to be deployed. requires deploy_cloud_connector_module=true"
+  description = "true/false, whether scanning module is to be deployed"
   default     = false
 }
 
