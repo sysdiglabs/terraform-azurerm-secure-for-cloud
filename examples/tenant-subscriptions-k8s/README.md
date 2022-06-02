@@ -37,7 +37,12 @@ terraform {
 
 provider "azurerm" {
   features {}
-  subscription_id = var.subscription_id
+  subscription_id = "<SUBSCRIPTION_ID>"
+}
+
+provider "sysdig" {
+  sysdig_secure_url       =  "<SYSDIG_SECURE_URL>"
+  sysdig_secure_api_token =  "<SYSDIG_SECURE_API_TOKEN>"
 }
 
 provider "helm" {
@@ -46,14 +51,8 @@ provider "helm" {
   }
 }
 
-provider "sysdig" {
-  sysdig_secure_url       = var.sysdig_secure_endpoint
-  sysdig_secure_api_token = var.sysdig_secure_api_token
-}
-
 module "secure-for-cloud_example_single-subscription-k8s" {
   source                  = "sysdiglabs/secure-for-cloud/azurerm//examples/single-subscription-k8s"
-  sysdig_secure_api_token = "11111111-0000-3333-4444-555555222224"
 }
 ```
 
@@ -78,7 +77,7 @@ Notice that:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.7.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.8.0 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | 2.5.1 |
 | <a name="provider_sysdig"></a> [sysdig](#provider\_sysdig) | 0.5.37 |
 

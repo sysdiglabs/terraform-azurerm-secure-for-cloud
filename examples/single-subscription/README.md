@@ -37,17 +37,16 @@ terraform {
 
 provider "azurerm" {
   features {}
-  subscription_id = var.subscription_id
+  subscription_id = "<SUBSCRIPTION_ID>"
 }
 
 provider "sysdig" {
-  sysdig_secure_url       = var.sysdig_secure_endpoint
-  sysdig_secure_api_token = var.sysdig_secure_api_token
+  sysdig_secure_url       =  "<SYSDIG_SECURE_URL>"
+  sysdig_secure_api_token =  "<SYSDIG_SECURE_API_TOKEN>"
 }
 
 module "secure_for_cloud_single_subscription" {
   source                  = "sysdiglabs/secure-for-cloud/azurerm//examples/single-subscription"
-  sysdig_secure_api_token = "11111111-0000-3333-4444-555555222224"
 }
 ```
 

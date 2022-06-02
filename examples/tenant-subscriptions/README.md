@@ -29,7 +29,8 @@ Minimum requirements:
 
 ## Usage
 
-For quick testing, use this snippet on your terraform files. This example would use tenant all subscriptions.
+This example would use tenant all subscriptions.
+For specific tenant subscriptions, use `threat_detection_subscription_ids` input variable
 
 ```terraform
 terraform {
@@ -47,44 +48,15 @@ provider "azurerm" {
 }
 
 provider "sysdig" {
-  sysdig_secure_url       = var.sysdig_secure_endpoint
-  sysdig_secure_api_token = var.sysdig_secure_api_token
+  sysdig_secure_url       =  "<SYSDIG_SECURE_URL>"
+  sysdig_secure_api_token =  "<SYSDIG_SECURE_API_TOKEN>"
 }
 
 module "secure_for_cloud_tenant_subscriptions" {
   source = "sysdiglabs/secure-for-cloud/azurerm//examples/tenant-subscriptions"
-
-  sysdig_secure_api_token = "11111111-0000-3333-4444-555555222224"
 }
 ```
 
-For specific tenant subscriptions, use this snippet on your terraform files.
-
-```terraform
-terraform {
-  required_providers {
-    sysdig = {
-      source = "sysdiglabs/sysdig"
-    }
-  }
-}
-
-provider "azurerm" {
-  features {}
-  subscription_id = "<SUBSCRIPTION_ID>"
-}
-
-provider "sysdig" {
-  sysdig_secure_url       = var.sysdig_secure_endpoint
-  sysdig_secure_api_token = var.sysdig_secure_api_token
-}
-
-module "secure-for-cloud_example_single-account" {
-  source                            = "sysdiglabs/secure-for-cloud/azurerm//examples/tenant-subscriptions"
-  sysdig_secure_api_token           = "11111111-0000-3333-4444-555555222224"
-  threat_detection_subscription_ids = ["11111111-0000-3333-0000-222225222222", "22222222-1111-3333-4444-555555222224"]
-}
-```
 
 See [inputs summary](#inputs) or module
 module [`variables.tf`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/new_resource_group/variables.tf)
