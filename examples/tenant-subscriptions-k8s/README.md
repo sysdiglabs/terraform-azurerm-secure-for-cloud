@@ -58,10 +58,11 @@ module "secure-for-cloud_example_single-subscription-k8s" {
 
 See [inputs summary](#inputs) or module module [`variables.tf`](./variables.tf) file for more optional configuration.
 
-Notice that:
-
+### Notice
 * This example will create resources that **cost money**. Run `terraform destroy` when you don't need them anymore.
 * All created resources will be created within the tags `product:sysdig-secure-for-cloud`.
+* For **free subscription** users, beware that this example may not deploy properly due to the [1 cloud-account limitation](https://docs.sysdig.com/en/docs/administration/administration-settings/subscription/#cloud-billing-free-tier). Open an Issue so we can help you here!
+
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
