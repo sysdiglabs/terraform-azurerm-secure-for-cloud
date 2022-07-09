@@ -49,18 +49,11 @@ variable "deploy_scanning" {
   default     = false
 }
 
-variable "registry_name" {
-  type        = string
-  default     = ""
-  description = "The existing Container Registry name"
+variable "existing_registries" {
+  type        = map(list(string))
+  default     = {}
+  description = "The existing Container Registry names to be included to scan by resource group { resource_group = [\"reg1\"]}"
 }
-
-variable "registry_resource_group_name" {
-  type        = string
-  default     = ""
-  description = "The existing Container Registry name resource group name when is different than workload resource group name"
-}
-
 
 #
 # benchmark
