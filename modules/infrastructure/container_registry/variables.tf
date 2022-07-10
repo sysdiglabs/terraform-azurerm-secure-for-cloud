@@ -4,11 +4,6 @@ variable "eventhub_endpoint_id" {
   description = "Specifies the id where the Event Hub is located"
 }
 
-variable "resource_group_name" {
-  type        = string
-  description = "The resource group name to deploy cloud vision stack"
-}
-
 variable "sku" {
   type        = string
   default     = "Standard"
@@ -21,10 +16,15 @@ variable "location" {
   description = "Zone where the stack will be deployed"
 }
 
-variable "registry_name" {
+variable "resource_group_name" {
   type        = string
-  default     = ""
-  description = "Azure Container Registry name to execute the acr scanning tasks"
+  description = "The resource group name where the stack has been deployed"
+}
+
+variable "existing_registries" {
+  type        = map(list(string))
+  default     = {}
+  description = "Azure Container Registries to scan, by resource name"
 }
 
 variable "name" {
