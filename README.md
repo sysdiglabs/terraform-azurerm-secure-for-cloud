@@ -1,7 +1,6 @@
 # Sysdig Secure for Cloud in Azure
 
-Terraform module that deploys the [**Sysdig Secure for Cloud** stack in **Azure**](https://docs.sysdig.com/en/docs/installation/sysdig-secure-for-cloud/deploy-sysdig-secure-for-cloud-on-azure)
-.
+Terraform module that deploys the [**Sysdig Secure for Cloud** stack in **Azure**](https://docs.sysdig.com/en/docs/installation/sysdig-secure-for-cloud/deploy-sysdig-secure-for-cloud-on-azure).
 <br/>
 
 Provides unified threat-detection, compliance, forensics and analysis through these major components:
@@ -47,81 +46,17 @@ consolidate.
 
 ## Usage
 
-### - Single-Subscription
+If you're unsure about what/how to use this module, please fill the [questionnaire](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud/blob/master/use-cases/_questionnaire.md) report as an issue and let us know your context, we will be happy to help and improve our module.
 
-Sysdig workload will be deployed in the same account where user's resources will be watched.<br/>
-More info
-in [`./examples/single-subscription`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription)
-
-![single project diagram](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/single-subscription/diagram-single.png?raw=true)
-
-### - Single-Subscription with a pre-existing Kubernetes Cluster
-
-If you already own a Kubernetes Cluster on GCP, you can use it to deploy Sysdig Secure for Cloud, instead of default
-Container Group Instances.<br/>
-More info
-in [`./examples/single-subscription-k8s`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription-k8s)
-
-### - Tenant-Subscriptions
-
-Sysdig resources will only be deployed on the Sysdig-designated subscription, but features will be available on all the
-Tenant subscriptions (by default), or the ones you select through the input variables.<br/>
-More info
-in [`./examples/tenant-subscriptions`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/tenant-subscriptions)
-
-![tenant subscription diagram](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/tenant-subscriptions/diagram-tenant.png?raw=true)
-
-### - Self-Baked
-
-If no [examples](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples) fit your
-use-case, be free to call desired modules directly.
-
-In this use-case we will ONLY deploy cloud-bench, into the target account, calling modules directly
-
-```terraform
-terraform {
-  required_providers {
-    sysdig = {
-      source = "sysdiglabs/sysdig"
-    }
-  }
-}
-
-provider "azurerm" {
-  features {}
-  subscription_id = "SUBSCRIPTION-ID"
-}
-
-data "azurerm_subscription" "current" {
-}
-
-provider "sysdig" {
-  sysdig_secure_url       = var.sysdig_secure_endpoint
-  sysdig_secure_api_token = var.sysdig_secure_api_token
-}
-
-module "cloud_connector" {
-  source = "sysdiglabs/secure-for-cloud/azurerm//modules/cloud-connector"
-
-  subscription_id                  = data.azurerm_subscription.current.subscription_id
-  resource_group_name              = "RESOURCE_GROUP_NAME"
-  azure_eventhub_connection_string = "EXISTING_EVENTHUB_CONNECTION_STRING"
-  sysdig_secure_api_token          = var.sysdig_secure_api_token
-}
-
-```
-
-See [inputs summary](#inputs) or
-main [module `variables.tf`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/variables.tf)
-file for more optional configuration.
-
-To run this example you need have an Azure account and to execute:
-
-```terraform
-$ terraform init
-$ terraform plan
-$ terraform apply
-```
+- There are several ways to deploy this in you AWS infrastructure, gathered under **[`/examples`](./examples)**
+  - [Single Subscription](./examples/single-subscription/README.md)
+  - [Single Subscription with a pre-existing Kubernetes Cluster](./examples/single-subscription-k8s/README.md)
+  - [Tenant Subscriptions](./examples/tenant-subscriptions/README.md)
+  - Many module,examples and use-cases, we provide ways to **re-use existing resources (as optionals)** in your
+    infrastructure. Check input summary on each example/module.
+<!--
+  - Find some real self-baked **use-case scenarios** under [`/use-cases`](./use-cases)
+-->
 
 ## Forcing Events
 
