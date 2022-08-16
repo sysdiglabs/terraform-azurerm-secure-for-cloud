@@ -58,9 +58,11 @@ If you're unsure about what/how to use this module, please fill the [questionnai
   - Find some real self-baked **use-case scenarios** under [`/use-cases`](./use-cases)
 -->
 
-## Forcing Events
+## Confirm the Services are Working
 
-**Threat Detection**
+Check official documentation on [Secure for cloud - AWS, Confirm the Services are working](https://docs.sysdig.com/en/docs/installation/sysdig-secure-for-cloud/deploy-sysdig-secure-for-cloud-on-azure/#confirm-the-services-are-working)
+
+### Forcing Events - Threat Detection
 
 Terraform example module to trigger _Azure Access Level creation attempt for Blob Container Set to Public_ event can be
 found
@@ -70,7 +72,7 @@ on [examples/trigger-events](https://github.com/sysdiglabs/terraform-azurerm-sec
 This can also be tested manually; choose one of the rules contained in the Sysdig `Azure Best Practices` policy and
 execute it in your Azure account.
 
-**Image Scanning**
+### Forcing Events - Image Scanning
 
 - For registry image scanning (ACR), upload any image to a registry repository.
   ```shell
