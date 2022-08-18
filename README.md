@@ -64,13 +64,10 @@ Check official documentation on [Secure for cloud - AWS, Confirm the Services ar
 
 ### Forcing Events - Threat Detection
 
-Terraform example module to trigger _Azure Access Level creation attempt for Blob Container Set to Public_ event can be
-found
-on [examples/trigger-events](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/trigger-events)
-.
+Choose one of the rules contained in an activated Runtime Policies for Azure, and execute it in your Azure account.
 
-This can also be tested manually; choose one of the rules contained in the Sysdig `Azure Best Practices` policy and
-execute it in your Azure account.
+Alternativelly, use Terraform example module to trigger _Azure Access Level creation attempt for Blob Container Set to Public_ event can be
+found on [examples/trigger-events](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/trigger-events).
 
 ### Forcing Events - Image Scanning
 
