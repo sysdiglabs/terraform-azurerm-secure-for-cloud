@@ -84,8 +84,8 @@ $ terraform apply
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.13.0 |
-| <a name="provider_sysdig"></a> [sysdig](#provider\_sysdig) | 0.5.39 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.20.0 |
+| <a name="provider_sysdig"></a> [sysdig](#provider\_sysdig) | 0.5.40 |
 
 ## Modules
 
