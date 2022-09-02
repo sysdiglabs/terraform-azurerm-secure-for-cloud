@@ -120,6 +120,26 @@ limitations)<br/>
 S: Unset `MSI_ENDPOINT` environment variable [[1](https://github.com/hashicorp/terraform-provider-azuread/issues/633)].
 We will upgrade provider soon to avoid this.
 
+
+## Upgrading
+
+- Uninstall previous deployment resources before upgrading
+```
+$ terraform destroy
+```
+
+- Upgrade the full terraform example with
+
+```
+$ terraform init -upgrade
+$ terraform plan
+$ terraform apply
+```
+
+- If required, you can upgrade cloud-connector component by restarting the task (stop task). Because it's not pinned to an specific version, it will download the latest one.
+
+<br/><br/>
+
 ## Authors
 
 Module is maintained and supported by [Sysdig](https://sysdig.com).
