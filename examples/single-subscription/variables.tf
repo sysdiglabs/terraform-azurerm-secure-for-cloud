@@ -29,7 +29,7 @@ variable "memory" {
 
 variable "deploy_active_directory" {
   type        = bool
-  default     = true
+  default     = false
   description = "whether the Active Directory features are to be deployed"
 }
 
@@ -40,21 +40,14 @@ variable "deploy_active_directory" {
 variable "deploy_scanning" {
   type        = bool
   description = "true/false, whether scanning module is to be deployed"
-  default     = false
+  default     = true
 }
 
-variable "registry_name" {
-  type        = string
-  default     = ""
-  description = "The existing Container Registry name"
+variable "existing_registries" {
+  type        = map(list(string))
+  default     = {}
+  description = "The existing Container Registry names to be included to scan by resource group { resource_group = [\"reg1\"]}"
 }
-
-variable "registry_resource_group_name" {
-  type        = string
-  default     = ""
-  description = "The existing Container Registry name resource group name when is different than workload resource group name"
-}
-
 
 #
 # benchmark
@@ -63,7 +56,7 @@ variable "registry_resource_group_name" {
 variable "deploy_benchmark" {
   type        = bool
   description = "whether benchmark module is to be deployed"
-  default     = true
+  default     = false
 }
 
 variable "region" {

@@ -4,7 +4,7 @@ locals {
   client_secret = length(module.infrastructure_enterprise_app) > 0 ? module.infrastructure_enterprise_app[0].client_secret : ""
 
   eventgrid_eventhub_connection_string = length(module.infrastructure_eventgrid_eventhub) > 0 ? module.infrastructure_eventgrid_eventhub[0].azure_eventhub_connection_string : ""
-  container_registry                   = length(module.infrastructure_container_registry) > 0 ? module.infrastructure_container_registry[0].container_registry : ""
+  container_registries                 = length(module.infrastructure_container_registry) > 0 ? module.infrastructure_container_registry[0].container_registry : ""
 }
 
 
@@ -30,7 +30,7 @@ module "cloud_connector" {
   resource_group_name = module.infrastructure_resource_group.resource_group_name
 
   deploy_scanning                            = var.deploy_scanning
-  container_registry                         = local.container_registry
+  container_registry                         = local.container_registries
   azure_eventhub_connection_string           = module.infrastructure_eventhub.azure_eventhub_connection_string
   azure_eventgrid_eventhub_connection_string = local.eventgrid_eventhub_connection_string
 

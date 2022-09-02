@@ -57,6 +57,12 @@ variable "tags" {
   }
 }
 
+variable "existing_registries" {
+  type        = map(list(string))
+  default     = {}
+  description = "The existing Container Registry names to be included to scan by resource group { resource_group = [\"reg1\"]}"
+}
+
 variable "resource_group_name" {
   type        = string
   default     = ""
@@ -73,16 +79,4 @@ variable "deploy_active_directory" {
   type        = bool
   default     = true
   description = "whether the Active Directory features are to be deployed"
-}
-
-variable "registry_name" {
-  type        = string
-  default     = ""
-  description = "The existing Container Registry name"
-}
-
-variable "registry_resource_group_name" {
-  type        = string
-  default     = ""
-  description = "The existing Container Registry name resource group name when is different than workload resource group name"
 }
