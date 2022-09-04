@@ -21,6 +21,28 @@ Provides unified threat-detection, compliance, forensics and analysis through th
 For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud)
 , [GCP](https://github.com/sysdiglabs/terraform-google-secure-for-cloud)
 
+<br/>
+
+## Usage
+
+There are several ways to deploy Secure for Cloud in you AWS infrastructure, 
+- **[`/examples`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples)** for the most common scenarios
+  - [Single Subscription](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription/README.md)
+  - [Single Subscription with a pre-existing Kubernetes Cluster](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription-k8s/README.md)
+  - [Tenant Subscriptions](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/tenant-subscriptions/README.md)
+  - Many module,examples and use-cases, we provide ways to **re-use existing resources (as optionals)** in your
+    infrastructure. Check input summary on each example/module.
+
+Find specific overall service arquitecture diagrams attached to each example/use-case.
+
+<!--
+In the long-term our purpose is to evaluate those use-cases and if they're common enough, convert them into examples to make their usage easier.
+--> 
+
+If you're unsure about what/how to use this module, please fill the [questionnaire](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud/blob/master/use-cases/_questionnaire.md) report as an issue and let us know your context, we will be happy to help.
+
+<br/>
+
 ## Permissions
 
 - Threat Detection feature requires `Contributor` subscritpion-level role user assignment
@@ -42,21 +64,9 @@ consolidate.
 * All Sysdig Secure for Cloud features but [Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/) are enabled by default. You can enable it through `deploy_scanning` input variable parameters.<br/>
 * **Deployment cost** This example will create resources that cost money. Run `terraform destroy` when you don't need them anymore
 * For **free subscription** users, beware that organizational examples may not deploy properly due to the [1 cloud-account limitation](https://docs.sysdig.com/en/docs/administration/administration-settings/subscription/#cloud-billing-free-tier). Open an Issue so we can help you here!
+
 <br/>
 
-## Usage
-
-If you're unsure about what/how to use this module, please fill the [questionnaire](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud/blob/master/use-cases/_questionnaire.md) report as an issue and let us know your context, we will be happy to help and improve our module.
-
-- There are several ways to deploy this in you AWS infrastructure, gathered under **[`/examples`](./examples)**
-  - [Single Subscription](./examples/single-subscription/README.md)
-  - [Single Subscription with a pre-existing Kubernetes Cluster](./examples/single-subscription-k8s/README.md)
-  - [Tenant Subscriptions](./examples/tenant-subscriptions/README.md)
-  - Many module,examples and use-cases, we provide ways to **re-use existing resources (as optionals)** in your
-    infrastructure. Check input summary on each example/module.
-<!--
-  - Find some real self-baked **use-case scenarios** under [`/use-cases`](./use-cases)
--->
 
 ## Confirm the Services are Working
 
@@ -79,6 +89,8 @@ found on [examples/trigger-events](https://github.com/sysdiglabs/terraform-azure
   ```
 - For workload image scanning in AzureContainerInstances (ACI), deploy any workload to an instance. Azure gives you the option for a quickstart
   ![azure aci quickstart](./resources/aci-quickstart.png)
+
+<br/><br/>
 
 ## Troubleshooting
 
@@ -120,25 +132,25 @@ limitations)<br/>
 S: Unset `MSI_ENDPOINT` environment variable [[1](https://github.com/hashicorp/terraform-provider-azuread/issues/633)].
 We will upgrade provider soon to avoid this.
 
+<br/><br/>
 
 ## Upgrading
 
 - Uninstall previous deployment resources before upgrading
-```
-$ terraform destroy
-```
+  ```
+  $ terraform destroy
+  ```
 
 - Upgrade the full terraform example with
-
-```
-$ terraform init -upgrade
-$ terraform plan
-$ terraform apply
-```
+  ```
+  $ terraform init -upgrade
+  $ terraform plan
+  $ terraform apply
+  ```
 
 - If required, you can upgrade cloud-connector component by restarting the task (stop task). Because it's not pinned to an specific version, it will download the latest one.
 
-<br/><br/>
+<br/>
 
 ## Authors
 
