@@ -41,6 +41,15 @@ In the long-term our purpose is to evaluate those use-cases and if they're commo
 
 If you're unsure about what/how to use this module, please fill the [questionnaire](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud/blob/master/use-cases/_questionnaire.md) report as an issue and let us know your context, we will be happy to help.
 
+
+
+### Notice
+* **Resource creation inventory** Find all the resources created by Sysdig examples in the resource-group `sysdig-secure-for-cloud`<br/>
+* All Sysdig Secure for Cloud features but [Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/) are enabled by default. You can enable it through `deploy_scanning` input variable parameters.<br/>
+* **Deployment cost** This example will create resources that cost money. Run `terraform destroy` when you don't need them anymore
+* For **free subscription** users, beware that organizational examples may not deploy properly due to the [1 cloud-account limitation](https://docs.sysdig.com/en/docs/administration/administration-settings/subscription/#cloud-billing-free-tier). Open an Issue so we can help you here!
+
+
 <br/>
 
 ## Permissions
@@ -57,13 +66,6 @@ Roles**), and Subscription level (user AD **Azure role assignments**). This role
 consolidate.
 
 ![Azure AD roles](./resources/troubleshoot-ad-roles.png)
-
-
-## Notice
-* **Resource creation inventory** Find all the resources created by Sysdig examples in the resource-group `sysdig-secure-for-cloud`<br/>
-* All Sysdig Secure for Cloud features but [Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/) are enabled by default. You can enable it through `deploy_scanning` input variable parameters.<br/>
-* **Deployment cost** This example will create resources that cost money. Run `terraform destroy` when you don't need them anymore
-* For **free subscription** users, beware that organizational examples may not deploy properly due to the [1 cloud-account limitation](https://docs.sysdig.com/en/docs/administration/administration-settings/subscription/#cloud-billing-free-tier). Open an Issue so we can help you here!
 
 <br/>
 
