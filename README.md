@@ -25,7 +25,7 @@ For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-a
 
 ## Usage
 
-There are several ways to deploy Secure for Cloud in you AWS infrastructure, 
+There are several ways to deploy Secure for Cloud in you AWS infrastructure,
 - **[`/examples`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples)** for the most common scenarios
   - [Single Subscription](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription/README.md)
   - [Single Subscription with a pre-existing Kubernetes Cluster](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription-k8s/README.md)
@@ -37,7 +37,7 @@ Find specific overall service arquitecture diagrams attached to each example/use
 
 <!--
 In the long-term our purpose is to evaluate those use-cases and if they're common enough, convert them into examples to make their usage easier.
---> 
+-->
 
 If you're unsure about what/how to use this module, please fill the [questionnaire](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud/blob/master/use-cases/_questionnaire.md) report as an issue and let us know your context, we will be happy to help.
 
