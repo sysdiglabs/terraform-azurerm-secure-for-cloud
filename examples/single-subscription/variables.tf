@@ -29,7 +29,7 @@ variable "memory" {
 
 variable "deploy_active_directory" {
   type        = bool
-  default     = false
+  default     = true
   description = "whether the Active Directory features are to be deployed"
 }
 
@@ -56,7 +56,7 @@ variable "existing_registries" {
 variable "deploy_benchmark" {
   type        = bool
   description = "whether benchmark module is to be deployed"
-  default     = false
+  default     = true
 }
 
 variable "region" {
