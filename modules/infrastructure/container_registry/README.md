@@ -16,8 +16,8 @@ Deploys a container registry and creates an Event Grid to send Image Push and Ch
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.20.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.4.1 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.21.1 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.4.2 |
 
 ## Modules
 
@@ -40,7 +40,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_eventhub_endpoint_id"></a> [eventhub\_endpoint\_id](#input\_eventhub\_endpoint\_id) | Specifies the id where the Event Hub is located | `string` | n/a | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The resource group name where the stack has been deployed | `string` | n/a | yes |
-| <a name="input_existing_registries"></a> [existing\_registries](#input\_existing\_registries) | Azure Container Registries to scan, by resource name | `map(list(string))` | `{}` | no |
+| <a name="input_existing_registries"></a> [existing\_registries](#input\_existing\_registries) | existing  Azure Container Registry names to be included to  scan by resource group { resource\_group\_1 =  ["registry\_name\_11","registry\_name\_12"],resource\_group\_2 =  ["registry\_name\_21","registry\_name\_22"]}. By default it will create a new ACR | `map(list(string))` | `{}` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"westus"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances | `string` | `"sfc"` | no |
 | <a name="input_sku"></a> [sku](#input\_sku) | Pricing tier plan [Basic, Standard, Premium] | `string` | `"Standard"` | no |
