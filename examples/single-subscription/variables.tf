@@ -46,7 +46,7 @@ variable "deploy_scanning" {
 variable "existing_registries" {
   type        = map(list(string))
   default     = {}
-  description = "The existing Container Registry names to be included to scan by resource group { resource_group = [\"reg1\"]}"
+  description = "existing  Azure Container Registry names to be included to  scan by resource group { resource_group_1 =  [\"registry_name_11\",\"registry_name_12\"],resource_group_2 =  [\"registry_name_21\",\"registry_name_22\"]}. By default it will create a new ACR"
 }
 
 #
