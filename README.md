@@ -54,7 +54,7 @@ If you're unsure about what/how to use this module, please fill the [questionnai
 
 ## Permissions
 
-- Threat Detection feature requires `Contributor` subscritpion-level role user assignment
+- Threat Detection feature requires `Contributor` subscription-level role user assignment
     - For AD diagnostic `Security Administrator` role must be granted to at Organizational level.
 
       Otherwise, it can be disabled setting `deploy_active_directory=false` on all examples
