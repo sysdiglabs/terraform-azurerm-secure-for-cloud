@@ -61,7 +61,7 @@ If you're unsure about what/how to use this module, please fill the [questionnai
 - For scanning, an App (with its Service Principal) is required to be created in the ActiveDirectory, to enable
   ContainerRegistry Task to run the image scanning This requires subscription-level `Security Administrator` role.
 
-Note: Beware that pervious roles in AD are found in two different levels; Organizational level (user AD **Assigned
+Note: Beware that previous roles in AD are found in two different levels; Organizational level (user AD **Assigned
 Roles**), and Subscription level (user AD **Azure role assignments**). This role assignments take some time to
 consolidate.
 
