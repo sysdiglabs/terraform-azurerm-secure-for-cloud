@@ -25,7 +25,7 @@ For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-a
 
 ## Usage
 
-There are several ways to deploy Secure for Cloud in you AWS infrastructure,
+There are several ways to deploy Secure for Cloud in you Azure infrastructure,
 - **[`/examples`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples)** for the most common scenarios
   - [Single Subscription](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription/README.md)
   - [Single Subscription with a pre-existing Kubernetes Cluster](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription-k8s/README.md)
@@ -72,7 +72,7 @@ consolidate.
 
 ## Confirm the Services are Working
 
-Check official documentation on [Secure for cloud - AWS, Confirm the Services are working](https://docs.sysdig.com/en/docs/installation/sysdig-secure-for-cloud/deploy-sysdig-secure-for-cloud-on-azure/#confirm-the-services-are-working)
+Check official documentation on [Secure for cloud - Azure, Confirm the Services are working](https://docs.sysdig.com/en/docs/installation/sysdig-secure-for-cloud/deploy-sysdig-secure-for-cloud-on-azure/#confirm-the-services-are-working)
 
 ### Forcing Events - Threat Detection
 
