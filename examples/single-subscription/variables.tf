@@ -40,7 +40,7 @@ variable "deploy_active_directory" {
 variable "deploy_scanning" {
   type        = bool
   description = "true/false, whether scanning module is to be deployed"
-  default     = true
+  default     = false
 }
 
 variable "existing_registries" {
