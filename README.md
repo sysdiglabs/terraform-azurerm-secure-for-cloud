@@ -25,7 +25,7 @@ For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-a
 
 ## Usage
 
-There are several ways to deploy Secure for Cloud in you AWS infrastructure,
+There are several ways to deploy Secure for Cloud in you Azure infrastructure,
 - **[`/examples`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples)** for the most common scenarios
   - [Single Subscription](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription/README.md)
   - [Single Subscription with a pre-existing Kubernetes Cluster](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription-k8s/README.md)
@@ -54,14 +54,14 @@ If you're unsure about what/how to use this module, please fill the [questionnai
 
 ## Permissions
 
-- Threat Detection feature requires `Contributor` subscritpion-level role user assignment
+- Threat Detection feature requires `Contributor` subscription-level role user assignment
     - For AD diagnostic `Security Administrator` role must be granted to at Organizational level.
 
       Otherwise, it can be disabled setting `deploy_active_directory=false` on all examples
 - For scanning, an App (with its Service Principal) is required to be created in the ActiveDirectory, to enable
   ContainerRegistry Task to run the image scanning This requires subscription-level `Security Administrator` role.
 
-Note: Beware that pervious roles in AD are found in two different levels; Organizational level (user AD **Assigned
+Note: Beware that previous roles in AD are found in two different levels; Organizational level (user AD **Assigned
 Roles**), and Subscription level (user AD **Azure role assignments**). This role assignments take some time to
 consolidate.
 
@@ -72,7 +72,7 @@ consolidate.
 
 ## Confirm the Services are Working
 
-Check official documentation on [Secure for cloud - AWS, Confirm the Services are working](https://docs.sysdig.com/en/docs/installation/sysdig-secure-for-cloud/deploy-sysdig-secure-for-cloud-on-azure/#confirm-the-services-are-working)
+Check official documentation on [Secure for cloud - Azure, Confirm the Services are working](https://docs.sysdig.com/en/docs/installation/sysdig-secure-for-cloud/deploy-sysdig-secure-for-cloud-on-azure/#confirm-the-services-are-working)
 
 ### Forcing Events - Threat Detection
 
