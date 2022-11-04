@@ -35,6 +35,12 @@ resource "azurerm_container_registry" "acr" {
   admin_enabled       = true
 }
 
+resource "azurerm_management_lock" "acr" {
+  lock_level = "CanNotDelete"
+  name       = "azurerm_management_lock.this"
+  scope      = azurerm_container_registry.acr[0].id
+}
+
 data "azurerm_container_registry" "example" {
   for_each            = { for entry in local.registries : "${entry.resource_group}.${entry.name}" => entry }
   name                = local.deploy_container_registry ? azurerm_container_registry.acr[0].name : each.value.name
