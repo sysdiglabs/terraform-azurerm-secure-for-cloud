@@ -7,6 +7,9 @@ resource "random_string" "random" {
 }
 
 resource "azurerm_storage_account" "sa" {
+  # AC_AZURE_0373
+  # Why: https only traffic isn't enabled
+  #ts:skip=AC_AZURE_0373 This code is for generating events and it's purpose is generating security issues
   name                     = "triggerazureevent${random_string.random.result}"
   resource_group_name      = var.resource_group_name
   location                 = var.location
