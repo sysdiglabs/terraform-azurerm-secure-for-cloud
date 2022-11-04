@@ -27,6 +27,9 @@ resource "random_string" "random" {
 }
 
 resource "azurerm_container_registry" "acr" {
+  # AC_AZURE_0185
+  # Why: Terrascan doesn't seem to be able to render the fix
+  #ts:skip=AC_AZURE_0185 Already fixed but terrascan doesn't seem to be able to render it
   count               = local.deploy_container_registry ? 1 : 0
   name                = "containerregistry${lower(var.name)}${random_string.random.result}"
   resource_group_name = var.resource_group_name
@@ -36,6 +39,7 @@ resource "azurerm_container_registry" "acr" {
 }
 
 resource "azurerm_management_lock" "acr" {
+  count      = local.deploy_container_registry ? 1 : 0
   lock_level = "CanNotDelete"
   name       = "azurerm_management_lock.this"
   scope      = azurerm_container_registry.acr[0].id
