@@ -15,7 +15,7 @@ Deploys a resource group where deploy all the stack. If the name variable is not
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.24.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.30.0 |
 
 ## Modules
 
@@ -25,6 +25,7 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [azurerm_management_lock.resource_group_lock](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/management_lock) | resource |
 | [azurerm_resource_group.rg](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
 
 ## Inputs
