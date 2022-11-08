@@ -40,12 +40,12 @@ resource "azurerm_virtual_network" "vn" {
 }
 
 resource "azurerm_subnet" "sn" {
-  name                                           = "${var.name}-vn"
-  resource_group_name                            = var.resource_group_name
-  virtual_network_name                           = azurerm_virtual_network.vn.name
-  address_prefixes                               = ["10.0.2.0/24"]
-  service_endpoints                              = ["Microsoft.ContainerRegistry"]
-  enforce_private_link_endpoint_network_policies = true
+  name                                      = "${var.name}-vn"
+  resource_group_name                       = var.resource_group_name
+  virtual_network_name                      = azurerm_virtual_network.vn.name
+  address_prefixes                          = ["10.0.2.0/24"]
+  service_endpoints                         = ["Microsoft.ContainerRegistry"]
+  private_endpoint_network_policies_enabled = true
 
   delegation {
     name = "${var.name}-delegation"
@@ -62,7 +62,7 @@ resource "random_string" "random" {
   lower   = true
   upper   = false
   special = false
-  number  = false
+  numeric = false
 }
 
 resource "azurerm_network_profile" "np" {
@@ -86,7 +86,7 @@ resource "azurerm_container_group" "cg" {
   resource_group_name = var.resource_group_name
   ip_address_type     = "Private"
   os_type             = "Linux"
-  network_profile_id  = azurerm_network_profile.np.id
+  subnet_ids          = [azurerm_subnet.sn.id]
 
   container {
     name   = "${var.name}-container"

@@ -8,7 +8,7 @@ resource "random_string" "random" {
   lower   = true
   upper   = false
   special = false
-  number  = false
+  numeric = false
 }
 
 resource "azurerm_eventhub_namespace" "evn" {
