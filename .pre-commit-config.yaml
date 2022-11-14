@@ -34,6 +34,7 @@ repos:
           - '--args=--only=terraform_unused_declarations'
           - '--args=--only=terraform_unused_required_providers'
           - '--args=--only=terraform_workspace_remote'
+      - id: terrascan
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.0.1
     hooks:
