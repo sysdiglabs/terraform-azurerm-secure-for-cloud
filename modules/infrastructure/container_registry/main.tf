@@ -27,6 +27,8 @@ resource "random_string" "random" {
 }
 
 resource "azurerm_container_registry" "acr" {
+  # AC_AZURE_0185
+  #ts:skip=AC_AZURE_0185 Already fixed but terrascan doesn't seem to be able to render it
   count               = local.deploy_container_registry ? 1 : 0
   name                = "containerregistry${lower(var.name)}${random_string.random.result}"
   resource_group_name = var.resource_group_name

@@ -20,6 +20,18 @@ locals {
   config_content = var.config_content == null && var.config_source == null ? local.default_config : var.config_content
 }
 
+resource "azurerm_network_security_group" "sg" {
+  name                = "${var.name}-sg"
+  location            = var.location
+  security_rule       = []
+  resource_group_name = var.resource_group_name
+}
+
+resource "azurerm_subnet_network_security_group_association" "sga" {
+  network_security_group_id = azurerm_network_security_group.sg.id
+  subnet_id                 = azurerm_subnet.sn.id
+}
+
 resource "azurerm_virtual_network" "vn" {
   name                = "${var.name}-vn"
   address_space       = ["10.0.0.0/16"]
