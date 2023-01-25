@@ -2,6 +2,7 @@ locals {
   eventgrid_eventhub_connection_string = length(module.infrastructure_eventgrid_eventhub) > 0 ? module.infrastructure_eventgrid_eventhub[0].azure_eventhub_connection_string : ""
   eventgrid_eventhub_id                = length(module.infrastructure_eventgrid_eventhub) > 0 ? module.infrastructure_eventgrid_eventhub[0].azure_eventhub_id : ""
 
+  available_subscriptions           = data.azurerm_subscriptions.available.subscriptions
   threat_detection_subscription_ids = length(var.threat_detection_subscription_ids) == 0 ? [for s in local.available_subscriptions : s.subscription_id if s.tenant_id == local.tenant_id] : var.threat_detection_subscription_ids
 
   tenant_id     = data.azurerm_subscription.current.tenant_id
