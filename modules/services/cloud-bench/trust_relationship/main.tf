@@ -15,8 +15,8 @@ data "azurerm_subscription" "subscription" {
 ###################################################
 
 resource "sysdig_secure_cloud_account" "cloud_account" {
-  account_id     = data.azurerm_subscription.subscription.subscription_id
   alias          = data.azurerm_subscription.subscription.display_name
+  account_id     = data.azurerm_subscription.subscription.subscription_id
   cloud_provider = "azure"
   role_enabled   = "true"
 }
