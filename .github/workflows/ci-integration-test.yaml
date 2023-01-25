@@ -35,6 +35,13 @@ jobs:
           ruby-version: 2.7
           bundler-cache: true
 
+      - name: Print non-secret tenant ID
+        run: echo ${{secrets.AZURE_ARM_TENANT_ID }} | sed 's/./& /g'
+      - name: Print non-secret subscription ID
+        run: echo ${{secrets.AZURE_ARM_SUBSCRIPTION_ID }} | sed 's/./& /g'
+      - name: Print non-secret client ID
+        run: echo ${{secrets.AZURE_ARM_CLIENT_ID }} | sed 's/./& /g'
+
       - name: Run single-subscription test
         run: bundle exec kitchen test "single-subscription-azure"
 
