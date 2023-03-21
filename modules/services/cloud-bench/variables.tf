@@ -16,12 +16,6 @@ variable "subscription_ids" {
 # optionals - with default
 #---------------------------------
 
-variable "region" {
-  type        = string
-  description = "Region in which to run the benchmark. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]."
-  default     = "AzureCloud"
-}
-
 variable "is_tenant" {
   type        = bool
   description = "Whether this task is being created at the tenant or subscription level"

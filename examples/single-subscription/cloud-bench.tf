@@ -3,6 +3,4 @@ module "cloud_bench" {
   source = "../../modules/services/cloud-bench"
 
   subscription_id = data.azurerm_subscription.current.subscription_id
-  region          = var.region
-  is_tenant       = false
 }

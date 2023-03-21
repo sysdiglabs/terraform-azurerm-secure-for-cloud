@@ -59,12 +59,6 @@ variable "deploy_benchmark" {
   default     = true
 }
 
-variable "region" {
-  type        = string
-  description = "Region in which to run benchmarks. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]."
-  default     = "AzureCloud"
-}
-
 
 #
 # general

@@ -18,14 +18,3 @@ module "trust_relationship" {
 
   subscription_id = each.key
 }
-
-module "task" {
-  source = "./task"
-
-  subscription_id  = var.subscription_id
-  subscription_ids = local.subscription_ids
-  is_tenant        = var.is_tenant
-  region           = var.region
-
-  depends_on = [module.trust_relationship]
-}
