@@ -3,6 +3,5 @@ module "cloud_bench" {
   source = "../../modules/services/cloud-bench"
 
   subscription_ids = var.benchmark_subscription_ids
-  region           = var.region
   is_tenant        = true
 }

@@ -70,12 +70,6 @@ variable "benchmark_subscription_ids" {
   description = "Azure subscription IDs to run Benchmarks on. If no subscriptions are specified, all of the tenant will be used."
 }
 
-variable "region" {
-  type        = string
-  description = "Region in which to run benchmarks. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]."
-  default     = "AzureCloud"
-}
-
 
 #
 # general
