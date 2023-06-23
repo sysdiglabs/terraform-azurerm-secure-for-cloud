@@ -71,7 +71,7 @@ This would be an overall schema of the **created resources**, for the default se
 - Compliance feature requires `Contributor` subcription-level role, in order to be able to check specific compliance rules.
 - Threat Detection feature requires `Contributor` subscription-level role user assignment
     - For AD diagnostic on [selected log types](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/modules/infrastructure/eventhub/variables.tf#L80) `Security Administrator` role must be granted to at Organizational level.
-      Otherwise, it can be disabled setting `deploy_active_directory=false` on all examples
+      - Otherwise, it can be disabled setting `deploy_active_directory=false` on all examples
 
 - For scanning (disabled by defaul), an App (with its Service Principal) is required to be created in the ActiveDirectory, to enable
   ContainerRegistry Task to run the image scanning This requires subscription-level `Security Administrator` role.
@@ -84,7 +84,10 @@ consolidate.
 
 ### Provisioning Permissions
 
+A custom role could be created with following permissions
+
 ```
+  # threat-detection
   "Microsoft.Authorization/roleAssignments/*",
   "Microsoft.Authorization/roleDefinitions/*",
   "Microsoft.ContainerInstance/containerGroups/*",
@@ -102,6 +105,10 @@ consolidate.
   "Microsoft.Resources/subscriptions/resourceGroups/*",
   "Microsoft.Resources/subscriptions/resourcegroups/resources/read",
   "Microsoft.ManagedServices/operationStatuses/read",
+  "Microsoft.ContainerRegistry/checkNameAvailability/read"
+
+  # image scanning-specific
+  "Microsoft.ContainerRegistry/registries/*",
   "Microsoft.ContainerRegistry/checkNameAvailability/read"
 ```
 
