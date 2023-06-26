@@ -47,4 +47,5 @@ module "cloud_connector" {
   memory = var.memory
 
   tags = var.tags
+  logging = var.logging
 }

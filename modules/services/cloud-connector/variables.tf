@@ -122,3 +122,9 @@ variable "is_organizational" {
   default     = false
   description = "whether secure-for-cloud should be deployed in an organizational setup"
 }
+
+variable "logging" {
+  type        = string
+  default     = "info"
+  description = "log level: info or debug"
+}
