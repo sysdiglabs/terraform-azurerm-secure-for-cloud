@@ -86,5 +86,5 @@ variable "tags" {
 variable "logging" {
   type        = string
   description = "log level: info or debug"
-  default = "info"
+  default     = "info"
 }
