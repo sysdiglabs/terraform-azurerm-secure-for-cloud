@@ -82,3 +82,9 @@ variable "tags" {
     product = "sysdig-secure-for-cloud"
   }
 }
+
+variable "logging" {
+  type        = string
+  description = "log level: info or debug"
+  default     = "info"
+}

@@ -1,6 +1,6 @@
 locals {
   config_without_scanning = yamlencode({
-    logging = "info"
+    logging = var.logging
     rules   = []
     ingestors = [
       {
@@ -12,7 +12,7 @@ locals {
   })
 
   config_with_scanning = yamlencode({
-    logging = "info"
+    logging = var.logging
     rules   = []
     ingestors = concat(
       [
