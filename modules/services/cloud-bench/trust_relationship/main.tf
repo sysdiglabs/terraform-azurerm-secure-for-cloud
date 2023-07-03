@@ -32,7 +32,7 @@ resource "azurerm_lighthouse_definition" "lighthouse_definition" {
     principal_display_name = "Sysdig Service Principal"
 
     # Uses Contributor (default) or Reader roles: https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles
-    role_definition_id     = var.use_reader_role ? "acdd72a7-3385-48ef-bd42-f606fba81ae7" : "b24988ac-6180-42a0-ab88-20f7382dd24c"
+    role_definition_id = var.use_reader_role ? "acdd72a7-3385-48ef-bd42-f606fba81ae7" : "b24988ac-6180-42a0-ab88-20f7382dd24c"
   }
 }
 

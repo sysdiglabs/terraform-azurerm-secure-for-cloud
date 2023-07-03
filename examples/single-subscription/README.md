@@ -107,10 +107,12 @@ $ terraform apply
 | <a name="input_deploy_scanning"></a> [deploy\_scanning](#input\_deploy\_scanning) | true/false, whether scanning module is to be deployed | `bool` | `false` | no |
 | <a name="input_existing_registries"></a> [existing\_registries](#input\_existing\_registries) | existing  Azure Container Registry names to be included to  scan by resource group { resource\_group\_1 =  ["registry\_name\_11","registry\_name\_12"],resource\_group\_2 =  ["registry\_name\_21","registry\_name\_22"]}. By default it will create a new ACR | `map(list(string))` | `{}` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"westus"` | no |
+| <a name="input_logging"></a> [logging](#input\_logging) | log level: info or debug | `string` | `"info"` | no |
 | <a name="input_memory"></a> [memory](#input\_memory) | Number of CPU cores of the containers | `string` | `"1"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name to be assigned to all child resources. A suffix may be added internally when required. Use default value unless you need to install multiple instances | `string` | `"sfc"` | no |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The resource group name to deploy secure for cloud stack | `string` | `""` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to the resources | `map(string)` | <pre>{<br>  "product": "sysdig-secure-for-cloud"<br>}</pre> | no |
+| <a name="input_use_reader_role"></a> [use\_reader\_role](#input\_use\_reader\_role) | Set this flag to `true` to use the `Reader` role instead of the `Contributor` role when creating the Trust Relationship. Some CSPM controls will not function correctly if this option is enabled | `bool` | `false` | no |
 
 ## Outputs
 
