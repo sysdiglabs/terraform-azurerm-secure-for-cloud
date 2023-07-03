@@ -59,6 +59,12 @@ variable "deploy_benchmark" {
   default     = true
 }
 
+variable "use_reader_role" {
+  type        = bool
+  description = "Set this flag to `true` to use the `Reader` role instead of the `Contributor` role when creating the Trust Relationship. Some CSPM controls will not function correctly if this option is enabled"
+  default     = false
+}
+
 
 #
 # general

@@ -4,4 +4,5 @@ module "cloud_bench" {
 
   subscription_ids = var.benchmark_subscription_ids
   is_tenant        = true
+  use_reader_role  = var.use_reader_role
 }

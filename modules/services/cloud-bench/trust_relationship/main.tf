@@ -21,20 +21,18 @@ resource "sysdig_secure_cloud_account" "cloud_account" {
   role_enabled   = "true"
 }
 
-data "azurerm_role_definition" "contributor" {
-  role_definition_id = "b24988ac-6180-42a0-ab88-20f7382dd24c"
-}
-
 resource "azurerm_lighthouse_definition" "lighthouse_definition" {
-  name               = "Sysdig CloudBench Lighthouse Definition"
-  description        = "Lighthouse definition representing Sysdig CloudBench offer"
+  name               = "Sysdig Lighthouse Definition"
+  description        = "Lighthouse definition for Sysdig Secure for Cloud"
   managing_tenant_id = data.sysdig_secure_trusted_cloud_identity.trusted_identity.azure_tenant_id
   scope              = "/subscriptions/${var.subscription_id}"
 
   authorization {
     principal_id           = data.sysdig_secure_trusted_cloud_identity.trusted_identity.azure_service_principal_id
-    role_definition_id     = data.azurerm_role_definition.contributor.role_definition_id
-    principal_display_name = "Sysdig CloudBench Service Principal"
+    principal_display_name = "Sysdig Service Principal"
+
+    # Uses Contributor (default) or Reader roles: https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles
+    role_definition_id     = var.use_reader_role ? "acdd72a7-3385-48ef-bd42-f606fba81ae7" : "b24988ac-6180-42a0-ab88-20f7382dd24c"
   }
 }
 

@@ -1,14 +1,14 @@
 variable "subscription_id" {
   type        = string
-  description = "ID of subscription containing resources to run benchmarks on"
+  description = "Subscription ID in which to create a Trust Relationship"
 }
 
 #---------------------------------
 # optionals - with default
 #---------------------------------
 
-#variable "region" {
-#  type        = string
-#  description = "Region in which to run the benchmark. Azure accepts one of [AzureCloud, AzureChinaCloud, AzureGermanCloud, AzureUSGovernment]."
-#  default     = "AzureCloud"
-#}
+variable "use_reader_role" {
+  type        = bool
+  description = "Set this flag to `true` to use the `Reader` role instead of the `Contributor` role. Some CSPM controls will not function correctly if this option is enabled"
+  default     = false
+}

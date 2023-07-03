@@ -70,6 +70,11 @@ variable "benchmark_subscription_ids" {
   description = "Azure subscription IDs to run Benchmarks on. If no subscriptions are specified, all of the tenant will be used."
 }
 
+variable "use_reader_role" {
+  type        = bool
+  description = "Set this flag to `true` to use the `Reader` role instead of the `Contributor` role when creating the Trust Relationship. Some CSPM controls will not function correctly if this option is enabled"
+  default     = false
+}
 
 #
 # general
