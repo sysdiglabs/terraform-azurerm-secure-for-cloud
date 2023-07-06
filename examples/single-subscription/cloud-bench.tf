@@ -3,4 +3,5 @@ module "cloud_bench" {
   source = "../../modules/services/cloud-bench"
 
   subscription_id = data.azurerm_subscription.current.subscription_id
+  use_reader_role = var.use_reader_role
 }

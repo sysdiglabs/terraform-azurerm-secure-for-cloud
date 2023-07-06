@@ -17,4 +17,5 @@ module "trust_relationship" {
   source   = "./trust_relationship"
 
   subscription_id = each.key
+  use_reader_role = var.use_reader_role
 }
