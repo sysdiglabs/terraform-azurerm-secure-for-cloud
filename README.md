@@ -69,6 +69,7 @@ This would be an overall schema of the **created resources**, for the default se
 ### Provisioning Roles
 
 - Compliance feature requires `Contributor` subcription-level role, in order to be able to check specific compliance rules.
+  -  However, it can be lowered to `Reader` role, at the cost of failing the control Requirement 9.1 “Ensure App Service Authentication is set up for apps in Azure App Service” from CIS Microsoft Azure Foundations Benchmark) as this needs contributor access to query App Service Auth Settings.
 - Threat Detection feature requires `Contributor` subscription-level role user assignment
     - For AD diagnostic on [selected log types](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/modules/infrastructure/eventhub/variables.tf#L80) `Security Administrator` role must be granted to at Organizational level.
       - Otherwise, it can be disabled setting `deploy_active_directory=false` on all examples
