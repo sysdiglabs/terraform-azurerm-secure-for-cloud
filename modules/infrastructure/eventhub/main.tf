@@ -61,7 +61,7 @@ resource "azurerm_monitor_diagnostic_setting" "diagnostic_setting" {
     ignore_changes = [log, metric]
   }
 
-  dynamic "log" {
+  dynamic "enabled_log" {
     for_each = var.logs
     content {
       category = log.value
