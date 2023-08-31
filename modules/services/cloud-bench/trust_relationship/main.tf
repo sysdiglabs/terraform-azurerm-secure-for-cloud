@@ -19,6 +19,13 @@ resource "sysdig_secure_cloud_account" "cloud_account" {
   alias          = data.azurerm_subscription.subscription.display_name
   cloud_provider = "azure"
   role_enabled   = "true"
+
+  # Creating the Cloud Account object in Sysdig causes scans to begin. If lighthouse is not in place, these scans will
+  # fail. This block ensures that lighthouse is in place before any scans are triggered.
+  depends_on = [
+    azurerm_lighthouse_definition.lighthouse_definition,
+    azurerm_lighthouse_assignment.lighthouse_assignment
+  ]
 }
 
 resource "azurerm_lighthouse_definition" "lighthouse_definition" {
