@@ -2,8 +2,8 @@ data "azurerm_subscription" "current" {}
 data "azurerm_subscriptions" "available" {}
 
 locals {
-  # List all available subscriptions
-  available_subscriptions = data.azurerm_subscriptions.available.subscriptions
+  # List all available subscriptions (exclude disabled and deleted subscriptions)
+  available_subscriptions = [for s in data.azurerm_subscriptions.available.subscriptions : s if (s.state != "Disabled" && s.state != "Deleted")]
 
   # If a list of subscriptions is provided, use that. Otherwise, use all available subscriptions that match the current tenant.
   in_scope_subscription_ids = length(var.subscription_ids) == 0 ? [for s in local.available_subscriptions : s.subscription_id if s.tenant_id == data.azurerm_subscription.current.tenant_id] : var.subscription_ids
