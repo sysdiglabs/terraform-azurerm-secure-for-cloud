@@ -64,7 +64,7 @@ resource "azurerm_monitor_diagnostic_setting" "diagnostic_setting" {
   dynamic "enabled_log" {
     for_each = var.logs
     content {
-      category = log.value
+      category = enabled_log.value
 
       retention_policy {
         enabled = false
@@ -79,11 +79,10 @@ resource "azurerm_monitor_aad_diagnostic_setting" "active_directory_diagnostic_s
   eventhub_authorization_rule_id = azurerm_eventhub_namespace_authorization_rule.ns_auth_rule.id
   eventhub_name                  = azurerm_eventhub.aev.name
 
-  dynamic "log" {
+  dynamic "enabled_log" {
     for_each = var.active_directory_logs
     content {
-      category = log.value
-      enabled  = true
+      category = enabled_log.value
 
       retention_policy {
         enabled = false
