@@ -52,14 +52,29 @@ If you're unsure about what/how to use this module, please fill the [questionnai
 
 <br/>
 
-## Permissions
+## Required Permissions
+
+Terraform provider credentials/token, requires administrative permissions (`Contributor` or `Owner`) in order to be able to create the
+resources specified in the per-example diagram.
+
+Some components may vary, or may be deployed on different accounts (depending on the example). You can check full resources on each module "Resources" section in their README's. You can also check our source code and suggest changes.
+
+This would be an overall schema of the **created resources**, for the default setup.
+
+- Event Hub
+- Sysdig Workload: Container Instance / For K8s cluter is pre-requied, not create
+- For Scanning: Event-Grid, Event Hub, and Enterprise App in the ActiveDirectory
+- Sysdig Lighthouse definition for [Compliance](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/modules/services/cloud-bench)
+
+### Provisioning Roles
 
 - Compliance feature requires `Contributor` subcription-level role, in order to be able to check specific compliance rules.
+  -  However, it can be lowered to `Reader` role, at the cost of failing the control Requirement 9.1 “Ensure App Service Authentication is set up for apps in Azure App Service” from CIS Microsoft Azure Foundations Benchmark) as this needs contributor access to query App Service Auth Settings.
 - Threat Detection feature requires `Contributor` subscription-level role user assignment
     - For AD diagnostic on [selected log types](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/modules/infrastructure/eventhub/variables.tf#L80) `Security Administrator` role must be granted to at Organizational level.
-      Otherwise, it can be disabled setting `deploy_active_directory=false` on all examples
+      - Otherwise, it can be disabled setting `deploy_active_directory=false` on all examples
 
-- For scanning, an App (with its Service Principal) is required to be created in the ActiveDirectory, to enable
+- For scanning (disabled by defaul), an App (with its Service Principal) is required to be created in the ActiveDirectory, to enable
   ContainerRegistry Task to run the image scanning This requires subscription-level `Security Administrator` role.
 
 Note: Beware that previous roles in AD are found in two different levels; Organizational level (user AD **Assigned
@@ -67,6 +82,36 @@ Roles**), and Subscription level (user AD **Azure role assignments**). This role
 consolidate.
 
 ![Azure AD roles](./resources/troubleshoot-ad-roles.png)
+
+### Provisioning Permissions
+
+A custom role could be created with following permissions
+
+```
+  # threat-detection
+  "Microsoft.Authorization/roleAssignments/*",
+  "Microsoft.Authorization/roleDefinitions/*",
+  "Microsoft.ContainerInstance/containerGroups/*",
+  "Microsoft.ContainerRegistry/checkNameAvailability/read"
+  "Microsoft.ContainerRegistry/registries/*",
+  "Microsoft.ContainerInstance/locations/operations/read",
+  "Microsoft.EventGrid/eventSubscriptions/*",
+  "Microsoft.EventHub/namespaces/*",
+  "Microsoft.Insights/diagnosticSettings/*",
+  "Microsoft.ManagedServices/registrationAssignments/*",
+  "Microsoft.ManagedServices/registrationDefinitions/*",
+  "Microsoft.Network/networkProfiles/*",
+  "Microsoft.Network/networkSecurityGroups/*",
+  "Microsoft.Network/virtualNetworks/*",
+  "Microsoft.Resources/subscriptions/resourceGroups/*",
+  "Microsoft.Resources/subscriptions/resourcegroups/resources/read",
+  "Microsoft.ManagedServices/operationStatuses/read",
+  "Microsoft.ContainerRegistry/checkNameAvailability/read"
+
+  # image scanning-specific
+  "Microsoft.ContainerRegistry/registries/*",
+  "Microsoft.ContainerRegistry/checkNameAvailability/read"
+```
 
 <br/>
 
