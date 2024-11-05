@@ -11,8 +11,8 @@ Deploy Sysdig Secure for Cloud in a provided existing Kubernetes Cluster.
 ### Notice
 
 * All the required resources and workloads will be run under the same Azure subscription.
-* All Sysdig Secure for Cloud features **but [Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)**
-  are enabled by default. You can enable it through `deploy_scanning` input variable parameters.<br/>
+* CDR is enabled by default **but [Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)**
+  is not. You can enable it through `deploy_scanning` input variable parameters.<br/>
 * This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
 * All created resources will be created within the tags `product:sysdig-secure-for-cloud`, within the
   resource-group `sysdig-secure-for-cloud`
@@ -87,7 +87,6 @@ See [inputs summary](#inputs) or module module [`variables.tf`](./variables.tf) 
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_cloud_bench"></a> [cloud\_bench](#module\_cloud\_bench) | ../../modules/services/cloud-bench | n/a |
 | <a name="module_infrastructure_container_registry"></a> [infrastructure\_container\_registry](#module\_infrastructure\_container\_registry) | ../../modules/infrastructure/container_registry | n/a |
 | <a name="module_infrastructure_enterprise_app"></a> [infrastructure\_enterprise\_app](#module\_infrastructure\_enterprise\_app) | ../../modules/infrastructure/enterprise_app | n/a |
 | <a name="module_infrastructure_eventgrid_eventhub"></a> [infrastructure\_eventgrid\_eventhub](#module\_infrastructure\_eventgrid\_eventhub) | ../../modules/infrastructure/eventhub | n/a |
@@ -108,7 +107,6 @@ See [inputs summary](#inputs) or module module [`variables.tf`](./variables.tf) 
 |------|-------------|------|---------|:--------:|
 | <a name="input_cloud_connector_image"></a> [cloud\_connector\_image](#input\_cloud\_connector\_image) | Cloud-connector image to deploy | `string` | `"quay.io/sysdig/cloud-connector"` | no |
 | <a name="input_deploy_active_directory"></a> [deploy\_active\_directory](#input\_deploy\_active\_directory) | whether the Active Directory features are to be deployed | `bool` | `true` | no |
-| <a name="input_deploy_benchmark"></a> [deploy\_benchmark](#input\_deploy\_benchmark) | whether benchmark module is to be deployed | `bool` | `true` | no |
 | <a name="input_deploy_scanning"></a> [deploy\_scanning](#input\_deploy\_scanning) | whether scanning module is to be deployed | `bool` | `false` | no |
 | <a name="input_existing_registries"></a> [existing\_registries](#input\_existing\_registries) | existing  Azure Container Registry names to be included to  scan by resource group { resource\_group\_1 =  ["registry\_name\_11","registry\_name\_12"],resource\_group\_2 =  ["registry\_name\_21","registry\_name\_22"]}. By default it will create a new ACR | `map(list(string))` | `{}` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"westus"` | no |

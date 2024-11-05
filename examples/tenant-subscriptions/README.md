@@ -4,17 +4,16 @@ Sysdig resources will only be deployed on the Sysdig-designated subscription, pr
 the `provider` `subscription_id`
 but features will be available on all the Tenant subscriptions (by default).
 
-You can also select in which subscription you would like benchmark and threat detection be deployed through
-the `benchmark_subscription_ids` and `threat_detection_subscription_ids` input vars<br/>
+You can also select in which subscription you would like threat detection to be deployed through
+the `threat_detection_subscription_ids` input var<br/>
 
 ### Notice
 
-* All Sysdig Secure for Cloud features **but [Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)**
-  are enabled by default. You can enable it through `deploy_scanning` input variable parameters.<br/>
+* CDR is enabled by default **but [Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)**
+  is not. You can enable it through `deploy_scanning` input variable parameters.<br/>
 * This example will create resources that cost money.<br/>Run `terraform destroy` when you don't need them anymore
 * All created resources will be created within the tags `product:sysdig-secure-for-cloud`, within the
   resource-group `sysdig-secure-for-cloud`
-* For **free subscription** users, beware that this example may not deploy properly due to the [1 cloud-account limitation](https://docs.sysdig.com/en/docs/administration/administration-settings/subscription/#cloud-billing-free-tier). Open an Issue so we can help you here!
 
 ![tenant subscription diagram](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/examples/tenant-subscriptions/diagram-tenant.png?raw=true)
 
@@ -91,7 +90,6 @@ $ terraform apply
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_cloud_bench"></a> [cloud\_bench](#module\_cloud\_bench) | ../../modules/services/cloud-bench | n/a |
 | <a name="module_cloud_connector"></a> [cloud\_connector](#module\_cloud\_connector) | ../../modules/services/cloud-connector | n/a |
 | <a name="module_infrastructure_container_registry"></a> [infrastructure\_container\_registry](#module\_infrastructure\_container\_registry) | ../../modules/infrastructure/container_registry | n/a |
 | <a name="module_infrastructure_enterprise_app"></a> [infrastructure\_enterprise\_app](#module\_infrastructure\_enterprise\_app) | ../../modules/infrastructure/enterprise_app | n/a |
@@ -111,10 +109,8 @@ $ terraform apply
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_benchmark_subscription_ids"></a> [benchmark\_subscription\_ids](#input\_benchmark\_subscription\_ids) | Azure subscription IDs to run Benchmarks on. If no subscriptions are specified, all of the tenant will be used. | `list(string)` | `[]` | no |
 | <a name="input_cpu"></a> [cpu](#input\_cpu) | Number of CPU cores of the containers | `string` | `"0.5"` | no |
 | <a name="input_deploy_active_directory"></a> [deploy\_active\_directory](#input\_deploy\_active\_directory) | whether the Active Directory features are to be deployed | `bool` | `true` | no |
-| <a name="input_deploy_benchmark"></a> [deploy\_benchmark](#input\_deploy\_benchmark) | whether benchmark module is to be deployed | `bool` | `true` | no |
 | <a name="input_deploy_scanning"></a> [deploy\_scanning](#input\_deploy\_scanning) | whether scanning module is to be deployed | `bool` | `false` | no |
 | <a name="input_existing_registries"></a> [existing\_registries](#input\_existing\_registries) | existing  Azure Container Registry names to be included to  scan by resource group { resource\_group\_1 =  ["registry\_name\_11","registry\_name\_12"],resource\_group\_2 =  ["registry\_name\_21","registry\_name\_22"]}. By default it will create a new ACR | `map(list(string))` | `{}` | no |
 | <a name="input_location"></a> [location](#input\_location) | Zone where the stack will be deployed | `string` | `"westus"` | no |
@@ -123,7 +119,6 @@ $ terraform apply
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The resource group name to deploy secure for cloud stack | `string` | `""` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags to be added to the resources | `map(string)` | <pre>{<br>  "product": "sysdig-secure-for-cloud"<br>}</pre> | no |
 | <a name="input_threat_detection_subscription_ids"></a> [threat\_detection\_subscription\_ids](#input\_threat\_detection\_subscription\_ids) | Azure subscription IDs to run threat detection on. If no subscriptions are specified, all of the tenant will be used. | `list(string)` | `[]` | no |
-| <a name="input_use_reader_role"></a> [use\_reader\_role](#input\_use\_reader\_role) | Set this flag to `true` to use the `Reader` role instead of the `Contributor` role when creating the Trust Relationship. Some CSPM controls will not function correctly if this option is enabled | `bool` | `false` | no |
 
 ## Outputs
 

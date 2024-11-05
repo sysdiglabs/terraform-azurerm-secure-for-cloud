@@ -9,12 +9,6 @@ variable "name" {
   default = "sfc"
 }
 
-variable "benchmark_subscription_ids" {
-  default     = []
-  type        = list(string)
-  description = "Azure subscription IDs to run Benchmarks on. If no subscriptions are specified, all of the tenant will be used."
-}
-
 variable "threat_detection_subscription_ids" {
   default     = []
   type        = list(string)
@@ -27,14 +21,6 @@ variable "deploy_scanning" {
   description = "whether scanning module is to be deployed"
   default     = false
 }
-
-# benchmark
-variable "deploy_benchmark" {
-  type        = bool
-  description = "whether benchmark module is to be deployed"
-  default     = true
-}
-
 
 # general
 variable "location" {

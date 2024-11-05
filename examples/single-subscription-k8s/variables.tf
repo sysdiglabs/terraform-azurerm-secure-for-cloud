@@ -16,13 +16,6 @@ variable "deploy_scanning" {
   default     = false
 }
 
-# benchmark
-variable "deploy_benchmark" {
-  type        = bool
-  description = "whether benchmark module is to be deployed"
-  default     = true
-}
-
 # general
 variable "location" {
   type        = string

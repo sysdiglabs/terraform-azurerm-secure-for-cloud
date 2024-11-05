@@ -13,6 +13,5 @@ module "s4c_single_account_example" {
 
   name                    = "kitchen"
   deploy_scanning         = true
-  deploy_benchmark        = false
   deploy_active_directory = false
 }
