@@ -79,9 +79,9 @@ See [inputs summary](#inputs) or module module [`variables.tf`](./variables.tf) 
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.71.0 |
-| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.11.0 |
-| <a name="provider_sysdig"></a> [sysdig](#provider\_sysdig) | 1.12.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.8.0 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.16.1 |
+| <a name="provider_sysdig"></a> [sysdig](#provider\_sysdig) | 1.38.0 |
 
 ## Modules
 

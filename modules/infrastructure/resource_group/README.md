@@ -15,7 +15,7 @@ Deploys a resource group where deploy all the stack. If the name variable is not
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.71.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.8.0 |
 
 ## Modules
 
