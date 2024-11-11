@@ -1,56 +1,18 @@
-# Sysdig Secure for Cloud in Azure
+# Sunset Notice
 
-Terraform module that deploys the [**Sysdig Secure for Cloud** stack in **Azure**](https://docs.sysdig.com/en/docs/installation/sysdig-secure-for-cloud/deploy-sysdig-secure-for-cloud-on-azure).
-<br/>
-
-Provides unified threat-detection, compliance, forensics and analysis through these major components:
-
-* **[Threat Detection](https://docs.sysdig.com/en/docs/sysdig-secure/insights/)**: Tracks abnormal and suspicious
-  activities in your cloud environment based on Falco language. Managed through `cloud-connector` module. <br/>
-
-* **[Compliance](https://docs.sysdig.com/en/docs/sysdig-secure/posture/compliance/compliance-unified-/)**: Enables the
-  evaluation of standard compliance frameworks. Requires both modules  `cloud-connector` and `cloud-bench`. <br/>
-
-* **[Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/)**:
-  Automatically scans images that run on the Azure workload (currently AzureContainerInstances).<br/>
-  Define an AzureRegistry (ACR) through `registry_name` and also scan all the repository images pushed to the
-  registry.<br/>
-  Managed through `cloud-connector`. <br/>Scanning is disabled by default, can be enabled through `deploy_scanning`
-  input variable parameters.<br/>
-
-For other Cloud providers check: [AWS](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud)
-, [GCP](https://github.com/sysdiglabs/terraform-google-secure-for-cloud)
-
-<br/>
+> [!CAUTION]
+> Sysdig released a new onboarding experience for Azure in August 2024. We recommend connecting your cloud accounts by [following these instructions](https://docs.sysdig.com/en/docs/sysdig-secure/connect-cloud-accounts/).
+>
+> This repository should be used solely in cases where Agentless Threat Detection cannot be used.
 
 ## Usage
 
 There are several ways to deploy Secure for Cloud in you Azure infrastructure,
-- **[`/examples`](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples)** for the most common scenarios
-  - [Single Subscription](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription/README.md)
-  - [Single Subscription with a pre-existing Kubernetes Cluster](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription-k8s/README.md)
-  - [Tenant Subscriptions](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/tenant-subscriptions/README.md)
-  - Many module,examples and use-cases, we provide ways to **re-use existing resources (as optionals)** in your
-    infrastructure. Check input summary on each example/module.
+- [Single Subscription](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription/README.md)
+- [Single Subscription with a pre-existing Kubernetes Cluster](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/single-subscription-k8s/README.md)
+- [Tenant Subscriptions](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/examples/tenant-subscriptions/README.md)
 
-Find specific overall service arquitecture diagrams attached to each example/use-case.
-
-<!--
-In the long-term our purpose is to evaluate those use-cases and if they're common enough, convert them into examples to make their usage easier.
--->
-
-If you're unsure about what/how to use this module, please fill the [questionnaire](https://github.com/sysdiglabs/terraform-aws-secure-for-cloud/blob/master/use-cases/_questionnaire.md) report as an issue and let us know your context, we will be happy to help.
-
-
-
-### Notice
-* **Resource creation inventory** Find all the resources created by Sysdig examples in the resource-group `sysdig-secure-for-cloud`<br/>
-* All Sysdig Secure for Cloud features but [Image Scanning](https://docs.sysdig.com/en/docs/sysdig-secure/scanning/) are enabled by default. You can enable it through `deploy_scanning` input variable parameters.<br/>
-* **Deployment cost** This example will create resources that cost money. Run `terraform destroy` when you don't need them anymore
-* For **free subscription** users, beware that organizational examples may not deploy properly due to the [1 cloud-account limitation](https://docs.sysdig.com/en/docs/administration/administration-settings/subscription/#cloud-billing-free-tier). Open an Issue so we can help you here!
-
-
-<br/>
+If you're unsure about how to use this module, please contact your Sysdig representative. Our experts will guide you through the process and assist you in setting up your account securely and correctly.
 
 ## Required Permissions
 
@@ -64,12 +26,9 @@ This would be an overall schema of the **created resources**, for the default se
 - Event Hub
 - Sysdig Workload: Container Instance / For K8s cluter is pre-requied, not create
 - For Scanning: Event-Grid, Event Hub, and Enterprise App in the ActiveDirectory
-- Sysdig Lighthouse definition for [Compliance](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/tree/master/modules/services/cloud-bench)
 
 ### Provisioning Roles
 
-- Compliance feature requires `Contributor` subcription-level role, in order to be able to check specific compliance rules.
-  -  However, it can be lowered to `Reader` role, at the cost of failing the control Requirement 9.1 “Ensure App Service Authentication is set up for apps in Azure App Service” from CIS Microsoft Azure Foundations Benchmark) as this needs contributor access to query App Service Auth Settings.
 - Threat Detection feature requires `Contributor` subscription-level role user assignment
     - For AD diagnostic on [selected log types](https://github.com/sysdiglabs/terraform-azurerm-secure-for-cloud/blob/master/modules/infrastructure/eventhub/variables.tf#L80) `Security Administrator` role must be granted to at Organizational level.
       - Otherwise, it can be disabled setting `deploy_active_directory=false` on all examples

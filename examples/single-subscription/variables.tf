@@ -50,23 +50,6 @@ variable "existing_registries" {
 }
 
 #
-# benchmark
-#
-
-variable "deploy_benchmark" {
-  type        = bool
-  description = "whether benchmark module is to be deployed"
-  default     = true
-}
-
-variable "use_reader_role" {
-  type        = bool
-  description = "Set this flag to `true` to use the `Reader` role instead of the `Contributor` role when creating the Trust Relationship. Some CSPM controls will not function correctly if this option is enabled"
-  default     = false
-}
-
-
-#
 # general
 #
 
